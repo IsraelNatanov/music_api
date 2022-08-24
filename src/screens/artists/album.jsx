@@ -21,10 +21,10 @@ export default function Album() {
 
       // if(location.state){
         console.log(location.state)
-        const response = await APIKit.get("https://api.spotify.com/v1/artists/" + location.state?.id + "/albums?market=IL");
+        const response = await axios.get("http://localhost:9000/albums/" + location.state?.id);
         console.log(response)
-        setAlbum(response.data.items);
-        setImageAlbum(response.data.items)
+        setAlbum(response.data);
+        setImageAlbum(response.data)
       // }
       
     };
@@ -52,11 +52,11 @@ export default function Album() {
              <div
             className="playlist-card"
             key={albums.id}
-            onClick={() => playAlbum(albums.id, albums.images[0].url)}
+            onClick={() => playAlbum(albums.id, albums.images)}
             
           >
             <img
-              src={albums.images[0].url}
+              src={albums.images}
               className="playlist-image"
               alt="Playlist-Art"
             />

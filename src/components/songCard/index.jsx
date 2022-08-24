@@ -7,7 +7,7 @@ export default function SongCard({ album }) {
   
   return (
     <div className="songCard-body flex">
-      <AlbumImage url={album?.images[0]?.url} />
+      <AlbumImage url={album?.images} />
       <AlbumInfo album={album} />
     </div>
   );

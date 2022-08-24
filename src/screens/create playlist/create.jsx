@@ -6,6 +6,7 @@ import ListSong from './listSong'
 import apiClient from '../../spotify';
 import "./create.css";
 import ComboBox from '../search/comboBox'
+import axios from 'axios'
 
 export default function Create() {
   const location = useLocation();
@@ -20,11 +21,11 @@ export default function Create() {
    useEffect(()=>{
 
     if(location.state){
-      apiClient.get("albums/" + location.state?.id + "/tracks")
+      axios.get("http://localhost:9000/tracks/" + location.state?.id)
       .then((res)=> {
         console.log(res.data);
-        setTracks(res.data.items);
-        setCurrentTrack(res.data.items[0])
+        setTracks(res.data);
+        setCurrentTrack(res.data[0])
         setcurrentImages(location.state?.images)
         console.log(currentImages)
       })

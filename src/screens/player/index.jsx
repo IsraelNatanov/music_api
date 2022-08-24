@@ -8,6 +8,7 @@ import SongCard from '../../components/songCard';
 import apiClient from '../../spotify';
 import AudioPLayer from '../../components/audioPlayer/audioPlayer';
 import Widgets from '../../components/widgets';
+import axios from 'axios';
 
 export default function Player() {
   const location = useLocation();
@@ -21,13 +22,13 @@ export default function Player() {
   useEffect(()=>{
     if(location.state){
 
-      apiClient
-      .get("playlists/" + location.state?.id + "/tracks")
+      axios
+      .get("http://localhost:9000/tracksSpotufyPl/" + location.state?.id)
       .then((res)=> {
-         console.log(res);
-         setTracks(res.data.items);
-         setCurrentTrack(res.data.items[0].track)
-         setcurrentImages(res.data.items[0].images[0])
+         console.log(res.data);
+         setTracks(res.data);
+         setCurrentTrack(res.data[0])
+        
         }
         
        );
@@ -36,8 +37,9 @@ export default function Player() {
 
   },[location.state])
 
+
   useEffect(() => {
-    setCurrentTrack(tracks[currentIndex]?.track);
+    setCurrentTrack(tracks[currentIndex]);
   }, [currentIndex, tracks]);
   
   return (
@@ -52,7 +54,7 @@ export default function Player() {
         {/* <Widgets artistID={currentTrack?.album?.artists[0]?.id} /> */}
       </div>
       <div className="right-player-body">
-        <SongCard album={currentTrack?.album} />
+        <SongCard album={currentTrack} />
         <Queue tracks={tracks} setCurrentIndex={setCurrentIndex} />
       </div>
     </div>

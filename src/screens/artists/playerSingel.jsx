@@ -17,19 +17,19 @@ export default function PlayerSingel() {
   const [tracks, setTracks] = useState([]);
   const [currentTrack, setCurrentTrack] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentImages, setcurrentImages] = useState([]);
+  const [currentImages, setCurrentImages] = useState([]);
 
   console.log("location", location);
 
    useEffect(()=>{
 
     if(location.state){
-      apiClient.get("albums/" + location.state?.id + "/tracks")
+      axios.get("http://localhost:9000/tracks/" + location.state?.id)
       .then((res)=> {
         console.log(res.data);
-        setTracks(res.data.items);
-        setCurrentTrack(res.data.items[0])
-        setcurrentImages(location.state?.images)
+        setTracks(res.data);
+        setCurrentTrack(res.data[0])
+        setCurrentImages(location.state?.images)
         console.log(currentImages)
       })
     }
@@ -46,10 +46,10 @@ export default function PlayerSingel() {
       <div className="left-player-body">
         <AudioAlbum
           currentTrack={currentTrack}
-          total={tracks}
+          
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
-         
+          total={tracks}
           currentImages={currentImages}
         />
         {/* <Widgets artistID={currentTrack?.album?.artists[0]?.id} /> */}

@@ -10,7 +10,7 @@ import { BsPlusSquareFill } from "react-icons/bs";
 import { ImSearch } from "react-icons/im";
 import './Sidebar.css'
 import apiClient from '../../spotify';
-import SearchApp from '../../screens/search/searchInput';
+
 
 
 export default function Sidebar() {

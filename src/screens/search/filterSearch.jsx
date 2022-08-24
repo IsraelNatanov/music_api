@@ -6,15 +6,9 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import InputBase from '@mui/material/InputBase';
+
 import { useTheme } from '@mui/material/styles';
-import First from './first';
-import Two from './two';
+
 import ComboBox from './comboBox';
 import { Navigate, useNavigate } from 'react-router-dom';
 

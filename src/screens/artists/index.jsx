@@ -18,20 +18,25 @@ export default function Artists() {
    
     const getArtistsData = async ()=>{
       
-      const response = await APIKit.get('https://api.spotify.com/v1/artists/' + arr[i],
-      );
+      // const response = await APIKit.get('https://api.spotify.com/v1/artists/' + arr[i],
+      // );
       
-      console.log(response)
-      setPlay(play=> [...play, response.data]);
+
+      
+      // console.log(response)
+      // setPlay(play=> [...play, response.data]);
+      const res = await axios.get("http://localhost:9000/artists");
+      setPlay(res.data)
 
    
+    } 
       
+    // }
+    // for(i;i < arr.length; i++) {
+     getArtistsData();
       
-    }
-    for(i;i < arr.length; i++) {
-      getArtistsData();
-      
-    }
+    // }
+    // console.log(play)
     
   },[]);
   const navigate = useNavigate();
@@ -51,7 +56,7 @@ export default function Artists() {
             
           >
             <img
-              src={plays.images[0].url}
+              src={plays.images}
               className="playlist-image"
               alt="Playlist-Art"
             />
