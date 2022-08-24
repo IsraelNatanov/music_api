@@ -24,23 +24,20 @@ export default function Home() {
   
 
   useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    const hash = window.location.hash;
-   
+    const _token = window.localStorage.getItem("token");
+    setToken(_token)
     
-    window.location.hash = "";
-    if (!token && hash) {
       
-      const _token = hash.split("&")[0].split("=")[1];
-      window.localStorage.setItem("token", _token);
-      setToken(_token);
-      console.log(_token)
-      setClientToken(_token);
-    } else {
-      setToken(token);
       
-      setClientToken(token);
-    }
+      // window.localStorage.setItem("token", _token);
+      // setToken(_token);
+      // console.log(_token)
+      // setClientToken(_token);
+    // } else {
+    //   setToken(token);
+      
+    //   setClientToken(token);
+    // }
   }, []);
 
   return !token ? (
@@ -65,6 +62,7 @@ export default function Home() {
                 <Route path='/search' element={<AppSearch/>}/>
                 <Route path='/create' element={<Create/>}/>
                 <Route path='/comboBox' element={<ComboBox/>}/>
+                
                 
 
             </Routes> 

@@ -25,6 +25,11 @@ export default function Sidebar() {
       setImage(response.data.images[0].url);
     });
   }, []);
+  const signout = ()=>{
+    localStorage.clear();
+    window.location.href = '/';
+
+  }
   
   return (
     <div className='sidebar-container'>
@@ -47,7 +52,7 @@ export default function Sidebar() {
         />
         <SidebarButton title="Library" to="/" icon={<IoLibrary />} />
       </div>
-      <SidebarButton title="Sign Out" to="" icon={<FaSignOutAlt />} />
+      <div className="signout" >{<FaSignOutAlt onClick={signout} />} </div>
       
       
     </div>
