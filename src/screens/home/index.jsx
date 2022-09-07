@@ -56,8 +56,8 @@ export default function Home() {
             <Sidebar/>
             <Routes>
 
-                <Route path='/' element={<Library/>}/>
-                <Route path='/artists' element={<Artists/>}/>
+                <Route path='/library' element={<Library/>}/>
+                <Route path='/' element={<Artists/>}/>
                 <Route path='/createPlaylist' element={<CreatePlaylist/>}/>
                 <Route path='/player' element={<Player/>}/>
                 <Route path='/myPlaylists' element={<MyPlaylists/>}/>

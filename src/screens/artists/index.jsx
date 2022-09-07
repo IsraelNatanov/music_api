@@ -5,47 +5,78 @@ import APIKit from "../../spotify";
 import { IconContext } from "react-icons";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import Login from '../auth/login';
 
 export default function Artists() {
-  const arr =['70287pcNpILjcpoBl0soPs','54HicbsQOHeibnnFCMtLwl','5eVh2c6WuigJCj1WrHfnd5','5GCh3ZazIVWg8eKb5Akv0q','3VTm1513t2LL1mSKzzyQuj','0NLEL3BBW71Oshh5R7wpJl','3Y0YvS2crBLVS9eA5jX8Ux','5H64fYkQmqjX0bS4bplq8F', '0kF5nmRrCc9oZpAkVbWaUt','4aTDB7CQyMNOLQsCpAS9EW']
- 
+
+  const [apiError, setApiError] = useState(false)
   const [play, setPlay] = useState([]);
   
 
   let i = 0;
   useEffect(() => {
+    doApi()
+    // getplylistData();
+  },[])
+
+  const doApi = async() => {
+    try{
+      let url = API_URL+"/artists"
+      let resp = await doApiGet(url);
+      setPlay(resp.data)
+      console.log(resp.data);
+      setApiError(false)
+      // if(resp.data){
+      //   getplylistData();
+      // }
+    }
+    catch(err){
+      console.log(err.response)
+      setApiError(true)
+      
+      // alert("Please login to be here or token expired");
+      // navigate("/account")
+      
+    }
+  }
+  // useEffect(() => {
     
    
-    const getArtistsData = async ()=>{
+  //   const getArtistsData = async ()=>{
       
-      // const response = await APIKit.get('https://api.spotify.com/v1/artists/' + arr[i],
-      // );
+  //     // const response = await APIKit.get('https://api.spotify.com/v1/artists/' + arr[i],
+  //     // );
       
 
       
-      // console.log(response)
-      // setPlay(play=> [...play, response.data]);
-      const res = await axios.get("http://localhost:9000/artists");
-      setPlay(res.data)
+  //     // console.log(response)
+  //     // setPlay(play=> [...play, response.data]);
+  //     const res = await axios.get("http://localhost:9000/artists");
+  //     setPlay(res.data)
 
    
-    } 
+  //   } 
       
-    // }
-    // for(i;i < arr.length; i++) {
-     getArtistsData();
+  //   // }
+  //   // for(i;i < arr.length; i++) {
+  //    getArtistsData();
       
-    // }
-    // console.log(play)
+  //   // }
+  //   // console.log(play)
     
-  },[]);
+  // },[]);
   const navigate = useNavigate();
+  // const ifToken = () =>{
+  //   if()
+  // }
   const playArtists = (id) => {
      navigate("/album", { state: { id: id}} );
   };
 
   return (
     <div className="screen-container">
+      {apiError? <Login />:
    
       <div className="library-body">
         {play?.map((plays) => (
@@ -69,7 +100,7 @@ export default function Artists() {
             </div>
           </div>
         ))}
-      </div>
+      </div>}
     </div>
   );
 }

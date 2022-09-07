@@ -34,7 +34,7 @@ export default function Sidebar() {
       <div>
         <SidebarButton title="Search" to="/search" icon={<ImSearch/>} />
         {/* <SidebarButton title="Search" to="/my account" icon={<ImSearch/>} /> */}
-        <SidebarButton title="Artists" to="/artists" icon={<MdSpaceDashboard />} />
+        <SidebarButton title="Artists" to="/" icon={<MdSpaceDashboard />} />
         <SidebarButton title="New playlist" to="/createPlaylist"  icon={<BsPlusSquareFill />} />
 
         {/* <SidebarButton title="Player" to="/player" icon={<FaPlay />} /> */}
@@ -43,7 +43,7 @@ export default function Sidebar() {
           to="/myPlaylists"
           icon={<MdFavorite />}
         />
-        <SidebarButton title="Library" to="/" icon={<IoLibrary />} />
+        <SidebarButton title="Library" to="/library" icon={<IoLibrary />} />
       </div>
       <SidebarButton title="sign out" to="/#" icon={<FaSignOutAlt onClick={signout}/>} />
       

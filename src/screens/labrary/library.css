@@ -1,6 +1,6 @@
 .library-body {
     width: 94%;
-    height: 88%;
+    height: 89%;
     padding: 3%;
     display: flex;
     flex-wrap: wrap;
@@ -41,7 +41,7 @@
     font-weight: 800;
     font-size: 16px;
     color: #c4d0e3;
-    margin: 10px 0px 10px;
+    margin: 0px 0px 10px;
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;

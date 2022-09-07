@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import ComboBox from '../search/comboBox';
 import { useRef } from 'react';
 import NamePlylist from './namePlylist';
-
+import { ImSearch } from "react-icons/im";
 // import {} from '.../createContext/TodoContext'
 
 
@@ -21,6 +21,7 @@ export default function AppCreate() {
   const navigate = useNavigate();
   const [img, setImg] = useState("https://i.scdn.co/image/ab67616d0000b273ff77c8143bec4c7801d85219")
   const [open, setOpen] = React.useState(true);
+  const [openSearch, setOpenSearch] = React.useState(false);
   const [age, setAge] = React.useState('');
   const [ value, setValue] = useState("");
   const [ idNamePlylist, setIdNamePlylist] = useState("");
@@ -78,9 +79,10 @@ export default function AppCreate() {
   const nameopenplylist = ()=>{
     setOpenNamePlylist(true)
   }
+  const styleColor ={color:"coral"}
   return (
 
-    <div className="screen">
+    <div className="screen-container">
       {apiError?
       <Stack sx={{ width: '100%' ,alignItems: "center", paddingTop: "25%"}} spacing={2}>
       
@@ -94,25 +96,35 @@ export default function AppCreate() {
         You are not a premium customer and therefore you are not allowed to enter here!
       </Alert>
     </Stack>:
-    
+      <Grid
+      container
+      direction="column"
+      justifyContent="space-between"
+      alignItems="flex-end"
+      paddingTop={12}
+    >
       
     <Grid
-    
-  container
-  direction="row-reverse"
-  justifyContent="flex-start"
-  alignItems="flex-start"
-  padding={15}
->
-<div className='icon-music'>
+    container
+    direction="row-reverse"
+    justifyContent="flex-start"
+    alignItems="center" 
+    paddingRight={15} 
+    >
+    <div className='icon-music'>
           {<SiApplemusic />}
           
 
-          </div>
-          <Button sx={{fontSize:50 ,marginRight:3}} onClick={() => nameopenplylist()}>הפלייליסט שלי</Button>
-          {openNamePlylist? <NamePlylist />:
-          <div></div>
-          }
+    </div>
+    <Button sx={{fontSize:50 ,marginRight:3}} style={styleColor} onClick={() => nameopenplylist()}>הפלייליסט שלי</Button>
+      {openNamePlylist? <NamePlylist />:
+      <div></div>
+       }
+</Grid>
+<Grid padding={20} color={"coral"} ><ImSearch onClick={()=> setOpenSearch(true)}/></Grid>
+{openSearch? <AppSearch/>: <div></div> }
+
+
 </Grid>
 }
 

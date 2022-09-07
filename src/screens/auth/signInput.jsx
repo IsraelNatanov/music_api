@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import LoginA from './loginA';
 import Signup from './signup';
-import { Paper } from '@mui/material';
+import { Dialog, Paper } from '@mui/material';
 import { useState } from 'react';
 
 function TabPanel(props) {
@@ -69,6 +69,7 @@ const handleChange = (event, newValue) => {
   }
   
   return (
+    
     <Paper elevation={20} style={paperStyle}>
         <Tabs
           value={value}
@@ -92,5 +93,6 @@ const handleChange = (event, newValue) => {
       <Signup handleChange={handleChange}/>
       </TabPanel>
       </Paper>
+      
   );
 }
