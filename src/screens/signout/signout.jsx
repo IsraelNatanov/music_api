@@ -1,7 +1,19 @@
 import React from 'react'
+import { useEffect } from 'react'
 
-export default function signout() {
+
+export default function Signout() {
+  useEffect(()=>{
+    sign()
+
+  },[])
+  const sign= ()=>{
+    localStorage.clear();
+    window.location.href = '/';
+
+  }
+
   return (
-    <div>signout</div>
+    <div></div>
   )
 }

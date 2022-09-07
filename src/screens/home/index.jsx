@@ -17,6 +17,10 @@ import AppSearch from '../search/appSearch';
 import Create from '../create playlist/create';
 import ComboBox from '../search/comboBox';
 
+import Account from '../paypal/my account';
+import Signout from '../signout/signout';
+import NamePlylist from '../create playlist/namePlylist';
+
 
 
 export default function Home() {
@@ -62,6 +66,11 @@ export default function Home() {
                 <Route path='/search' element={<AppSearch/>}/>
                 <Route path='/create' element={<Create/>}/>
                 <Route path='/comboBox' element={<ComboBox/>}/>
+                <Route path='/account' element={<Account/>}/>
+                <Route path='/account' element={<Account/>}/>
+                <Route path='/signout' element={<Signout/>}/>
+                <Route path='/namePlylist' element={<NamePlylist/>}/>
+                
                 
                 
 

@@ -16,7 +16,7 @@
     -webkit-filter: blur(10px);
     filter: blur(10px);
     width: 90%;
-    position: absolute;
-    z-index: -1;
+    /* position: absolute; */
+    z-index: -2;
     top: 20px;
 }

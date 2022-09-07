@@ -8,6 +8,7 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { FiPlusCircle } from "react-icons/fi";
 import { BsPlusSquareFill } from "react-icons/bs";
 import { ImSearch } from "react-icons/im";
+import { IoMdContact } from "react-icons/io";
 import './Sidebar.css'
 import apiClient from '../../spotify';
 
@@ -19,12 +20,7 @@ export default function Sidebar() {
   const [image, setImage] = useState(
     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
   );
-  useEffect(() => {
-    apiClient.get("me").then((response) => {
-      console.log(response.data)
-      setImage(response.data.images[0].url);
-    });
-  }, []);
+  
   const signout = ()=>{
     localStorage.clear();
     window.location.href = '/';
@@ -33,14 +29,11 @@ export default function Sidebar() {
   
   return (
     <div className='sidebar-container'>
-      <img 
-        src={image}
-        className='profile-img'
-        alt='profile'
-      />
+      <SidebarButton title="Account" to="/account" icon={<IoMdContact/>} />
       
       <div>
         <SidebarButton title="Search" to="/search" icon={<ImSearch/>} />
+        {/* <SidebarButton title="Search" to="/my account" icon={<ImSearch/>} /> */}
         <SidebarButton title="Artists" to="/artists" icon={<MdSpaceDashboard />} />
         <SidebarButton title="New playlist" to="/createPlaylist"  icon={<BsPlusSquareFill />} />
 
@@ -52,7 +45,7 @@ export default function Sidebar() {
         />
         <SidebarButton title="Library" to="/" icon={<IoLibrary />} />
       </div>
-      <div className="signout" >{<FaSignOutAlt onClick={signout} />} </div>
+      <SidebarButton title="sign out" to="/#" icon={<FaSignOutAlt onClick={signout}/>} />
       
       
     </div>

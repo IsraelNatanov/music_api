@@ -61,7 +61,7 @@ export default function Artists() {
               alt="Playlist-Art"
             />
             <p className="playlist-title">{plays.name}</p>
-            <p className="playlist-subtitle">{plays.popularity} Songs</p>
+            {/* <p className="playlist-subtitle">{plays.popularity} Songs</p> */}
             <div className="playlist-fade">
               <IconContext.Provider value={{ size: "50px", color: "#E99D72" }}>
                 <AiFillPlayCircle />

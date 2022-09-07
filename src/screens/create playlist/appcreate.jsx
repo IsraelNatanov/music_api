@@ -1,58 +1,124 @@
 import * as React from 'react';
-
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Button from '@mui/material/Button';
-import { Card, colors, TextField } from "@mui/material";
-
-
-
+import { Alert, Card, colors, Stack, TextField } from "@mui/material";
+import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { useNavigate } from "react-router-dom";
+import { SiApplemusic } from "react-icons/si";
+import "./appCreate.css";
 import { useState } from 'react';
 import AppSearch from '../search/appSearch';
 import { useEffect } from 'react';
 import ComboBox from '../search/comboBox';
 import { useRef } from 'react';
-import { color } from '@mui/system';
+import NamePlylist from './namePlylist';
+
 // import {} from '.../createContext/TodoContext'
 
 
 export default function AppCreate() {
+  const navigate = useNavigate();
   const [img, setImg] = useState("https://i.scdn.co/image/ab67616d0000b273ff77c8143bec4c7801d85219")
   const [open, setOpen] = React.useState(true);
   const [age, setAge] = React.useState('');
   const [ value, setValue] = useState("");
   const [ idNamePlylist, setIdNamePlylist] = useState("");
+  const [apiError, setApiError] = useState(false)
   const nameRef = useRef();
+  const [openNamePlylist, setOpenNamePlylist] = useState(false);
 
-  useEffect(()=>{
-    
-
+  useEffect(() => {
+    doApi();
   },[])
 
-  const handleChange = (event) => {
-    setAge(Number(event.target.value) || '');
-  };
+  const doApi = async() => {
+    try{
+      let url = API_URL+"/payment"
+      let resp = await doApiGet(url);
+      setApiError(false)
+      
+      
+    }
+    catch(err){
+      console.log(err.response)
+      setApiError(true)
+      // alert("Please login to be here or token expired");
+      // navigate("/account")
+      
+    }
+  }
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleChange = (event) => {
+  //   setAge(Number(event.target.value) || '');
+  // };
 
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const handleClose = (event, reason) => {
+  //   if (reason !== 'backdropClick') {
+  //     setOpen(false);
+  //   }
+  // };
+  // const valueNamePlylist = ()=>{
+    
+  //   setIdNamePlylist(Date.now())
+ 
+
+  // }
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       setOpen(false);
+      setOpenNamePlylist(false)
+      
     }
   };
-  const valueNamePlylist = ()=>{
-    
-    setIdNamePlylist(Date.now())
- 
-
+  const nameopenplylist = ()=>{
+    setOpenNamePlylist(true)
   }
   return (
-    <div className="screen-container">
-     
+
+    <div className="screen">
+      {apiError?
+      <Stack sx={{ width: '100%' ,alignItems: "center", paddingTop: "25%"}} spacing={2}>
       
-       <Paper
+      <Alert severity="warning"
+        action={
+          <Button color="inherit" size="small" onClick={()=>navigate("/account")}>
+            click
+          </Button>
+        }
+      >
+        You are not a premium customer and therefore you are not allowed to enter here!
+      </Alert>
+    </Stack>:
+    
+      
+    <Grid
+    
+  container
+  direction="row-reverse"
+  justifyContent="flex-start"
+  alignItems="flex-start"
+  padding={15}
+>
+<div className='icon-music'>
+          {<SiApplemusic />}
+          
+
+          </div>
+          <Button sx={{fontSize:50 ,marginRight:3}} onClick={() => nameopenplylist()}>הפלייליסט שלי</Button>
+          {openNamePlylist? <NamePlylist />:
+          <div></div>
+          }
+</Grid>
+}
+
+
+      
+       {/* <Paper
       sx={{
         p: 3,
         margin: "auto",
@@ -95,7 +161,8 @@ export default function AppCreate() {
           <Grid item></Grid>
         </Grid>
       </Grid>
-    </Paper>
+    </Paper> */}
+
     </div>
       
       

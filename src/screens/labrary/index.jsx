@@ -7,17 +7,40 @@ import "./library.css";
 import APIKit from "../../spotify";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { Alert, AlertTitle, Button, Stack } from '@mui/material';
+
 
 export default function Library() {
+  const navigate = useNavigate();
   const [playlists, setPlaylists] = useState(null);
+  const [apiError, setApiError] = useState(false)
 
   useEffect(() => {
-    getplylistData()
-    // axios.get("http://localhost:9000/plylistSpotify").then(function (response) {
-    //   console.log(response)
-    //   setPlaylists(response.data.items);
-    // });
-  }, []);
+    doApi()
+    // getplylistData();
+  },[])
+
+  const doApi = async() => {
+    try{
+      let url = API_URL+"/plylistSpotify"
+      let resp = await doApiGet(url);
+      setPlaylists(resp.data)
+      console.log(resp.data);
+      setApiError(false)
+      // if(resp.data){
+      //   getplylistData();
+      // }
+    }
+    catch(err){
+      console.log(err.response)
+      setApiError(true)
+      
+      // alert("Please login to be here or token expired");
+      // navigate("/account")
+      
+    }
+  }
   const getplylistData = async ()=>{
       
     // const response = await APIKit.get('https://api.spotify.com/v1/artists/' + arr[i],
@@ -34,14 +57,29 @@ export default function Library() {
  
   } 
 
-  const navigate = useNavigate();
+ 
 
   const playPlaylist = (id) => {
     navigate("/player", { state: { id: id } });
   };
+ 
 
   return (
+   
     <div className="screen-container">
+      {apiError?
+      <Stack sx={{ width: '100%' ,alignItems: "center", paddingTop: "25%"}} spacing={2}>
+      
+      <Alert severity="warning"
+        action={
+          <Button color="inherit" size="small" onClick={()=>navigate("/account")}>
+            click
+          </Button>
+        }
+      >
+        You are not a premium customer and therefore you are not allowed to enter here!
+      </Alert>
+    </Stack>:
       <div className="library-body">
         {playlists?.map((playlist) => (
           <div
@@ -55,7 +93,7 @@ export default function Library() {
               alt="Playlist-Art"
             />
             <p className="playlist-title">{playlist.name}</p>
-            <p className="playlist-subtitle">{playlist.total} Songs</p>
+            {/* <p className="playlist-subtitle">{playlist.total} Songs</p> */}
             <div className="playlist-fade">
               <IconContext.Provider value={{ size: "50px", color: "#E99D72" }}>
                 <AiFillPlayCircle />
@@ -63,7 +101,7 @@ export default function Library() {
             </div>
           </div>
         ))}
-      </div>
+      </div>}
     </div>
   );
 }
