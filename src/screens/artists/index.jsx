@@ -32,8 +32,11 @@ export default function Artists() {
       // }
     }
     catch(err){
+      localStorage.clear();
+      window.location.href = '/';
+      
       console.log(err.response)
-      setApiError(true)
+      // setApiError(true)
       
       // alert("Please login to be here or token expired");
       // navigate("/account")

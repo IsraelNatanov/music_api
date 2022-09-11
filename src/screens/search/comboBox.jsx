@@ -3,39 +3,62 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 import { Box } from '@mui/system';
-
+import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
 
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { useRef } from 'react';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 export default function ComboBox({setValue ,value}) {
 
   let [artistss, setArtistss] = React.useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-
+  
   
 
 
   let i = 0;
 
-  React.useEffect(()=>{
-    listArr();
- 
-
+  useEffect(() => {
+    doApi()
+    // getplylistData();
   },[])
 
-  const listArr = async(id)=>{
-    let resp = await axios.get("http://localhost:9000/artists");
-    console.log(resp.data)
+  const doApi = async() => {
+    try{
+      let url = API_URL+"/artists"
+      let resp = await doApiGet(url);
+      setArtistss(resp.data)
+      console.log(resp.data);
+      
+      // if(resp.data){
+      //   getplylistData();
+      // }
+    }
+    catch(err){
+      // localStorage.clear();
+      // window.location.href = '/';
+      
+      console.log(err.response)
+      // setApiError(true)
+      
+      // alert("Please login to be here or token expired");
+      // navigate("/account")
+      
+    }
+  }
+  // const listArr = async(id)=>{
+  //   let resp = await axios.get("http://localhost:9000/artists");
+  //   console.log(resp.data)
   
-    setArtistss(resp.data);
+  //   setArtistss(resp.data);
     
     
    
-  }
+  // }
  
   const playArtists = (value) => {
     console.log("locationvvvv",location)

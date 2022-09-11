@@ -26,7 +26,7 @@ const cacheRtl = createCache({
 });
 
 
-export default function NamePlylist() {
+export default function NamePlylist({setNamePlylist, namePlylist}) {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(true);
 
@@ -60,8 +60,9 @@ export default function NamePlylist() {
         <TextField
           id="outlined-helperText"
           label="שם הפלייליסט"
-          defaultValue="הפלייליסט שלי"
+          defaultValue={namePlylist}
           helperText="Some important text"
+          onChange={(v) => setNamePlylist(v.target.value) }
         />
         </div>
         </ThemeProvider>

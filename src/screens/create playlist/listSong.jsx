@@ -14,9 +14,12 @@ import SongCard from '../../components/songCard';
 import Queue from '../../components/queue';
 import SongCardAritest from '../../components/songCard/songCardAritest';
 import ComboBox from "../search/comboBox";
+import { IconButton } from "@mui/material";
+import AppSearch from "../search/appSearch";
 
 export default function listSong({ tracks, setCurrentIndex,currentIndex }) {
   const [search, setSearch] = useState(false);
+  const [openSearch,setOpenSearch] = useState(false);
   const navigate = useNavigate();
   const navigateSearch = ()=>{
     setSearch(true);
@@ -31,7 +34,10 @@ export default function listSong({ tracks, setCurrentIndex,currentIndex }) {
     <div className="queue-container flex">
       <div className="queue flex">
         <div className="row">
-        {/* <p className="search ">{<ImSearch onClick={<ComboBox/>} />}</p> */}
+        <div className="search ">
+          <IconButton onClick={()=> setOpenSearch(true)}>חפש זמר{<ImSearch />}</IconButton>
+          {openSearch? <AppSearch />: <div></div>}
+          </div>
         <p className="upNext">הוסף שירים</p>
         
         </div>

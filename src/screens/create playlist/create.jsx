@@ -43,7 +43,7 @@ export default function Create() {
       
       <div className="right-player-body flex">
         <SongCardAritest album={currentTrack} img= {currentImages}/>
-        <div className='songCard-body'>{<ComboBox/>}</div>
+        {/* <div className='songCard-body'>{<ComboBox/>}</div> */}
         <ListSong tracks={tracks} setCurrentIndex={setCurrentIndex} currentIndex ={currentIndex}/>
       </div>
     </div>

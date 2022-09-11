@@ -2,7 +2,7 @@ import * as React from 'react';
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Button from '@mui/material/Button';
-import { Alert, Card, colors, Stack, TextField } from "@mui/material";
+import { Alert, Card, colors, Icon, IconButton, Stack, TextField } from "@mui/material";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
 import { useNavigate } from "react-router-dom";
 import { SiApplemusic } from "react-icons/si";
@@ -28,6 +28,7 @@ export default function AppCreate() {
   const [apiError, setApiError] = useState(false)
   const nameRef = useRef();
   const [openNamePlylist, setOpenNamePlylist] = useState(false);
+  const [ namePlylist, setNamePlylist] = useState("הפלייליסט שלי");
 
   useEffect(() => {
     doApi();
@@ -79,6 +80,7 @@ export default function AppCreate() {
   const nameopenplylist = ()=>{
     setOpenNamePlylist(true)
   }
+ 
   const styleColor ={color:"coral"}
   return (
 
@@ -102,6 +104,8 @@ export default function AppCreate() {
       justifyContent="space-between"
       alignItems="flex-end"
       paddingTop={12}
+      paddingRight={10}
+      
     >
       
     <Grid
@@ -109,20 +113,51 @@ export default function AppCreate() {
     direction="row-reverse"
     justifyContent="flex-start"
     alignItems="center" 
-    paddingRight={15} 
+    paddingRight={15}
+    paddingBottom={15}
+    
+  
+    
+    
+    
+    
     >
     <div className='icon-music'>
           {<SiApplemusic />}
           
 
     </div>
-    <Button sx={{fontSize:50 ,marginRight:3}} style={styleColor} onClick={() => nameopenplylist()}>הפלייליסט שלי</Button>
-      {openNamePlylist? <NamePlylist />:
+    <Button sx={{fontSize:50 ,marginRight:3,}} style={styleColor} onClick={() => nameopenplylist()}>{namePlylist}</Button>
+    
+      {openNamePlylist? <NamePlylist setNamePlylist={setNamePlylist} namePlylist={namePlylist}/>:
       <div></div>
        }
 </Grid>
-<Grid padding={20} color={"coral"} ><ImSearch onClick={()=> setOpenSearch(true)}/></Grid>
-{openSearch? <AppSearch/>: <div></div> }
+<Grid
+    container
+    direction="row"
+    justifyContent="flex-end"
+    
+    width={600}
+    borderBottom={2}
+    borderColor="coral"
+    
+    paddingBottom={13}
+    marginRight={15}
+    paddingt={13}
+    
+    
+    
+    
+    
+    
+    ></Grid>
+<Grid marginRight={15} paddingTop={23} ><IconButton sx={{color:"coral"}} onClick={()=> setOpenSearch(true)}>
+  חפש זמר<ImSearch />
+  </IconButton></Grid>
+{openSearch? 
+<div className='search'><AppSearch/></div>: 
+<div></div> }
 
 
 </Grid>

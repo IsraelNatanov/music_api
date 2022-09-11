@@ -86,6 +86,7 @@ export default function FilterSearch(props) {
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       setOpen(false);
+      // {browserHistory.goBack}
       navigate("/")
     }
   };

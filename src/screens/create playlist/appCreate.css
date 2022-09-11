@@ -8,9 +8,20 @@
     font-size: 100px;
     /* margin-top: 70px;
     margin-right: 150px; */
-    color:  coral;
+    color: coral;
 }
-.iconSearch{
-    color:  coral;
+
+.border {
+    border-bottom: solid;
+    border-color: coral;
+}
+
+.iconSearch {
+    color: coral;
     font-size: 20px;
+}
+
+.search {
+    border-bottom: solid;
+    border-color: white;
 }
