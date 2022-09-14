@@ -31,6 +31,7 @@ const cacheRtl = createCache({
 
 
 export default function NamePlylist( props) {
+  
   let { register, handleSubmit, formState: { errors } } = useForm();
   const {namPlylist, addNamePlylist, doApiAdd,  data, setData} = useContext(TodoContext)
   addNamePlylist
@@ -52,6 +53,7 @@ export default function NamePlylist( props) {
     const newDate = {...data}
     newDate[e.target.id] = e.target.value
     setData(newDate)
+
 
     
 

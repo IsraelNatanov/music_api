@@ -1,7 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import "./queue.css";
 
 export default function Queue({ tracks, setCurrentIndex }) {
+
   
   return (
     <div className="queue-container flex">

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {  useContext, useEffect } from "react";
 import { useState } from "react";
 import apiClient from "../../spotify";
 import { FiPlusCircle } from "react-icons/fi";
@@ -9,18 +9,40 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 
 
-import AudioAlbum from '../../components/singalPlay/audioAlbum';
-import SongCard from '../../components/songCard';
-import Queue from '../../components/queue';
-import SongCardAritest from '../../components/songCard/songCardAritest';
-import ComboBox from "../search/comboBox";
 import { IconButton } from "@mui/material";
 import AppSearch from "../search/appSearch";
+import { TodoContext } from "../../context/todoContext";
 
-export default function listSong({ tracks, setCurrentIndex,currentIndex }) {
+
+export default function ListSong(props) {
+  const {data} = useContext(TodoContext)
+  
+  
   const [search, setSearch] = useState(false);
   const [openSearch,setOpenSearch] = useState(false);
   const navigate = useNavigate();
+  const tracks = props.tracks
+  
+  const [dataTrack, setDataTrack] = useState({
+    
+    id: "",
+    id_plylist: "",
+    images: "",
+    name: "",
+    preview_url: "",
+
+  })
+  const corrent = (track, index)=> {
+    
+    const newDataTrack = {...dataTrack}
+    newDataTrack["id"] = track.id
+    newDataTrack["images"] = track.images
+    newDataTrack["name"] = track.name
+    newDataTrack["preview_url"] = track.preview_url
+    setDataTrack(newDataTrack)
+    console.log(newDataTrack);
+
+  }
   const navigateSearch = ()=>{
     setSearch(true);
 
@@ -46,7 +68,7 @@ export default function listSong({ tracks, setCurrentIndex,currentIndex }) {
             <div
               key={index + "key"}
               className="queue-item flex"
-              onClick={() => setCurrentIndex(index) }
+              onClick={() => corrent(track, index) }
             >
               
               <div className="aicons">{<FiPlusCircle/>}</div>
