@@ -14,10 +14,13 @@ import ComboBox from '../search/comboBox';
 import { useRef } from 'react';
 import NamePlylist from './namePlylist';
 import { ImSearch } from "react-icons/im";
+import { useContext } from 'react';
+import { TodoContext } from '../../context/todoContext';
 // import {} from '.../createContext/TodoContext'
 
 
-export default function AppCreate() {
+export default function AppCreate(props) {
+  const {namPlylist} = useContext(TodoContext)
   const navigate = useNavigate();
   const [img, setImg] = useState("https://i.scdn.co/image/ab67616d0000b273ff77c8143bec4c7801d85219")
   const [open, setOpen] = React.useState(true);
@@ -28,7 +31,7 @@ export default function AppCreate() {
   const [apiError, setApiError] = useState(false)
   const nameRef = useRef();
   const [openNamePlylist, setOpenNamePlylist] = useState(false);
-  const [ namePlylist, setNamePlylist] = useState("הפלייליסט שלי");
+
 
   useEffect(() => {
     doApi();
@@ -101,66 +104,70 @@ export default function AppCreate() {
       <Grid
       container
       direction="column"
-      justifyContent="space-between"
-      alignItems="flex-end"
+      justifyContent="center"
+      alignItems="center"
       paddingTop={12}
-      paddingRight={10}
+      // paddingRight={10}
       
-    >
+      >
       
-    <Grid
-    container
-    direction="row-reverse"
-    justifyContent="flex-start"
-    alignItems="center" 
-    paddingRight={15}
-    paddingBottom={15}
-    
-  
-    
-    
-    
-    
-    >
-    <div className='icon-music'>
-          {<SiApplemusic />}
+        <Grid
+        container
+        direction="row-reverse"
+        justifyContent="center"
+        alignItems="center" 
+            // paddingRight={15}
+            paddingBottom={15}
+            
           
+            
+            
+            
+            
+        >
+          <div className='icon-music'>
+              {<SiApplemusic />}
+                  
 
-    </div>
-    <Button sx={{fontSize:50 ,marginRight:3,}} style={styleColor} onClick={() => nameopenplylist()}>{namePlylist}</Button>
-    
-      {openNamePlylist? <NamePlylist setNamePlylist={setNamePlylist} namePlylist={namePlylist}/>:
-      <div></div>
-       }
-</Grid>
-<Grid
-    container
-    direction="row"
-    justifyContent="flex-end"
-    
-    width={600}
-    borderBottom={2}
-    borderColor="coral"
-    
-    paddingBottom={13}
-    marginRight={15}
-    paddingt={13}
-    
-    
-    
-    
-    
-    
-    ></Grid>
-<Grid marginRight={15} paddingTop={23} ><IconButton sx={{color:"coral"}} onClick={()=> setOpenSearch(true)}>
-  חפש זמר<ImSearch />
-  </IconButton></Grid>
-{openSearch? 
-<div className='search'><AppSearch/></div>: 
-<div></div> }
+          </div>
+          <Button sx={{fontSize:50 ,marginRight:3,}} style={styleColor} >{namPlylist}</Button>
+            
+          {/* {openNamePlylist?  */}
+          <NamePlylist  namPlylist/>
+          {/* : */}
+          {/* <div></div>
+          } */}
+        </Grid>
+        <Grid
+        container
+        direction="row"
+        // justifyContent="flex-end"
+            
+        width={600}
+        borderBottom={2}
+        borderColor="coral"
+            
+            paddingBottom={13}
+            // marginRight={15}
+            // paddingt={13}
+           
+        >
+
+        </Grid>
+        <Grid 
+        // marginRight={15} 
+        paddingTop={25}
+        >
+          <IconButton sx={{color:"coral"}} onClick={()=> setOpenSearch(true)}>
+          חפש זמר<ImSearch />
+          </IconButton>
+        </Grid>
+        {openSearch? 
+        <div className='search'><AppSearch/></div>: 
+        <div></div> }
 
 
-</Grid>
+      </Grid>
 }
 
 

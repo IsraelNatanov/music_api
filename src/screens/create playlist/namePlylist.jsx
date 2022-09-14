@@ -15,6 +15,10 @@ import createCache from "@emotion/cache";
 
 import { SiApplemusic } from "react-icons/si";
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { TodoContext } from '../../context/todoContext';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
 const theme = createTheme({
   direction: 'rtl', // Both here and <body dir="rtl">
@@ -26,47 +30,79 @@ const cacheRtl = createCache({
 });
 
 
-export default function NamePlylist({setNamePlylist, namePlylist}) {
+export default function NamePlylist( props) {
+  let { register, handleSubmit, formState: { errors } } = useForm();
+  const {namPlylist, addNamePlylist, doApiAdd,  data, setData} = useContext(TodoContext)
+  addNamePlylist
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(true);
-
+  // const [data, setDate] = useState({
+  //   id: Date.now(),
+  //   name: ""
+  // })
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
+      console.log(reason);
       setOpen(false);
       
     }
   };
-  
+  const createName = (e)=>{
+    addNamePlylist(e.target.value)
+    const newDate = {...data}
+    newDate[e.target.id] = e.target.value
+    setData(newDate)
+
+    
+
+  }
+  const onSub = () => {
+      console.log(data);
+      setOpen(false);
+      
+      doApiAdd(data);
+    // }
+  }
   
 
   return (
     <div className='name'>
+       
       <Dialog disableEscapeKeyDown open={open}  onClose={handleClose} >
+      <form onSubmit={handleSubmit(onSub)}>
+        
       <DialogTitle >
         <Button onClick={handleClose}><CloseIcon /></Button>
         </DialogTitle>
         <Grid
-  container
-  direction="row"
-  justifyContent="center"
-  alignItems="center"
->
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          
         <DialogContent>
           <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' ,}}>
          
           <CacheProvider value={cacheRtl}>
-      <ThemeProvider theme={theme}>
+   
+        <ThemeProvider theme={theme}>
         <div dir="rtl">
+       
         <TextField
-          id="outlined-helperText"
-          label="שם הפלייליסט"
-          defaultValue={namePlylist}
+          id="name"
+          fullWidth label="שם הפלייליסט"
+          defaultValue={namPlylist}
           helperText="Some important text"
-          onChange={(v) => setNamePlylist(v.target.value) }
+          {...register("name",{ required:true, minLength:3})}
+          onChange={(e) => createName(e) }
+         
+          
         />
+        
         </div>
         </ThemeProvider>
-    </CacheProvider>
+       </CacheProvider>
       
         
           {/* <First setAritsts={setAritsts} /> */}
@@ -91,10 +127,12 @@ export default function NamePlylist({setNamePlylist, namePlylist}) {
         </Grid>
         
         <DialogActions>
-          <Button sx={{fontSize: "large"}} onClick={handleClose}>שמירה</Button>
+          <Button sx={{fontSize: "large"}} type='submit'>שמירה</Button>
           {/* <Button onClick={handleClose}>Ok</Button> */}
         </DialogActions>
-      </Dialog>
+        </form>
+        </Dialog>
+      
     </div>
   )
 }

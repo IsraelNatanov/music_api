@@ -12,7 +12,7 @@ import './Home.css'
 import {sortBy} from 'lodash'
 import PlayerSingel from '../artists/playerSingel';
 import Album from '../artists/album';
-import CreatePlaylist from '../create playlist/appcreate';
+
 import AppSearch from '../search/appSearch';
 import Create from '../create playlist/create';
 import ComboBox from '../search/comboBox';
@@ -20,6 +20,7 @@ import ComboBox from '../search/comboBox';
 import Account from '../paypal/my account';
 import Signout from '../signout/signout';
 import NamePlylist from '../create playlist/namePlylist';
+import CreatePlaylist from '../create playlist';
 
 
 
