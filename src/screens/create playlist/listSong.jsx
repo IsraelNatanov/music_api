@@ -7,7 +7,8 @@ import "./listSong.css";
 import { ImSearch } from "react-icons/im";
 import { useLocation, useNavigate } from 'react-router-dom'
 
-
+import { doApiMethod } from '../../components/services/apiService.jsX';
+import { API_URL } from '../../components/services/apiService.jsX';
 
 import { IconButton } from "@mui/material";
 import AppSearch from "../search/appSearch";
@@ -15,24 +16,43 @@ import { TodoContext } from "../../context/todoContext";
 
 
 export default function ListSong(props) {
-  const {data} = useContext(TodoContext)
+  
   
   
   const [search, setSearch] = useState(false);
   const [openSearch,setOpenSearch] = useState(false);
   const navigate = useNavigate();
   const tracks = props.tracks
+  const id_plylist = props.idPlylist;
+  console.log(id_plylist);
   
   const [dataTrack, setDataTrack] = useState({
     
     id: "",
-    id_plylist: "",
+    id_plylist: id_plylist,
     images: "",
     name: "",
     preview_url: "",
 
   })
+  const doApiAddTrack = async(_dataBody) => {
+    let url = API_URL+"/trackMyPlylist";
+    try{
+      let resp = await doApiMethod(url,"POST",_dataBody);
+      if(resp.data._id){
+        alert("New category added");
+        // nav("/admin/categories");
+      }
+    }
+    catch(err){
+      console.log(err.response);
+      alert("There error try again later")
+    }
+    
+    
+  }
   const corrent = (track, index)=> {
+    
     
     const newDataTrack = {...dataTrack}
     newDataTrack["id"] = track.id
@@ -41,6 +61,8 @@ export default function ListSong(props) {
     newDataTrack["preview_url"] = track.preview_url
     setDataTrack(newDataTrack)
     console.log(newDataTrack);
+    doApiAddTrack(newDataTrack)
+    
 
   }
   const navigateSearch = ()=>{

@@ -17,6 +17,9 @@ export default function Create() {
   const [currentImages, setcurrentImages] = useState([]);
 
   console.log("location", location);
+  
+    const idPlylist = location.state?.idPlylist
+  
 
    useEffect(()=>{
 
@@ -42,9 +45,9 @@ export default function Create() {
     <div className="screen-container flex">
       
       <div className="right-player-body flex">
-        <SongCardAritest album={currentTrack} img= {currentImages}/>
+        <SongCardAritest album={currentTrack} img= {currentImages} />
         {/* <div className='songCard-body'>{<ComboBox/>}</div> */}
-        <ListSong tracks={tracks} setCurrentIndex={setCurrentIndex} currentIndex ={currentIndex}/>
+        <ListSong tracks={tracks} setCurrentIndex={setCurrentIndex} currentIndex ={currentIndex} idPlylist={idPlylist}/>
       </div>
     </div>
    

@@ -4,7 +4,7 @@ import Paper from "@mui/material/Paper";
 import Button from '@mui/material/Button';
 import { Alert, Card, colors, Icon, IconButton, Stack, TextField } from "@mui/material";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
-import { useNavigate } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import { SiApplemusic } from "react-icons/si";
 import "./appCreate.css";
 import { useState } from 'react';
@@ -31,7 +31,7 @@ export default function AppCreate(props) {
   const [apiError, setApiError] = useState(false)
   const nameRef = useRef();
   const [openNamePlylist, setOpenNamePlylist] = useState(false);
-
+  const location = useLocation();
 
   useEffect(() => {
     doApi();
@@ -158,12 +158,15 @@ export default function AppCreate(props) {
         // marginRight={15} 
         paddingTop={25}
         >
-          <IconButton sx={{color:"coral"}} onClick={()=> setOpenSearch(true)}>
+          <IconButton sx={{color:"coral"}} onClick={()=> 
+          // navigate("/search", { state: { idNamePlylist: "2563" },})
+            setOpenSearch(true)
+            }>
           חפש זמר<ImSearch />
           </IconButton>
         </Grid>
         {openSearch? 
-        <div className='search'><AppSearch/></div>: 
+        <div className='search'><AppSearch /></div>: 
         <div></div> }
 
 

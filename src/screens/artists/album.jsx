@@ -36,8 +36,9 @@ export default function Album() {
   const playAlbum = (id, images) => {
     // setImageAlbum(images);
     if(location.state?.p){
+      const idPlylist = location.state?.idPlylist
       console.log(location.state?.p)
-      navigate("/create", { state: { id: id ,images: images},});
+      navigate("/create", { state: { id: id ,images: images, idPlylist: idPlylist},});
     }
     
     else navigate("/playerSingel", { state: { id: id ,images: images},});

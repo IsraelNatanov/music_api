@@ -33,22 +33,7 @@ export default function CreatePlaylist() {
     
     
   }
-  const doApiAddTrack = async(_dataBody) => {
-    let url = API_URL+"/trackMyPlylist";
-    try{
-      let resp = await doApiMethod(url,"POST",_dataBody);
-      if(resp.data._id){
-        alert("New category added");
-        // nav("/admin/categories");
-      }
-    }
-    catch(err){
-      console.log(err.response);
-      alert("There error try again later")
-    }
-    
-    
-  }
+  
   // const onSub = (_dataBody) => {
   //   console.log(_dataBody);
   //   doApiAdd(_dataBody);
@@ -60,7 +45,7 @@ export default function CreatePlaylist() {
       doApiAdd,
       data,
       setData,
-      doApiAddTrack,
+      
       }}>
       <AppCreate/>
       

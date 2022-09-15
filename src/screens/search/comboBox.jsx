@@ -10,12 +10,15 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { useContext } from 'react';
+import { TodoContext } from '../../context/todoContext';
 
 export default function ComboBox({setValue ,value}) {
 
   let [artistss, setArtistss] = React.useState([]);
   const navigate = useNavigate();
   const location = useLocation();
+  const {data} = useContext(TodoContext)
   
   
 
@@ -62,7 +65,7 @@ export default function ComboBox({setValue ,value}) {
  
   const playArtists = (value) => {
     console.log("locationvvvv",location)
-    if(location?.pathname == "/createPlaylist" || location?.pathname == "/create" ) navigate("/album", { state: { id: value  ,p: "/createPlaylist"}})  
+    if(location?.pathname == "/createPlaylist" || location?.pathname == "/create" ) navigate("/album", { state: { id: value  ,p: "/createPlaylist", idPlylist: data["id"]}})  
     else navigate("/album", { state: { id: value}})  };
   return (
     <Autocomplete
