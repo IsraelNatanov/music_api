@@ -1,18 +1,18 @@
 import React, {  useContext, useEffect } from "react";
 import { useState } from "react";
-import apiClient from "../../spotify";
+
 import { FiPlusCircle } from "react-icons/fi";
-import { BsPlusCircle } from "react-icons/bs";
+
 import "./listSong.css";
 import { ImSearch } from "react-icons/im";
-import { useLocation, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 
 import { doApiMethod } from '../../components/services/apiService.jsX';
 import { API_URL } from '../../components/services/apiService.jsX';
 
-import { IconButton } from "@mui/material";
+import { Alert, Button, IconButton, Stack } from "@mui/material";
 import AppSearch from "../search/appSearch";
-import { TodoContext } from "../../context/todoContext";
+
 
 
 export default function ListSong(props) {
@@ -21,6 +21,8 @@ export default function ListSong(props) {
   
   const [search, setSearch] = useState(false);
   const [openSearch,setOpenSearch] = useState(false);
+  const [openAddSung, setopenAddSung] = useState(false);
+  const [ isAlertVisible, setIsAlertVisible ] = React.useState(false);
   const navigate = useNavigate();
   const tracks = props.tracks
   const id_plylist = props.idPlylist;
@@ -40,7 +42,7 @@ export default function ListSong(props) {
     try{
       let resp = await doApiMethod(url,"POST",_dataBody);
       if(resp.data._id){
-        alert("New category added");
+        
         // nav("/admin/categories");
       }
     }
@@ -53,7 +55,7 @@ export default function ListSong(props) {
   }
   const corrent = (track, index)=> {
     
-    
+    handleButtonClick()
     const newDataTrack = {...dataTrack}
     newDataTrack["id"] = track.id
     newDataTrack["images"] = track.images
@@ -72,6 +74,12 @@ export default function ListSong(props) {
   useEffect(()=>{
 
   },[{search}])
+  const handleButtonClick = () => {
+    setIsAlertVisible(true);
+    setTimeout(() => {
+    setIsAlertVisible(false);
+    }, 3000);
+  }
 
   
   return (
@@ -83,10 +91,11 @@ export default function ListSong(props) {
           {openSearch? <AppSearch />: <div></div>}
           </div>
         <p className="upNext">הוסף שירים</p>
-        
+        {isAlertVisible ? <p>השיר נוסף בהצלחה</p> : <div></div>}
         </div>
         <div className="queue-list">
           {tracks?.map((track, index) => (
+            
             <div
               key={index + "key"}
               className="queue-item flex"
@@ -104,7 +113,9 @@ export default function ListSong(props) {
                 </p>
                 
                 
+                
               } 
+             
               
             </div>
           ))}

@@ -22,6 +22,10 @@ export default function CheckP() {
       }
     }
     catch(err){
+      if (err.response.status === 401) {
+        localStorage.clear();
+        window.location.href = '/';
+      }
       console.log(err.response)
       logOutAdmin("Please login to be here or token expired");
       

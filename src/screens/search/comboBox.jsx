@@ -12,6 +12,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { TodoContext } from '../../context/todoContext';
+import { useState } from 'react';
 
 export default function ComboBox({setValue ,value}) {
 
@@ -19,6 +20,7 @@ export default function ComboBox({setValue ,value}) {
   const navigate = useNavigate();
   const location = useLocation();
   const {data} = useContext(TodoContext)
+  const [againIdPlaylist, setAgainIdPlaylist] = useState("")
   
   
 
@@ -46,6 +48,10 @@ export default function ComboBox({setValue ,value}) {
       // window.location.href = '/';
       
       console.log(err.response)
+      if (err.response.status === 401) {
+        localStorage.clear();
+        window.location.href = '/';
+      }
       // setApiError(true)
       
       // alert("Please login to be here or token expired");
@@ -64,8 +70,10 @@ export default function ComboBox({setValue ,value}) {
   // }
  
   const playArtists = (value) => {
+    setAgainIdPlaylist(data["id"])
+ 
     console.log("locationvvvv",location)
-    if(location?.pathname == "/createPlaylist" || location?.pathname == "/create" ) navigate("/album", { state: { id: value  ,p: "/createPlaylist", idPlylist: data["id"]}})  
+    if(location?.pathname == "/createPlaylist" || location?.pathname == "/create" ) navigate("/album", { state: { id: value  ,p: "/createPlaylist", idPlylist: data["id"]? data["id"] : location.state.idPlylist}})  
     else navigate("/album", { state: { id: value}})  };
   return (
     <Autocomplete

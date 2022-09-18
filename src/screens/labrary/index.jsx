@@ -34,6 +34,10 @@ export default function Library() {
     }
     catch(err){
       console.log(err.response)
+      if (err.response.status === 401) {
+        localStorage.clear();
+        window.location.href = '/';
+      }
       setApiError(true)
       
       // alert("Please login to be here or token expired");

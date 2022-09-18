@@ -22,7 +22,7 @@ export default function CreatePlaylist() {
     try{
       let resp = await doApiMethod(url,"POST",_dataBody);
       if(resp.data._id){
-        alert("New category added");
+        
         // nav("/admin/categories");
       }
     }
