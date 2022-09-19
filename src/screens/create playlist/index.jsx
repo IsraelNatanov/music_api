@@ -7,7 +7,7 @@ import AppCreate from './appcreate'
 import ListSong from './listSong';
 export default function CreatePlaylist() {
   const [ namPlylist, setNamPlylist] = useState("הפלייליסט שלי");
-  const [idgggf, setIdgggf] = ("123654")
+ 
   const [data, setData] = useState({
     id: Date.now(),
     name: ""

@@ -106,7 +106,7 @@ export default function AppCreate(props) {
       direction="column"
       justifyContent="center"
       alignItems="center"
-      paddingTop={12}
+      paddingTop={10}
       // paddingRight={10}
       
       >
@@ -117,7 +117,7 @@ export default function AppCreate(props) {
         justifyContent="center"
         alignItems="center" 
             // paddingRight={15}
-            paddingBottom={15}
+            // paddingBottom={15}
             
           
             
