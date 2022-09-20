@@ -15,6 +15,7 @@ import { Button, IconButton, Stack } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { PhotoCamera } from '@mui/icons-material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ButtunApi from '../My playlists/buttunApi';
 
 export default function Player() {
   const location = useLocation();
@@ -75,17 +76,8 @@ export default function Player() {
           setCurrentIndex={setCurrentIndex}
         />
         {/* <Widgets artistID={currentTrack?.album?.artists[0]?.id} /> */}
-        <Stack direction="column" spacing={2}   alignItems="stretch" width={500} marginTop={23} marginLeft={50}>
-        <Button color="success" variant="contained" size="large"  endIcon={<AddIcon />}>
-        הוסף שירים
-      </Button>
-      <Button variant="contained" size="large" al endIcon={<DeleteIcon />}>
-         מחק שירים
-      </Button>
-      <Button variant="contained" size="large"   endIcon={<DeleteForeverIcon  />}>
-        מחק פלייליסט
-      </Button>
-      </Stack>
+        {location.state?.type?
+        <ButtunApi/>: <div> </div>}
       </div>
       
       <div className="right-player-body">
