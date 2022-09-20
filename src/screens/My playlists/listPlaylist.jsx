@@ -1,13 +1,20 @@
 import React from 'react'
 import { IconContext } from "react-icons";
 import { AiFillPlayCircle } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 export default function ListPlaylist(props) {
-    let plays = props.item;;
+    let plays = props.item;
+    const navigate = useNavigate();
+    
+    const playMyPlaylist = (id) => {
+      navigate("/player", { state: { id: id , type:"myPlaylist"},});
+   };
   
   return (
     <div
         className="playlist-card"
+        onClick={() => playMyPlaylist(plays.id)}
            
             // onClick={() => playArtists(plays.id)}
             

@@ -10,7 +10,7 @@ export default function CreatePlaylist() {
  
   const [data, setData] = useState({
     id: Date.now(),
-    name: ""
+    name: namPlylist
   })
 
   const addNamePlylist = (name)=>{

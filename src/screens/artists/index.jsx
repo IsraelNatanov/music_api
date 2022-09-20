@@ -14,7 +14,7 @@ export default function Artists() {
   const [play, setPlay] = useState([]);
   
 
-  let i = 0;
+  
   useEffect(() => {
     doApi()
     // getplylistData();
@@ -27,9 +27,7 @@ export default function Artists() {
       setPlay(resp.data)
       console.log(resp.data);
       setApiError(false)
-      // if(resp.data){
-      //   getplylistData();
-      // }
+      
     }
     catch(err){
       localStorage.clear();

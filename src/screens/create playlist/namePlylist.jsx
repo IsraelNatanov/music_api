@@ -1,13 +1,11 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, SvgIcon, TextField } from '@mui/material'
 import * as React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ComboBox from '../search/comboBox'
+
 import CloseIcon from '@mui/icons-material/Close';
-import MusicVideoIcon from '@mui/icons-material/MusicVideo';
-import { loadCSS } from "fg-loadcss";
+
 import "./namePlylist.css"
-import { green } from "@mui/material/colors";
-import Icon from "@mui/material/Icon"
+
 import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
@@ -18,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { TodoContext } from '../../context/todoContext';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+
 
 const theme = createTheme({
   direction: 'rtl', // Both here and <body dir="rtl">
@@ -35,12 +33,9 @@ export default function NamePlylist( props) {
   let { register, handleSubmit, formState: { errors } } = useForm();
   const {namPlylist, addNamePlylist, doApiAdd,  data, setData} = useContext(TodoContext)
   addNamePlylist
-  const navigate = useNavigate();
+ 
   const [open, setOpen] = React.useState(true);
-  // const [data, setDate] = useState({
-  //   id: Date.now(),
-  //   name: ""
-  // })
+
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       console.log(reason);
@@ -53,10 +48,6 @@ export default function NamePlylist( props) {
     const newDate = {...data}
     newDate[e.target.id] = e.target.value
     setData(newDate)
-
-
-    
-
   }
   const onSub = () => {
       console.log(data);
@@ -106,11 +97,6 @@ export default function NamePlylist( props) {
         </ThemeProvider>
        </CacheProvider>
       
-        
-          {/* <First setAritsts={setAritsts} /> */}
-          {/* {aritsts.name}<Two aritsts = {aritsts}/> */}
-          
-          {/* <First index={2} setSong = {setSong} inputAlbum={inputAlbum}/> */}
           
           
           </Box>
