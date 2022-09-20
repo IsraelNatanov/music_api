@@ -1,6 +1,7 @@
 .flex-row {
     display: flex;
     flex-direction: row;
+    
 }
 
 .left-player-body {
@@ -9,6 +10,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 .right-player-body {
@@ -17,4 +19,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.buttun{
+    width: 30%;
+    justify-content: center;
+    align-items: center;
 }

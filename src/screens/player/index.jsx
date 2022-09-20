@@ -69,7 +69,7 @@ export default function Player() {
   return (
     <div className="screen-container flex-row">
       <div className="left-player-body">
-      <AudioPLayer
+        <AudioPLayer
           currentTrack={currentTrack}
           total={tracks}
           currentIndex={currentIndex}
@@ -77,8 +77,9 @@ export default function Player() {
         />
         {/* <Widgets artistID={currentTrack?.album?.artists[0]?.id} /> */}
         {location.state?.type?
-        <ButtunApi/>: <div> </div>}
-      </div>
+        <div className='buttun'><ButtunApi/></div>
+        : <div> </div>}
+      </div> 
       
       <div className="right-player-body">
         <SongCard album={currentTrack} />
