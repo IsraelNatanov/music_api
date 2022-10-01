@@ -34,9 +34,6 @@ function getStyles(name, personName, theme) {
 }
 export default function FilterSearch(props) {
   
-  // const refArtists = useRef();
-  // const refAlbum = useRef();
-  // const refSong = useRef();
   const navigate = useNavigate();
   const theme = useTheme();
   const [aritsts, setAritsts] = React.useState([]);
@@ -44,7 +41,7 @@ export default function FilterSearch(props) {
 
   const [value, setValue] = React.useState('');
   let [inputAlbum, setInputAlbum] = React.useState([]);
-  // let [album, setAlbum] = useState([]);
+
    let [song, setSong] = React.useState([]);
  
 
@@ -60,15 +57,10 @@ export default function FilterSearch(props) {
     } = event;
     
     setPersonName(
-      // On autofill we get a stringified value.
+      
       typeof value === 'string' ? value.split(',') : value,
     );
-    // props.setInputAlbum(refArtists.current.value)
-    
-    
-    
-    
-    
+ 
   };
   let inputAritsts = async(item)=>{
     await setAritsts(item)
@@ -86,29 +78,24 @@ export default function FilterSearch(props) {
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       setOpen(false);
-      // {browserHistory.goBack}
+      
       navigate("/")
     }
   };
   return (
     <div className="screen-container">
-      {/* <Button onClick={handleClickOpen}>Open select dialog</Button> */}
+     
       <Dialog disableEscapeKeyDown open={open} onClose={handleClose} >
         <DialogTitle > חפש זמר</DialogTitle>
         <DialogContent>
           <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
           <ComboBox  />
-          {/* <First setAritsts={setAritsts} /> */}
-          {/* {aritsts.name}<Two aritsts = {aritsts}/> */}
-          
-          {/* <First index={2} setSong = {setSong} inputAlbum={inputAlbum}/> */}
-          
-          
+       
           </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          {/* <Button onClick={handleClose}>Ok</Button> */}
+         
         </DialogActions>
       </Dialog>
       

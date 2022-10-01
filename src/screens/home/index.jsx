@@ -21,6 +21,7 @@ import Account from '../paypal/my account';
 import Signout from '../signout/signout';
 import NamePlylist from '../create playlist/namePlylist';
 import CreatePlaylist from '../create playlist';
+import EditingPlaylist from '../editingPlaylist/EditingPlaylist';
 
 
 
@@ -71,6 +72,7 @@ export default function Home() {
                 <Route path='/account' element={<Account/>}/>
                 <Route path='/signout' element={<Signout/>}/>
                 <Route path='/namePlylist' element={<NamePlylist/>}/>
+                <Route path='/editingPlaylist' element={<EditingPlaylist/>}/>
                 
                 
                 

@@ -29,52 +29,47 @@ export default function ComboBox({setValue ,value}) {
 
   useEffect(() => {
     doApi()
-    // getplylistData();
+    
   },[])
 
   const doApi = async() => {
     try{
+      console.log("id", data["id"]);
       let url = API_URL+"/artists"
       let resp = await doApiGet(url);
       setArtistss(resp.data)
       console.log(resp.data);
       
-      // if(resp.data){
-      //   getplylistData();
-      // }
+   
     }
     catch(err){
-      // localStorage.clear();
-      // window.location.href = '/';
+
       
       console.log(err.response)
       if (err.response.status === 401) {
         localStorage.clear();
         window.location.href = '/';
       }
-      // setApiError(true)
-      
-      // alert("Please login to be here or token expired");
-      // navigate("/account")
+     
       
     }
   }
-  // const listArr = async(id)=>{
-  //   let resp = await axios.get("http://localhost:9000/artists");
-  //   console.log(resp.data)
-  
-  //   setArtistss(resp.data);
-    
-    
-   
-  // }
+
  
   const playArtists = (value) => {
+   
     setAgainIdPlaylist(data["id"])
  
     console.log("locationvvvv",location)
-    if(location?.pathname == "/createPlaylist" || location?.pathname == "/create" ) navigate("/album", { state: { id: value  ,p: "/createPlaylist", idPlylist: data["id"]? data["id"] : location.state.idPlylist}})  
+    if(location?.pathname == "/createPlaylist" || location?.pathname == "/create" ){
+
+     navigate("/album", { state: { id: value  ,p: "/createPlaylist", idPlylist: data["id"]? data["id"] : location.state.idPlylist}})  
+    }
+    else if(location?.pathname =="/editingPlaylist") {
+      navigate("/album", {state: { id: value  ,p: "/createPlaylist", idPlylist: location.state?.id}})
+    }
     else navigate("/album", { state: { id: value}})  };
+    
   return (
     <Autocomplete
       

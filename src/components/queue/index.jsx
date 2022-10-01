@@ -1,27 +1,38 @@
 import React from "react";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./queue.css";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Button } from "@mui/material";
 import { width } from "@mui/system";
+import EditingPlaylist from "../../screens/editingPlaylist/EditingPlaylist";
 
-export default function Queue({ tracks, setCurrentIndex }) {
+export default function Queue(props) {
   const location = useLocation();
+  const [click, setClick] = useState(false);
+  const nav = useNavigate();
   if(location.state?.type){
 
   }
+  const tracks = props.tracks;
+  const setCurrentIndex = props.setCurrentIndex;
   const styleButtun = {color: "white"}
 
-  
+  const navEditing = ()=>{
+    console.log("sss", location);
+    nav('/editingPlaylist',{ state: { id: location.state?.id}})
+
+  }
   return (
     <div className="queue-container flex">
       <div className="queue flex">
         <div className="row-editing">
         <p className="upNext">Up Next</p>
-          {location.state?.type? <Button style={styleButtun} sx={{marginRight:11, height:35 }} variant="outlined" size="small"  endIcon={<BorderColorIcon />}>
+          {location.state?.type? <Button style={styleButtun} sx={{ height:35 }} 
+          variant="outlined" size="small"  endIcon={<BorderColorIcon />} onClick={navEditing}>
         עריכת פלייליסט
       </Button> : <div></div> }
+      
         </div>
       
         

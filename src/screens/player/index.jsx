@@ -6,16 +6,11 @@ import { useLocation } from 'react-router-dom'
 import Queue from '../../components/queue';
 import SongCard from '../../components/songCard';
 import AudioPLayer from '../../components/audioPlayer/audioPlayer';
-import AddIcon from '@mui/icons-material/Add';
-import SendIcon from '@mui/icons-material/Send';
+
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
-import Widgets from '../../components/widgets';
+
 import axios from 'axios';
-import { Button, IconButton, Stack } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { PhotoCamera } from '@mui/icons-material';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import ButtunApi from '../My playlists/buttunApi';
+
 
 export default function Player() {
   const location = useLocation();
@@ -76,9 +71,7 @@ export default function Player() {
           setCurrentIndex={setCurrentIndex}
         />
         {/* <Widgets artistID={currentTrack?.album?.artists[0]?.id} /> */}
-        {location.state?.type?
-        <div className='buttun'><ButtunApi/></div>
-        : <div> </div>}
+        
       </div> 
       
       <div className="right-player-body">

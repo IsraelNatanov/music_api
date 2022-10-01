@@ -16,7 +16,7 @@ import NamePlylist from './namePlylist';
 import { ImSearch } from "react-icons/im";
 import { useContext } from 'react';
 import { TodoContext } from '../../context/todoContext';
-// import {} from '.../createContext/TodoContext'
+
 
 
 export default function AppCreate(props) {
@@ -48,31 +48,12 @@ export default function AppCreate(props) {
     catch(err){
       console.log(err.response)
       setApiError(true)
-      // alert("Please login to be here or token expired");
-      // navigate("/account")
+      
       
     }
   }
 
-  // const handleChange = (event) => {
-  //   setAge(Number(event.target.value) || '');
-  // };
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = (event, reason) => {
-  //   if (reason !== 'backdropClick') {
-  //     setOpen(false);
-  //   }
-  // };
-  // const valueNamePlylist = ()=>{
-    
-  //   setIdNamePlylist(Date.now())
  
-
-  // }
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       setOpen(false);
@@ -107,7 +88,7 @@ export default function AppCreate(props) {
       justifyContent="center"
       alignItems="center"
       paddingTop={10}
-      // paddingRight={10}
+    
       
       >
       
@@ -116,14 +97,7 @@ export default function AppCreate(props) {
         direction="row-reverse"
         justifyContent="center"
         alignItems="center" 
-            // paddingRight={15}
-            // paddingBottom={15}
-            
-          
-            
-            
-            
-            
+        
         >
           <div className='icon-music'>
               {<SiApplemusic />}
@@ -132,34 +106,31 @@ export default function AppCreate(props) {
           </div>
           <Button sx={{fontSize:50 ,marginRight:3,}} style={styleColor} >{namPlylist}</Button>
             
-          {/* {openNamePlylist?  */}
+          
           <NamePlylist  namPlylist/>
-          {/* : */}
-          {/* <div></div>
-          } */}
+          
         </Grid>
         <Grid
         container
         direction="row"
-        // justifyContent="flex-end"
+      
             
         width={600}
         borderBottom={2}
         borderColor="coral"
             
             paddingBottom={13}
-            // marginRight={15}
-            // paddingt={13}
+            
            
         >
 
         </Grid>
         <Grid 
-        // marginRight={15} 
+         
         paddingTop={25}
         >
           <IconButton sx={{color:"coral"}} onClick={()=> 
-          // navigate("/search", { state: { idNamePlylist: "2563" },})
+         
             setOpenSearch(true)
             }>
           חפש זמר<ImSearch />
@@ -173,52 +144,6 @@ export default function AppCreate(props) {
       </Grid>
 }
 
-
-      
-       {/* <Paper
-      sx={{
-        p: 3,
-        margin: "auto",
-        marginTop: 5,
-        maxWidth: 500,
-        flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === "dark" ? "#1A2027" : "#fff"
-      }}
-    >
-      <Grid container spacing={15} >
-        <Grid item></Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="row" spacing={2}>
-            <Grid item xs>
-            
-              <TextField
-                label="שם הפלייליסט"
-                id="filled-size-small"
-                defaultValue=""
-                variant="filled"
-                size="small"
-                
-                onChange={(v) => setValue(v.target.value) }
-              
-                
-                
-              />
-              <Button variant="contained" size="large" onClick={valueNamePlylist}>
-                 שמירה
-              </Button>
-              <h1>{value}</h1>
-              <h1>{idNamePlylist}</h1>
-            </Grid>
-            <Grid item xs container direction="row" spacing={1}>
-             
-            <ComboBox/>
-            </Grid>
-          </Grid>
-          <Grid item></Grid>
-        </Grid>
-      </Grid>
-    </Paper> */}
 
     </div>
       

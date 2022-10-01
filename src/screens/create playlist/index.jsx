@@ -23,7 +23,7 @@ export default function CreatePlaylist() {
       let resp = await doApiMethod(url,"POST",_dataBody);
       if(resp.data._id){
         
-        // nav("/admin/categories");
+       
       }
     }
     catch(err){
@@ -34,17 +34,22 @@ export default function CreatePlaylist() {
     
   }
   
-  // const onSub = (_dataBody) => {
-  //   console.log(_dataBody);
-  //   doApiAdd(_dataBody);
-  // }
+
   return (
     <TodoContext.Provider value={{
       namPlylist,
       addNamePlylist,
       doApiAdd,
-      data,
       setData,
+      data,
+      
+      
+      // namPlylist: '',
+  // addNamePlylist: '',
+  // doApiAdd: '',
+  // data: '',
+  // setData: '',
+  // doApiAddTrack: '',
       
       }}>
       <AppCreate/>
