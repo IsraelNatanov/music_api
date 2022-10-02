@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import Queue from '../../components/queue';
@@ -13,6 +14,7 @@ export default function EditingPlaylist() {
     const [addTrack, setAddTrack] = useState(false);
     const [deleteTrack, setDeleteTrack] = useState(false);
     const [deletePlaylist, setDeletePlaylist] = useState(false);
+   
 
     useEffect(() => {
         doApi()
@@ -38,14 +40,33 @@ export default function EditingPlaylist() {
 
         }
     }
+    const doApiDeleteTrack = async(_dataBody) => {
+      console.log("gggigigttgi");
+      axios.delete(API_URL+"/trackMyPlylist/"+_dataBody)
+        .then(() => this.setState({ status: 'Delete successful' }));
+      // let url = API_URL+"/trackMyPlylist/"+_dataBody;
+      // try{
+      //   let resp = await doApiMethod(url,"DELETE",_dataBody);
+      //   console.log(resp);
+      // }
+      // catch(err){
+      //   console.log(err.response);
+      //   alert("There error try again later")
+      // }
+      
+      
+    }
+  
   return (
     <div className='screen-container'>
       <div className='buttun'><ButtunEditing setAddTrack={setAddTrack} setDeleteTrack={setDeleteTrack} setDeletePlaylist={setDeletePlaylist}/></div>
-      <Queue tracks={tracks}  
+      <Queue tracks={tracks} deleteTrack={deleteTrack} doApiDeleteTrack={doApiDeleteTrack}
     /> 
     {addTrack? <AppSearch/>:<div></div>}
+    
+   
 
       
-     </div>
+    </div>
   )
 }

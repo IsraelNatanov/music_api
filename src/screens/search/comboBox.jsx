@@ -34,7 +34,7 @@ export default function ComboBox({setValue ,value}) {
 
   const doApi = async() => {
     try{
-      console.log("id", data["id"]);
+      
       let url = API_URL+"/artists"
       let resp = await doApiGet(url);
       setArtistss(resp.data)

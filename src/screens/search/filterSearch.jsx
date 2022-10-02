@@ -78,8 +78,10 @@ export default function FilterSearch(props) {
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       setOpen(false);
-      
-      navigate("/")
+      if(location.pathname == "/editingPlaylist"){
+       navigate.goBack()
+      }
+      else navigate(-1)
     }
   };
   return (
