@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./queue.css";
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import { width } from "@mui/system";
 import EditingPlaylist from "../../screens/editingPlaylist/EditingPlaylist";
 
@@ -46,16 +46,17 @@ export default function Queue(props) {
             <div
               key={index + "key"}
               className="queue-item flex"
-              onClick={() => clickIndex(track.id,index)}
+              onClick={() => setCurrentIndex(index)}
               
             >
-              {props.deleteTrack && <p><DeleteIcon /></p>}
+              {props.deleteTrack && <IconButton onClick={() => props.doApiDeleteTrack(track?.id)}><DeleteIcon /></IconButton>}
             
               <p>0:30</p>
               {track?.track?
                 <p className="track-name" >
                 {track?.track?.name}
                 </p>:
+                
                 <p className="track-name" >
                 {track?.name}
                 </p>

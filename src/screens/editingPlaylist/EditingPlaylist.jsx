@@ -14,16 +14,19 @@ export default function EditingPlaylist() {
     const [addTrack, setAddTrack] = useState(false);
     const [deleteTrack, setDeleteTrack] = useState(false);
     const [deletePlaylist, setDeletePlaylist] = useState(false);
+    const [updetDelete, setUpdetDelete] = useState(false);
    
 
     useEffect(() => {
         doApi()
         console.log(addTrack);
+        
         // getplylistData();
       },[])
     
       const doApi = async() => {
         try{
+          setUpdetDelete(true)
           let url = API_URL+"/trackMyPlylist/"+ location.state?.id
           let resp = await doApiGet(url);
           setTracks(resp.data)
@@ -41,9 +44,10 @@ export default function EditingPlaylist() {
         }
     }
     const doApiDeleteTrack = async(_dataBody) => {
-      console.log("gggigigttgi");
+      // console.log("gggigigttgi");
       axios.delete(API_URL+"/trackMyPlylist/"+_dataBody)
         .then(() => this.setState({ status: 'Delete successful' }));
+        doApi()
       // let url = API_URL+"/trackMyPlylist/"+_dataBody;
       // try{
       //   let resp = await doApiMethod(url,"DELETE",_dataBody);

@@ -7,6 +7,8 @@ import { color, fontStyle } from '@mui/system';
 import "./buttunEditing.css"
 import { doApiMethod } from '../../components/services/apiService.jsX';
 import { API_URL } from '../../components/services/apiService.jsX';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function ButtunEditing(props) {
@@ -14,6 +16,8 @@ export default function ButtunEditing(props) {
   const setDeleteTrack = props.setDeleteTrack;
   const setDeletePlaylist = props.setDeletePlaylist;
   const [ isAlertVisible, setIsAlertVisible ] = React.useState(false);
+  const location = useLocation();
+
   const clickDeleteTrack = () => {
     setDeleteTrack(true)
     setIsAlertVisible(true);
@@ -31,7 +35,29 @@ export default function ButtunEditing(props) {
     setDeletePlaylist(true)
     setDeleteTrack(false)
     setIsAlertVisible(false);
+    
 
+  }
+  console.log(location.state);
+  const doApiDeletePlaylist = async() => {
+    // console.log("gggigigttgi");
+    setDeletePlaylist(true)
+    setDeleteTrack(false)
+    setIsAlertVisible(false);
+    axios.delete(API_URL+"/myPlylist/"+location.state.id)
+      .then(() => this.setState({ status: 'Delete successful' }));
+      
+    // let url = API_URL+"/myPlylist/"+location.state.id;
+    // try{
+    //   let resp = await doApiMethod(url,"DELETE",_dataBody);
+    //   console.log(resp);
+    // }
+    // catch(err){
+    //   console.log(err.response);
+    //   alert("There error try again later")
+    // }
+    
+    
   }
   // const doApiDeleteTrack = async(_dataBody) => {
   //   let url = API_URL+"/trackMyPlylist/"+_dataBody;
@@ -46,7 +72,7 @@ export default function ButtunEditing(props) {
     
     
   // }
-  
+
   return (
     <div>
     <Stack direction="row-reverse" alignItems={'center'} justifyContent={'center'} textAlign={'center'} spacing={2} margin={1} > 
@@ -56,7 +82,7 @@ export default function ButtunEditing(props) {
       <Button variant="text" size="large" sx={{color:'white'}} endIcon={<DeleteIcon />} onClick={()=>clickDeleteTrack()}>
          מחק שירים
       </Button>
-      <Button variant="text" size="large" sx={{color:'white'}}  endIcon={<DeleteForeverIcon  />} onClick={()=>clickDeletePlaylist(true)}>
+      <Button variant="text" size="large" sx={{color:'white'}}  endIcon={<DeleteForeverIcon  />} onClick={()=>doApiDeletePlaylist()}>
         מחק פלייליסט
       </Button>
       </Stack>
