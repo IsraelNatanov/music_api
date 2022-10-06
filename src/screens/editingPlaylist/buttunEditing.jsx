@@ -7,11 +7,12 @@ import { color, fontStyle } from '@mui/system';
 import "./buttunEditing.css"
 import { doApiMethod } from '../../components/services/apiService.jsX';
 import { API_URL } from '../../components/services/apiService.jsX';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
 export default function ButtunEditing(props) {
+  const nav = useNavigate();
   const setAddTrack = props.setAddTrack;
   const setDeleteTrack = props.setDeleteTrack;
   const setDeletePlaylist = props.setDeletePlaylist;
@@ -47,31 +48,8 @@ export default function ButtunEditing(props) {
     axios.delete(API_URL+"/myPlylist/"+location.state.id)
       .then(() => this.setState({ status: 'Delete successful' }));
       
-    // let url = API_URL+"/myPlylist/"+location.state.id;
-    // try{
-    //   let resp = await doApiMethod(url,"DELETE",_dataBody);
-    //   console.log(resp);
-    // }
-    // catch(err){
-    //   console.log(err.response);
-    //   alert("There error try again later")
-    // }
-    
-    
+    nav('/myPlaylists');
   }
-  // const doApiDeleteTrack = async(_dataBody) => {
-  //   let url = API_URL+"/trackMyPlylist/"+_dataBody;
-  //   try{
-  //     let resp = await doApiMethod(url,"DELETE",_dataBody);
-  //     console.log(resp);
-  //   }
-  //   catch(err){
-  //     console.log(err.response);
-  //     alert("There error try again later")
-  //   }
-    
-    
-  // }
 
   return (
     <div>
