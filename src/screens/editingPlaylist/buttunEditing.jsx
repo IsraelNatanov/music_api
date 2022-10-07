@@ -9,6 +9,7 @@ import { doApiMethod } from '../../components/services/apiService.jsX';
 import { API_URL } from '../../components/services/apiService.jsX';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { doApiDelete } from '../../components/services/apiService.jsX';
 
 
 export default function ButtunEditing(props) {
@@ -40,15 +41,25 @@ export default function ButtunEditing(props) {
 
   }
   console.log(location.state);
+
   const doApiDeletePlaylist = async() => {
-    // console.log("gggigigttgi");
     setDeletePlaylist(true)
     setDeleteTrack(false)
     setIsAlertVisible(false);
-    axios.delete(API_URL+"/myPlylist/"+location.state.id)
-      .then(() => this.setState({ status: 'Delete successful' }));
-      
-    nav('/myPlaylists');
+    let url = API_URL+"/myPlylist/"+location.state.id
+    try{
+      let resp = await doApiDelete(url,"DELETE");
+      if(resp.data.deletedCount == 1){
+        
+        nav('/myPlaylists');
+      }
+    }
+    catch(err){
+      console.log(err.response);
+      alert("There error try again later")
+    }
+    
+    
   }
 
   return (

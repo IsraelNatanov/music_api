@@ -49,7 +49,7 @@ export default function Queue(props) {
               onClick={() => setCurrentIndex(index)}
               
             >
-              {props.deleteTrack && <IconButton onClick={() => props.doApiDeleteTrack(track?.id)}><DeleteIcon /></IconButton>}
+              {props.deleteTrack && <IconButton sx={{height:10}} onClick={() => props.doApiDeleteTrack(track?.id)}><DeleteIcon /></IconButton>}
             
               <p>0:30</p>
               {track?.track?

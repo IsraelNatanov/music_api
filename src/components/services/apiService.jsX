@@ -36,3 +36,19 @@ export const doApiMethod = async(_url, _method, _body = {}) => {
         throw err;
     }
 }
+export const doApiDelete = async(_url, _method = {}) => {
+    try {
+        let resp = await axios({
+            url: _url,
+            method: _method,
+            // data: JSON.stringify(_body),
+            headers: {
+                "x-api-key": localStorage[TOKEN_NAME],
+                'content-type': "application/json"
+            }
+        })
+        return resp;
+    } catch (err) {
+        throw err;
+    }
+}

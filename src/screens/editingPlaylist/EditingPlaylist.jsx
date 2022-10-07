@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import Queue from '../../components/queue';
+import { doApiDelete } from '../../components/services/apiService.jsX';
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
 import AppSearch from '../search/appSearch';
 import ButtunEditing from './buttunEditing';
@@ -43,20 +44,23 @@ export default function EditingPlaylist() {
 
         }
     }
+    
     const doApiDeleteTrack = async(_dataBody) => {
       // console.log("gggigigttgi");
-      axios.delete(API_URL+"/trackMyPlylist/"+_dataBody)
-        .then(() => this.setState({ status: 'Delete successful' }));
-        doApi()
-      // let url = API_URL+"/trackMyPlylist/"+_dataBody;
-      // try{
-      //   let resp = await doApiMethod(url,"DELETE",_dataBody);
-      //   console.log(resp);
-      // }
-      // catch(err){
-      //   console.log(err.response);
-      //   alert("There error try again later")
-      // }
+      let url = API_URL+"/trackMyPlylist/"+_dataBody;
+      try{
+        let resp = await doApiDelete(url,"DELETE");
+        if(resp.data.deletedCount == 1){
+          
+          doApi()
+        }
+      }
+      catch(err){
+        console.log(err.response);
+        alert("There error try again later")
+      }
+        
+
       
       
     }
