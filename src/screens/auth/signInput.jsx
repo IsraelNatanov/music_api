@@ -8,6 +8,7 @@ import LoginA from './loginA';
 import Signup from './signup';
 import { Dialog, Paper } from '@mui/material';
 import { useState } from 'react';
+import SuccessApi from '../../components/alert/successApi';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,6 +43,7 @@ function a11yProps(index) {
   };
 }
 export default function SignInput() {
+  const [success, setSuccess] =useState(false);
   const [value,setValue]=useState(0)
 const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -67,8 +69,15 @@ const handleChange = (event, newValue) => {
       </div>
     );
   }
+  const handleButtonClick = () => {
+    setSuccess(true);
+    setTimeout(() => {
+      setSuccess(false);
+    }, 1000);
+  }
   
-  return (
+  return success?(
+    <SuccessApi/>):(
     
     <Paper elevation={20} style={paperStyle}>
         <Tabs
@@ -86,11 +95,11 @@ const handleChange = (event, newValue) => {
         </Tabs>
         <TabPanel value={value} index={0}>
        <LoginA
-        handleChange={handleChange}
+        handleChange={handleChange} 
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <Signup handleChange={handleChange}/>
+      <Signup handleChange={handleChange} handleButtonClick={handleButtonClick}/>
       </TabPanel>
       </Paper>
       

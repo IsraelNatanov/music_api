@@ -12,7 +12,7 @@ export default function Artists() {
 
   const [apiError, setApiError] = useState(false)
   const [play, setPlay] = useState([]);
-  
+  const navigate = useNavigate();
 
   
   useEffect(() => {
@@ -30,9 +30,9 @@ export default function Artists() {
       
     }
     catch(err){
-      localStorage.clear();
-      window.location.href = '/';
-      
+      // localStorage.clear();
+      // window.location.href = '/';
+      navigate("/login")
       console.log(err.response)
       // setApiError(true)
       
@@ -44,7 +44,7 @@ export default function Artists() {
 
     
   
-  const navigate = useNavigate();
+  
   // const ifToken = () =>{
   //   if()
   // }

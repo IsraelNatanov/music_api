@@ -78,7 +78,7 @@ export default function ListSong(props) {
     setIsAlertVisible(true);
     setTimeout(() => {
     setIsAlertVisible(false);
-    }, 3000);
+    }, 500);
   }
 
   

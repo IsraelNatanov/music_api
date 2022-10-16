@@ -8,10 +8,15 @@ import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { ThemeProvider } from 'styled-components';
 import { Directions } from '@mui/icons-material';
+import { doApiMethod } from '../../components/services/apiService.jsX';
+import { API_URL } from '../../components/services/apiService.jsX';
+import { useState } from 'react';
+import SuccessApi from '../../components/alert/successApi';
 
 
 
-export default function Signup({handleChange} ) {
+export default function Signup({handleChange, handleButtonClick} ) {
+ 
     const theme = createTheme({
         direction: "rtl", 
       });
@@ -32,30 +37,55 @@ export default function Signup({handleChange} ) {
       
     delete _dataBody.password2;
     console.log(_dataBody);
-    doApi(_dataBody);
+    doApiAdd(_dataBody);
 
 
 }
-
-const doApi = async(_dataBody)=>{
-    console.log(_dataBody);
-
-    let url = "http://localhost:9000/users"
-
-    let resp = await axios.post(url, _dataBody);
-    console.log(resp.data);
+const doApiAdd = async(_dataBody) => {
+  let url = API_URL+"/users";
+  try{
+    let resp = await doApiMethod(url,"POST",_dataBody);
+    // let data = await resp.json();
+    console.log(resp);
     if(resp.data._id){
-      alert("users added to the system");
+      handleButtonClick()
+      // alert("users added to the system");
       handleChange("event",0)
     // משגר אותו לכתובת שנכניס
    
-      
-    }
     console.log(data);
+    }
+
+  }
+  catch(err){
+    console.log(err.response);
+    
+  }
+  
+  
+}
+// const doApi = async(_dataBody)=>{
+//     console.log(_dataBody);
+
+//     let url = "http://localhost:9000/users"
+
+//     let resp = await axios.post(url, _dataBody);
+//     console.log(resp.data);
+//     if(resp.data._id){
+//       alert("users added to the system");
+//       handleChange("event",0)
+//     // משגר אותו לכתובת שנכניס
+   
+      
+//     }
+//     console.log(data);
     
 
-}
+// }
 // const trl={trl:Directions}
+//!token ? (
+  //<Login />
+ // ) : (
   const btnstyle={margin:'12px 0'}
   return (
     <Grid>
@@ -67,6 +97,7 @@ const doApi = async(_dataBody)=>{
             <h2 style={headerStyle}>Sign Up</h2>
             <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
         </Grid>
+       
         <form onSubmit={handleSubmit(onSub)}>
         {/* <CacheProvider value={cacheRtl}>
             <ThemeProvider theme={theme}> */}

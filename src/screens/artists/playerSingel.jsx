@@ -10,6 +10,8 @@ import SongCard from '../../components/songCard';
 import Queue from '../../components/queue';
 import SongCardAritest from '../../components/songCard/songCardAritest';
 
+
+
 export default function PlayerSingel() {
   const location = useLocation();
 
@@ -23,14 +25,7 @@ export default function PlayerSingel() {
    useEffect(()=>{
     
     if(location.state){
-      axios.get("http://localhost:9000/tracks/" + location.state?.id)
-      .then((res)=> {
-        console.log(res.data);
-        setTracks(res.data);
-        setCurrentTrack(res.data[0])
-        setCurrentImages(location.state?.images)
-        console.log(currentImages)
-      })
+      doApi()
     }
       
 
@@ -40,7 +35,23 @@ export default function PlayerSingel() {
   useEffect(() => {
     setCurrentTrack(tracks[currentIndex]);
   }, [currentIndex, tracks]);
-  
+  const doApi = async() => {
+    try{
+      let url = API_URL+"/tracks/" + location.state?.id
+      let resp = await doApiGet(url);
+      console.log(resp.data);
+        setTracks(resp.data);
+        setCurrentTrack(resp.data[0])
+        setCurrentImages(location.state?.images)
+        console.log(currentImages)
+      
+    }
+    catch(err){
+      
+      console.log(err.response)
+      
+    }
+  }
   return (
     <div className="screen-container flex">
       <div className="left-player-body">

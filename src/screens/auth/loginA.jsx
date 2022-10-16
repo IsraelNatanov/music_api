@@ -3,12 +3,14 @@ import { Avatar, Button, FormControlLabel, Grid, Link, Paper, TextField, Typogra
 import { CheckBox } from '@mui/icons-material'
 import {useForm} from "react-hook-form"
 import { useNavigate } from 'react-router-dom';
-
+import { doApiMethod } from '../../components/services/apiService.jsX';
+import { API_URL } from '../../components/services/apiService.jsX';
 
 
 // import LockOutlinedIcon from '@mui/icons-material';
 
 export default function LoginA({handleChange}) {
+  const nav = useNavigate()
   
  
   let {register , handleSubmit , formState: { errors } } = useForm()
@@ -16,29 +18,50 @@ export default function LoginA({handleChange}) {
  
   const onSub = (_dataBody)=>{
     console.log(_dataBody);
-    doApi(_dataBody);
+    doApiAdd(_dataBody);
 
 
 }
+const doApiAdd = async(_dataBody) => {
+  let url = API_URL+"/users/login";
+  try{
+    let resp = await doApiMethod(url,"POST",_dataBody);
+    // let data = await resp.json();
+    console.log(resp);
+    if(resp.data.token){
+      window.localStorage.setItem("token", resp.data.token);
+      nav("/")
 
-const doApi = async(_dataBody)=>{
-    let url = "http://localhost:9000/users/login"
-
-    let resp = await fetch(url, {
-      method:"POST",
-      body:JSON.stringify(_dataBody),
-      headers: { 'content-type': "application/json"
-     }
-    
-    })
-    let data = await resp.json();
-    console.log(data);
-    if(data.token){
-      window.localStorage.setItem("token", data.token);
-      window.location.reload(false);
+      // window.location.reload(false);
     }
-
+  }
+  catch(err){
+    console.log(err.response);
+    
+  }
+  
+  
 }
+// const doApi = async(_dataBody)=>{
+//     let url = "https://my2023.onrender.com/users/login"
+
+//     let resp = await fetch(url, {
+//       method:"POST",
+//       body:JSON.stringify(_dataBody),
+//       headers: { 'content-type': "application/json"
+//      }
+    
+//     })
+//     let data = await resp.json();
+//     console.log(data);
+//     if(data.token){
+//       window.localStorage.setItem("token", data.token);
+//       nav("/")
+
+//       // window.location.reload(false);
+//     }
+
+// }
 
   
   

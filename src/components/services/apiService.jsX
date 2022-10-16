@@ -1,11 +1,12 @@
 import axios from "axios";
 
-export const API_URL = "http://localhost:9000";
+export const API_URL = "https://my2023.onrender.com";
 // export const API_URL = "https://monkeys.co.il";
 export const TOKEN_NAME = "token";
 
 //for get method
 export const doApiGet = async(_url) => {
+    
     try {
         let resp = await axios.get(_url, {
             headers: {

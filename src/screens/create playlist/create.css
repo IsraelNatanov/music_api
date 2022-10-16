@@ -28,3 +28,12 @@
     margin-left: auto;
     margin-right: auto;
 }
+.horizontal-line{
+    display: flex;
+    flex-direction: row-reverse;
+    
+    
+    margin: 25px;
+
+    
+}

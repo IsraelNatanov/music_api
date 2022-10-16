@@ -19,16 +19,16 @@ export default function Pay() {
   });
   const priceForStripe = product.price * 100;
 
-  const handleSuccess = () => {
-    MySwal.fire({
+  const handleSuccess = async () => {
+    await MySwal.fire({
       icon: 'success',
       title: 'Payment was successful',
       time: 4000,
     });
     nav("/createPlaylist")
   };
-  const handleFailure = () => {
-    MySwal.fire({
+  const handleFailure = async() => {
+    await MySwal.fire({
       icon: 'error',
       title: 'Payment was not successful',
       time: 4000,
@@ -39,7 +39,7 @@ export default function Pay() {
       
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:9000/payment',
+        url: 'https://my2023.onrender.com/payment',
         data: {
           amount: product.price * 100,
           token,

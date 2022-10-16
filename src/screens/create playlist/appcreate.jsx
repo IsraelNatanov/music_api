@@ -16,6 +16,7 @@ import NamePlylist from './namePlylist';
 import { ImSearch } from "react-icons/im";
 import { useContext } from 'react';
 import { TodoContext } from '../../context/todoContext';
+import ErrorNoPay from '../../components/alert/errorNoPay';
 
 
 
@@ -70,18 +71,7 @@ export default function AppCreate(props) {
 
     <div className="screen-container">
       {apiError?
-      <Stack sx={{ width: '100%' ,alignItems: "center", paddingTop: "25%"}} spacing={2}>
-      
-      <Alert severity="warning"
-        action={
-          <Button color="inherit" size="small" onClick={()=>navigate("/account")}>
-            click
-          </Button>
-        }
-      >
-        You are not a premium customer and therefore you are not allowed to enter here!
-      </Alert>
-    </Stack>:
+      <ErrorNoPay/>:
       <Grid
       container
       direction="column"

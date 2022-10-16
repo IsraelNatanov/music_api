@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
 import { Alert, AlertTitle, Button, Stack } from '@mui/material';
+import ErrorNoPay from '../../components/alert/errorNoPay';
 
 
 export default function Library() {
@@ -72,18 +73,7 @@ export default function Library() {
    
     <div className="screen-container">
       {apiError?
-      <Stack sx={{ width: '100%' ,alignItems: "center", paddingTop: "25%"}} spacing={2}>
-      
-      <Alert severity="warning"
-        action={
-          <Button color="inherit" size="small" onClick={()=>navigate("/account")}>
-            click
-          </Button>
-        }
-      >
-        You are not a premium customer and therefore you are not allowed to enter here!
-      </Alert>
-    </Stack>:
+      <ErrorNoPay/>:
       <div className="library-body">
         {playlists?.map((playlist) => (
           <div

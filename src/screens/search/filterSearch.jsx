@@ -47,33 +47,33 @@ export default function FilterSearch(props) {
 
   
 
-  let cc= (name)=>{
-    setAritsts(name)
-  }
+  // let cc= (name)=>{
+  //   setAritsts(name)
+  // }
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
+  // const handleChange = (event) => {
+  //   const {
+  //     target: { value },
+  //   } = event;
     
-    setPersonName(
+  //   setPersonName(
       
-      typeof value === 'string' ? value.split(',') : value,
-    );
+  //     typeof value === 'string' ? value.split(',') : value,
+  //   );
  
-  };
-  let inputAritsts = async(item)=>{
-    await setAritsts(item)
+  // };
+  // let inputAritsts = async(item)=>{
+  //   await setAritsts(item)
 
-  }
+  // }
   
 
   const [open, setOpen] = React.useState(true);
   
   
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {

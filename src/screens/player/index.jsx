@@ -27,16 +27,7 @@ export default function Player() {
     }
     else if(location.state){
 
-      axios
-      .get("http://localhost:9000/tracksSpotufyPl/" + location.state?.id)
-      .then((res)=> {
-         console.log(res.data);
-         setTracks(res.data);
-         setCurrentTrack(res.data[0])
-        
-        }
-        
-       );
+      doApiSpotify()
 
     }
 
@@ -48,6 +39,21 @@ export default function Player() {
       setTracks(resp.data);
       setCurrentTrack(resp.data[0])
       // setCurrentImages(location.state?.images)
+      console.log(resp.data);
+      
+      
+    }
+    catch(err){
+      console.log(err.response)
+    }
+  }
+  const doApiSpotify = async() => {
+    try{
+      let url = API_URL+"/tracksSpotufyPl/" + location.state?.id
+      let resp = await doApiGet(url);
+      console.log(resp.data);
+      setTracks(resp.data);
+      setCurrentTrack(resp.data[0])
       console.log(resp.data);
       
       

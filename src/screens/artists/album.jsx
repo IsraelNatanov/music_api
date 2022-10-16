@@ -5,6 +5,8 @@ import APIKit from "../../spotify";
 import { IconContext } from "react-icons";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
+import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+
 
 export default function Album() {
   const location = useLocation();
@@ -17,19 +19,23 @@ export default function Album() {
   useEffect(() => {
     
    
-    const getArtistsData = async ()=>{
+    
+    doApi()
 
-      // if(location.state){
-        console.log(location.state)
-        const response = await axios.get("http://localhost:9000/albums/" + location.state?.id);
-        console.log(response)
-        setAlbum(response.data);
-        setImageAlbum(response.data)
-      // }
-      
-    };
-    getArtistsData();
   }, []);
+  const doApi = async() => {
+    try{
+      let url = API_URL+"/albums/"+ location.state?.id
+      let resp = await doApiGet(url);
+      console.log(resp)
+      setAlbum(resp.data);
+      setImageAlbum(resp.data)
+      
+    }
+    catch(err){
+      console.log(err.response)
+    }
+  }
 
   const navigate = useNavigate();
 

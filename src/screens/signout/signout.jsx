@@ -10,6 +10,7 @@ export default function Signout() {
   const sign= ()=>{
     localStorage.clear();
     window.location.href = '/';
+    
 
   }
 

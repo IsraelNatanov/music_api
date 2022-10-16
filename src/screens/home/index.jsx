@@ -46,9 +46,7 @@ export default function Home() {
     // }
   }, []);
 
-  return !token ? (
-    <Login />
-  ) : (
+  return  (
   
     <Router>
      
@@ -73,6 +71,7 @@ export default function Home() {
                 <Route path='/signout' element={<Signout/>}/>
                 <Route path='/namePlylist' element={<NamePlylist/>}/>
                 <Route path='/editingPlaylist' element={<EditingPlaylist/>}/>
+                <Route path='/login' element={<Login/>}/>
                 
                 
                 

@@ -6,7 +6,7 @@ import SignInput from "./signInput";
 
 export default function Login() {
   return (
-    <div className="app">
+    <div className="screen-container">
       <SignInput />
     </div>
     // <div className="login-page">

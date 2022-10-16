@@ -7,6 +7,8 @@ import apiClient from '../../spotify';
 import "./create.css";
 import ComboBox from '../search/comboBox'
 import axios from 'axios'
+import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+
 
 export default function Create() {
   const location = useLocation();
@@ -24,14 +26,7 @@ export default function Create() {
    useEffect(()=>{
 
     if(location.state){
-      axios.get("http://localhost:9000/tracks/" + location.state?.id)
-      .then((res)=> {
-        console.log(res.data);
-        setTracks(res.data);
-        setCurrentTrack(res.data[0])
-        setcurrentImages(location.state?.images)
-        console.log(currentImages)
-      })
+      doApi()
     }
       
 
@@ -41,10 +36,24 @@ export default function Create() {
     setCurrentTrack(tracks[currentIndex]);
   }, [currentIndex, tracks]);
   
+  const doApi = async() => {
+    try{
+      let url = API_URL+"/tracks/" + location.state?.id
+      let resp = await doApiGet(url);
+      console.log(resp.data);
+        setTracks(resp.data);
+        setCurrentTrack(resp.data[0])
+        setcurrentImages(location.state?.images)
+        console.log(currentImages)
+    }
+    catch(err){
+      console.log(err.response)
+    }
+  }
   return (
-    <div className="screen-container flex">
+    <div className="screen-container ">
       
-      <div className="right-player-body flex">
+      <div className="horizontal-line">
         <SongCardAritest album={currentTrack} img= {currentImages} />
         {/* <div className='songCard-body'>{<ComboBox/>}</div> */}
         <ListSong tracks={tracks} setCurrentIndex={setCurrentIndex} currentIndex ={currentIndex} idPlylist={idPlylist}/>
