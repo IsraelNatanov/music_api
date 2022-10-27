@@ -43,16 +43,18 @@ function a11yProps(index) {
   };
 }
 export default function SignInput() {
-  const [success, setSuccess] =useState(false);
-  const [value,setValue]=useState(0)
-const handleChange = (event, newValue) => {
+  const [success, setSuccess] = useState(false);
+  const [value, setValue] = useState(0)
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const paperStyle={width:340,margin:"20px auto"}
-  function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+  const paperStyle = { width: 340, margin: "20px auto" }
+  function 
   
+  TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
     return (
       <div
         role="tabpanel"
@@ -75,33 +77,33 @@ const handleChange = (event, newValue) => {
       setSuccess(false);
     }, 1000);
   }
-  
-  return success?(
-    <SuccessApi/>):(
-    
+
+  return success ? (
+    <SuccessApi />) : (
+
     <Paper elevation={20} style={paperStyle}>
-        <Tabs
-          value={value}
-          indicatorColor="primary"
-          textColor="primary"
-          onChange={handleChange}
-          aria-label="disabled tabs example"
-          variant="fullWidth"
-          
-        >
-          <Tab label="Sign In" />
-         
-          <Tab label="Sign Up" />
-        </Tabs>
-        <TabPanel value={value} index={0}>
-       <LoginA
-        handleChange={handleChange} 
+      <Tabs
+        value={value}
+        indicatorColor="primary"
+        textColor="primary"
+        onChange={handleChange}
+        aria-label="disabled tabs example"
+        variant="fullWidth"
+
+      >
+        <Tab label="Sign In" />
+
+        <Tab label="Sign Up" />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        <LoginA
+          handleChange={handleChange}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <Signup handleChange={handleChange} handleButtonClick={handleButtonClick}/>
+        <Signup handleChange={handleChange} handleButtonClick={handleButtonClick} />
       </TabPanel>
-      </Paper>
-      
+    </Paper>
+
   );
 }
