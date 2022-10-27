@@ -7,12 +7,14 @@ import { useEffect } from 'react';
 import { doApiGet } from '../../components/services/apiService.jsX';
 import { useState } from 'react';
 import { API_URL } from '../../components/services/apiService.jsX';
+import Loading from '../../components/card/loading';
 
 
 export default function Account() {
  const [user, setUser ]= useState({});
  const [premium, setPremium] = useState({});
  const [premiumScreen, setPremiumScreen] = useState(true);
+ let [loading, setLoading]= useState(false);
 
  useEffect(() => {
   doApi()
@@ -57,11 +59,16 @@ export default function Account() {
     
     <div className="App-body">
       
+        
       <Grid item xs={2} sm={4} md={4}>
       <Typography variant="h2" gutterBottom color={'GrayText'} >
         פרטי המשתמש שלך
       </Typography>
+      
       </Grid>
+      {loading?
+        <Loading/>
+        :
       <Grid container
   direction="row-reverse"
   margin={10}
@@ -99,14 +106,14 @@ export default function Account() {
       </Typography>
         
         
-        <Pay />
+        <Pay setLoading={setLoading} />
       </Paper>:
       <div></div>
 }
 
       
       
-      </Grid>
+      </Grid>}
       
     </div>
   )

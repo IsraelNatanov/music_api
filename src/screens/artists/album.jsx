@@ -6,11 +6,13 @@ import { IconContext } from "react-icons";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import Loading from '../../components/card/loading';
 
 
 export default function Album() {
   const location = useLocation();
   console.log("location", location);
+  const [loading, setLoading]= useState(false);
 
   const [album, setAlbum] = useState([]);
   const [imageAlbum, setImageAlbum] = useState();
@@ -25,11 +27,13 @@ export default function Album() {
   }, []);
   const doApi = async() => {
     try{
+      setLoading(true)
       let url = API_URL+"/albums/"+ location.state?.id
       let resp = await doApiGet(url);
       console.log(resp)
       setAlbum(resp.data);
       setImageAlbum(resp.data)
+      setLoading(false)
       
     }
     catch(err){
@@ -52,7 +56,7 @@ export default function Album() {
 
   return (
     <div className="screen-container">
-      
+      {loading && <Loading/>}
       <div className="library-body">
         {album?.map((albums) => (
           

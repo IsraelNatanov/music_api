@@ -35,11 +35,13 @@ export default function NamePlylist( props) {
   addNamePlylist
  
   const [open, setOpen] = React.useState(true);
+  const navigate = useNavigate();
 
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
       console.log(reason);
       setOpen(false);
+      navigate(-1)
       
     }
   };

@@ -7,11 +7,14 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
 import Login from '../auth/login';
+import Card from '../../components/card/card';
+import Loading from '../../components/card/loading';
 
 export default function Artists() {
 
   const [apiError, setApiError] = useState(false)
-  const [play, setPlay] = useState([]);
+  const [loading, setLoading]= useState(false);
+  const [playlists, setPlaylists] = useState([]);
   const navigate = useNavigate();
 
   
@@ -22,17 +25,20 @@ export default function Artists() {
 
   const doApi = async() => {
     try{
+      setLoading(true)
       let url = API_URL+"/artists"
       let resp = await doApiGet(url);
-      setPlay(resp.data)
+      setPlaylists(resp.data)
       console.log(resp.data);
       setApiError(false)
+      setLoading(false)
       
     }
     catch(err){
       // localStorage.clear();
       // window.location.href = '/';
       navigate("/login")
+      setApiError(true)
       console.log(err.response)
       // setApiError(true)
       
@@ -48,37 +54,15 @@ export default function Artists() {
   // const ifToken = () =>{
   //   if()
   // }
-  const playArtists = (id) => {
+  const playPlaylist = (id) => {
      navigate("/album", { state: { id: id}} );
   };
 
   return (
     <div className="screen-container">
-      {apiError? <Login />:
-   
-      <div className="library-body">
-        {play?.map((plays) => (
-          <div
-            className="playlist-card"
-            key={plays.id}
-            onClick={() => playArtists(plays.id)}
-            
-          >
-            <img
-              src={plays.images}
-              className="playlist-image"
-              alt="Playlist-Art"
-            />
-            <p className="playlist-title">{plays.name}</p>
-            {/* <p className="playlist-subtitle">{plays.popularity} Songs</p> */}
-            <div className="playlist-fade">
-              <IconContext.Provider value={{ size: "50px", color: "#E99D72" }}>
-                <AiFillPlayCircle />
-              </IconContext.Provider>
-            </div>
-          </div>
-        ))}
-      </div>}
+      {loading && <Loading/>}
+      {apiError? <Login />: <Card playlists={playlists} playPlaylist={playPlaylist}/>
+      }
     </div>
   );
 }

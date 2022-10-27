@@ -9,6 +9,7 @@ import AudioAlbum from '../../components/singalPlay/audioAlbum';
 import SongCard from '../../components/songCard';
 import Queue from '../../components/queue';
 import SongCardAritest from '../../components/songCard/songCardAritest';
+import Loading from '../../components/card/loading';
 
 
 
@@ -19,7 +20,7 @@ export default function PlayerSingel() {
   const [currentTrack, setCurrentTrack] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentImages, setCurrentImages] = useState([]);
-
+  const [loading, setLoading]= useState(false);
   console.log("location", location);
 
    useEffect(()=>{
@@ -37,6 +38,7 @@ export default function PlayerSingel() {
   }, [currentIndex, tracks]);
   const doApi = async() => {
     try{
+      setLoading(true)
       let url = API_URL+"/tracks/" + location.state?.id
       let resp = await doApiGet(url);
       console.log(resp.data);
@@ -44,6 +46,7 @@ export default function PlayerSingel() {
         setCurrentTrack(resp.data[0])
         setCurrentImages(location.state?.images)
         console.log(currentImages)
+        setLoading(false)
       
     }
     catch(err){
@@ -54,6 +57,7 @@ export default function PlayerSingel() {
   }
   return (
     <div className="screen-container flex">
+      {loading && <Loading/>}
       <div className="left-player-body">
         <AudioAlbum
           currentTrack={currentTrack}

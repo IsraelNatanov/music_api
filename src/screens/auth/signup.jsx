@@ -115,9 +115,9 @@ const doApiAdd = async(_dataBody) => {
                 </RadioGroup>
             </FormControl>
             <TextField fullWidth label='Phone Number' placeholder="Enter your phone number" /> */}
-            <TextField  required id="standard-required" fullWidth label='Password' placeholder="Enter your password" variant="standard" {...register("password",{required:"Required", minLength:3})}/>
+            <TextField  required id="standard-required" fullWidth label='Password' placeholder="Enter your password" type='password' variant="standard" {...register("password",{required:"Required", minLength:3})}/>
             {/* {errors.password && <small className='d-block text-danger'>Enter valid passowrd, min 3 chars</small>} */}
-            <TextField required id="standard-required" fullWidth label='Confirm Password' placeholder="Confirm your password" variant="standard"  {...register("password2",{required:"Required", validate: value => value == getValues("password")})}/>
+            <TextField required id="standard-required" fullWidth label='Confirm Password' placeholder="Confirm your password" type='password' variant="standard"  {...register("password2",{required:"Required", validate: value => value == getValues("password")})}/>
             {/* {errors.password2 && <small className='d-block text-danger'>passowrd not eqoul</small>} */}
             {/* <FormControlLabel
                 control={<Checkbox name="checkedA" />}

@@ -11,6 +11,9 @@ h2 {
 .App {
     text-align: center;
 }
+.text-center{
+    text-align: center;
+}
 
 .App-logo {
     height: 40vmin;
