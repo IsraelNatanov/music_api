@@ -17,7 +17,8 @@ import { ImSearch } from "react-icons/im";
 import { useContext } from 'react';
 import { TodoContext } from '../../context/todoContext';
 import ErrorNoPay from '../../components/alert/errorNoPay';
-
+import {useSelector, useDispatch} from 'react-redux';
+import {addNmae} from '../../features/createPlaylistUser'
 
 
 export default function AppCreate(props) {
@@ -33,6 +34,10 @@ export default function AppCreate(props) {
   const nameRef = useRef();
   const [openNamePlylist, setOpenNamePlylist] = useState(false);
   const location = useLocation();
+
+  const name = useSelector(state => 
+    state.namePlaylistSlice.namePlaylist)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     doApi();
@@ -94,7 +99,7 @@ export default function AppCreate(props) {
                   
 
           </div>
-          <Button sx={{fontSize:50 ,marginRight:3,}} style={styleColor} >{namPlylist}</Button>
+          <Button sx={{fontSize:50 ,marginRight:3,}} style={styleColor} >{name}</Button>
             
           
           <NamePlylist  namPlylist/>

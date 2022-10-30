@@ -60,7 +60,9 @@
     width: 75%;
     text-overflow: ellipsis;
 }
-
+.search{
+    text-align: center;
+}
 
 /* .aicons {
     margin-left: 15px;

@@ -63,7 +63,7 @@ export default function ComboBox({setValue ,value}) {
     console.log("locationvvvv",location)
     if(location?.pathname == "/createPlaylist" || location?.pathname == "/create" ){
 
-     navigate("/album", { state: { id: value  ,p: "/createPlaylist", idPlylist: data["id"]? data["id"] : location.state.idPlylist}})  
+     navigate("/album", { state: { id: value  ,p: "/createPlaylist",}})  
     }
     else if(location?.pathname =="/editingPlaylist") {
       navigate("/album", {state: { id: value  ,p: "/createPlaylist", idPlylist: location.state?.id}})

@@ -1,37 +1,30 @@
-import React, {  useContext, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useState } from "react";
-
 import { FiPlusCircle } from "react-icons/fi";
-
+import {useSelector, useDispatch} from 'react-redux';
 import "./listSong.css";
 import { ImSearch } from "react-icons/im";
-import {  useNavigate } from 'react-router-dom'
-
 import { doApiMethod } from '../../components/services/apiService.jsX';
 import { API_URL } from '../../components/services/apiService.jsX';
-
-import { Alert, Button, IconButton, Stack } from "@mui/material";
+import {  IconButton } from "@mui/material";
 import AppSearch from "../search/appSearch";
 
 
 
 export default function ListSong(props) {
   
-  
-  
   const [search, setSearch] = useState(false);
   const [openSearch,setOpenSearch] = useState(false);
-  const [openAddSung, setopenAddSung] = useState(false);
   const [ isAlertVisible, setIsAlertVisible ] = React.useState(false);
-  const navigate = useNavigate();
   const tracks = props.tracks
-  const id_plylist = props.idPlylist;
-  console.log(id_plylist);
+  
+  const idPlaylist = useSelector(state => 
+    state.namePlaylistSlice.idPlaylist)  
   
   const [dataTrack, setDataTrack] = useState({
     
     id: "",
-    id_plylist: id_plylist,
+    id_plylist: idPlaylist,
     images: "",
     name: "",
     preview_url: "",
@@ -43,7 +36,7 @@ export default function ListSong(props) {
       let resp = await doApiMethod(url,"POST",_dataBody);
       if(resp.data._id){
         
-        // nav("/admin/categories");
+        
       }
     }
     catch(err){
@@ -67,10 +60,7 @@ export default function ListSong(props) {
     
 
   }
-  const navigateSearch = ()=>{
-    setSearch(true);
-
-  }
+ 
   useEffect(()=>{
 
   },[{search}])
@@ -86,7 +76,7 @@ export default function ListSong(props) {
     <div className="queue-container flex">
       <div className="queue flex">
         <div className="row">
-        <div className="search ">
+        <div className="search">
           <IconButton onClick={()=> setOpenSearch(true)}>חפש זמר{<ImSearch />}</IconButton>
           {openSearch? <AppSearch />: <div></div>}
           </div>
