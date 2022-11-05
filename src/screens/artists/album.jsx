@@ -1,7 +1,5 @@
-import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import APIKit from "../../spotify";
 import { IconContext } from "react-icons";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -16,7 +14,7 @@ export default function Album() {
 
   const [album, setAlbum] = useState([]);
   const [imageAlbum, setImageAlbum] = useState();
-  let i = 0;
+ 
   
   useEffect(() => {
     
@@ -46,9 +44,13 @@ export default function Album() {
   const playAlbum = (id, images) => {
     // setImageAlbum(images);
     if(location.state?.p){
-      const idPlylist = location.state?.idPlylist
+      // const idPlylist = 
+      
       console.log(location.state?.p)
-      navigate("/create", { state: { id: id ,images: images, idPlylist: idPlylist},});
+      navigate("/create", { state: { id: id ,images: images},});
+    }
+    else if(location.state?.e){
+      navigate("/create", { state: { id: id ,images: images, e:"eiting"},});
     }
     
     else navigate("/playerSingel", { state: { id: id ,images: images},});

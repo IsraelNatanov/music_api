@@ -27,10 +27,10 @@ const cacheRtl = createCache({
 
 
 export default function NamePlylist( props) {
-  const name_playlist = useSelector(state => 
-    state.namePlaylistSlice.namePlaylist)
-  const id_playlist = useSelector(state => 
-    state.namePlaylistSlice.idPlaylist)  
+  const id_playlist = useSelector((state) => 
+    state.name.idPlaylist)
+  const name_playlist = useSelector((state) => 
+  state.name.namePlaylist)  
   const dispatch = useDispatch();
   
   let { register, handleSubmit, formState: { errors } } = useForm();

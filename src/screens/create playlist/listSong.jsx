@@ -8,6 +8,7 @@ import { doApiMethod } from '../../components/services/apiService.jsX';
 import { API_URL } from '../../components/services/apiService.jsX';
 import {  IconButton } from "@mui/material";
 import AppSearch from "../search/appSearch";
+import { useLocation } from 'react-router-dom'
 
 
 
@@ -17,10 +18,15 @@ export default function ListSong(props) {
   const [openSearch,setOpenSearch] = useState(false);
   const [ isAlertVisible, setIsAlertVisible ] = React.useState(false);
   const tracks = props.tracks
+  const location = useLocation();
   
-  const idPlaylist = useSelector(state => 
-    state.namePlaylistSlice.idPlaylist)  
+  const editingidPlaylist = useSelector((state) => 
+    state.editing.value)  
   
+  const createIdPlaylist = useSelector((state) => 
+    state.name.idPlaylist)  
+  
+  const idPlaylist = location.state.e ? editingidPlaylist: createIdPlaylist;
   const [dataTrack, setDataTrack] = useState({
     
     id: "",
@@ -81,7 +87,7 @@ export default function ListSong(props) {
           {openSearch? <AppSearch />: <div></div>}
           </div>
         <p className="upNext">הוסף שירים</p>
-        {isAlertVisible ? <p>השיר נוסף בהצלחה</p> : <div></div>}
+        <div className="message-successfully">{isAlertVisible ? <p>השיר נוסף בהצלחה</p> : ""}</div>
         </div>
         <div className="queue-list">
           {tracks?.map((track, index) => (
@@ -101,11 +107,8 @@ export default function ListSong(props) {
                 <p className="track-name" >
                 {track?.name}
                 </p>
-                
-                
-                
+              
               } 
-             
               
             </div>
           ))}

@@ -25,6 +25,9 @@
     text-align: right;
     margin: 10px 0px;
 }
+.message-successfully{
+    text-align: center;
+}
 
 .queue-list {
     height: 80%;

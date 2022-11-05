@@ -1,6 +1,5 @@
 
 import React from "react";
-import { loginEndpoint } from "../../spotify";
 import "./login.css";
 import SignInput from "./signInput";
 

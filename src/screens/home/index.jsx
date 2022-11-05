@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from '../../components/sidebar';
-import { setClientToken } from '../../spotify';
+
 import Artists from '../artists';
 import Login from '../auth/login';
 import Library from '../labrary';

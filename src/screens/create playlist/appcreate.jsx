@@ -1,42 +1,33 @@
 import * as React from 'react';
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import Button from '@mui/material/Button';
-import { Alert, Card, colors, Icon, IconButton, Stack, TextField } from "@mui/material";
+import { IconButton, } from "@mui/material";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
-import { useLocation,useNavigate } from "react-router-dom";
-import { SiApplemusic } from "react-icons/si";
+import {useNavigate } from "react-router-dom";
 import "./appCreate.css";
 import { useState } from 'react';
 import AppSearch from '../search/appSearch';
 import { useEffect } from 'react';
-import ComboBox from '../search/comboBox';
-import { useRef } from 'react';
 import NamePlylist from './namePlylist';
 import { ImSearch } from "react-icons/im";
 import { useContext } from 'react';
 import { TodoContext } from '../../context/todoContext';
 import ErrorNoPay from '../../components/alert/errorNoPay';
 import {useSelector, useDispatch} from 'react-redux';
-import {addNmae} from '../../features/createPlaylistUser'
+import { SiApplemusic } from 'react-icons/si';
+
 
 
 export default function AppCreate(props) {
-  const {namPlylist} = useContext(TodoContext)
-  const navigate = useNavigate();
-  const [img, setImg] = useState("https://i.scdn.co/image/ab67616d0000b273ff77c8143bec4c7801d85219")
+
   const [open, setOpen] = React.useState(true);
   const [openSearch, setOpenSearch] = React.useState(false);
-  const [age, setAge] = React.useState('');
-  const [ value, setValue] = useState("");
-  const [ idNamePlylist, setIdNamePlylist] = useState("");
   const [apiError, setApiError] = useState(false)
-  const nameRef = useRef();
   const [openNamePlylist, setOpenNamePlylist] = useState(false);
-  const location = useLocation();
+
 
   const name = useSelector(state => 
-    state.namePlaylistSlice.namePlaylist)
+    state.name.namePlaylist)
   const dispatch = useDispatch();
 
   useEffect(() => {

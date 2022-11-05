@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ErrorNoPay from '../../components/alert/errorNoPay';
+import PlaylistOnly from '../../components/alert/playlistOnly';
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
 import ListPlaylist from './listPlaylist';
 
@@ -10,7 +11,7 @@ export default function ApiPlaylis() {
   
   
 
-  let i = 0;
+  
   useEffect(() => {
     doApi()
     // getplylistData();
@@ -28,9 +29,7 @@ export default function ApiPlaylis() {
       setPlay(resp.data)
       console.log(resp.data);
       setApiError(false)
-      // if(resp.data){
-      //   getplylistData();
-      // }
+   
     }
     catch(err){
       if (err.response.status === 401) {
@@ -41,15 +40,12 @@ export default function ApiPlaylis() {
 
       
       console.log(err.response)
-      // setApiError(true)
-      
-      // alert("Please login to be here or token expired");
-      // navigate("/account")
+
       
     }
   }
 
-  return (
+  return play.length>0?(
     <div className="library-body">
      
         {play?.map((item) => {
@@ -60,5 +56,6 @@ export default function ApiPlaylis() {
            
  
     </div>
-  )
+  ):
+  (<div className="library-body"><PlaylistOnly/></div>)
 }

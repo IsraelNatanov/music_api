@@ -1,9 +1,5 @@
-import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import APIKit from "../../spotify";
-import { IconContext } from "react-icons";
-import { AiFillPlayCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
 import Login from '../auth/login';

@@ -2,13 +2,13 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
 import './App.css'
-import Index from './screens/home'
-import Home from './screens/home'
-import {TodoContext} from "./context/todoContext"
-import namePlaylistSlice from './features/createPlaylistUser'
+import Index from './screens/home';
+import namePlaylistSlice from './features/createPlaylistUser';
+import editingPlaylistSlice from './features/editingPolaylsitUser';
 const myStore = configureStore({
   reducer:{
-    namePlaylistSlice
+    "name":namePlaylistSlice,
+    "editing":editingPlaylistSlice,
   }
 })
 function App() {
