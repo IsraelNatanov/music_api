@@ -54,7 +54,8 @@ export default function Account() {
   }
 
 
-  const paperStyle={width:500,height:200,padding:"0 auto", margin: 15}
+  const paperStyle={width:500,height:200,textAlign:"center", margin: 15,}
+
   return (
     
     <div className="App-body">
@@ -77,18 +78,18 @@ export default function Account() {
     <Paper elevation={20} style={paperStyle} >
         
         
-        <Typography variant="h5" gutterBottom marginTop={5} textAlign={"right"} paddingRight={5}>
+        <Typography variant="h5" gutterBottom marginTop={5}>
           {user.name} :שם
         </Typography>
-        <Typography variant="h5" gutterBottom textAlign={"right"} paddingRight={5}>
+        <Typography variant="h5" gutterBottom >
           {user.email} :אימייל רשום
         </Typography>
         {premiumScreen?
-        <Typography variant="h5" gutterBottom textAlign={"right"} paddingRight={5}>
+        <Typography variant="h5" gutterBottom  >
           
           סוג חשבון: רגיל 
         </Typography>:
-        <Typography variant="h5" gutterBottom textAlign={"right"} paddingRight={5}>
+        <Typography variant="h5" gutterBottom  >
           
           premium :סוג חשבון   
       </Typography>}
@@ -97,8 +98,8 @@ export default function Account() {
   
         </Paper>
         {premiumScreen?   
-      <Paper elevation={20} style={paperStyle}>
-      <Typography variant="h5" gutterBottom marginTop={5} >
+      <Paper elevation={20} style={paperStyle} >
+      <Typography variant="h5"   gutterBottom marginTop={5} >
       Premium רכישת חשבון 
       </Typography>
       <Typography variant="h5" gutterBottom>
