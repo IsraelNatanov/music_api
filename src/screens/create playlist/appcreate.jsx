@@ -10,8 +10,6 @@ import AppSearch from '../search/appSearch';
 import { useEffect } from 'react';
 import NamePlylist from './namePlylist';
 import { ImSearch } from "react-icons/im";
-import { useContext } from 'react';
-import { TodoContext } from '../../context/todoContext';
 import ErrorNoPay from '../../components/alert/errorNoPay';
 import {useSelector, useDispatch} from 'react-redux';
 import { SiApplemusic } from 'react-icons/si';
@@ -28,7 +26,7 @@ export default function AppCreate(props) {
 
   const name = useSelector(state => 
     state.name.namePlaylist)
-  const dispatch = useDispatch();
+
 
   useEffect(() => {
     doApi();
@@ -68,74 +66,29 @@ export default function AppCreate(props) {
     <div className="screen-container">
       {apiError?
       <ErrorNoPay/>:
-      <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      paddingTop={10}
-    
+      <div className='column-screen'>
       
-      >
+        <div className='row-screen'>
       
-        <Grid
-        container
-        direction="row-reverse"
-        justifyContent="center"
-        alignItems="center" 
-        
-        >
+       
           <div className='icon-music'>
               {<SiApplemusic />}
-                  
-
           </div>
           <Button sx={{fontSize:50 ,marginRight:3,}} style={styleColor} >{name}</Button>
             
           
           <NamePlylist  namPlylist/>
           
-        </Grid>
-        <Grid
-        container
-        direction="row"
-      
-            
-        width={600}
-        borderBottom={2}
-        borderColor="coral"
-            
-            paddingBottom={13}
-            
-           
-        >
-
-        </Grid>
-        <Grid 
-         
-        paddingTop={25}
-        >
-          <IconButton sx={{color:"coral"}} onClick={()=> 
-         
-            setOpenSearch(true)
-            }>
-          חפש זמר<ImSearch />
-          </IconButton>
-        </Grid>
-        {openSearch? 
-        <div className='search'><AppSearch /></div>: 
-        <div></div> }
-
-
-      </Grid>
-}
-
-
-    </div>
-      
-      
-      
-   
+        
+        </div>
+        
+        <IconButton sx={{color:"coral"}} onClick={()=> setOpenSearch(true) }>
+          חפש זמר <ImSearch /> </IconButton>
+        
+        {openSearch? <div className='search'><AppSearch /></div>:""}
+      </div>
+      }
+    </div>  
   )
 }
 

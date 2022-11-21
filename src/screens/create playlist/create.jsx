@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import SongCardAritest from '../../components/songCard/songCardAritest'
 import ListSong from './listSong'
 import "./create.css";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import SongCard from '../../components/songCard'
 
 
 export default function Create() {
@@ -46,7 +46,7 @@ export default function Create() {
     <div className="screen-container ">
       
       <div className="horizontal-line">
-        <SongCardAritest album={currentTrack} img= {currentImages} />
+        <SongCard album={currentTrack} img= {currentImages} />
         {/* <div className='songCard-body'>{<ComboBox/>}</div> */}
         <ListSong tracks={tracks} setCurrentIndex={setCurrentIndex} currentIndex ={currentIndex} />
       </div>

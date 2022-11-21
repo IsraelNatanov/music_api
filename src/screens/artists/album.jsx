@@ -53,7 +53,7 @@ export default function Album() {
       navigate("/create", { state: { id: id ,images: images, e:"eiting"},});
     }
     
-    else navigate("/playerSingel", { state: { id: id ,images: images},});
+    else navigate("/player", { state: { id: id ,images: images},});
   };
 
   return (

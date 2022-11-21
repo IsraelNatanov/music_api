@@ -1,3 +1,24 @@
+.column-screen{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    
+
+    
+   
+}
+
+.row-screen{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: auto;
+    margin-left: auto;
+    /* margin: auto; */
+    /* margin-top: 25px; */
+}
+
+
 .screen {
     background: rgb(30, 42, 62);
     background: linear-gradient( 75deg, rgb(40, 58, 88) 0%, rgba(54, 69, 98, 0) 100%);
@@ -11,10 +32,7 @@
     color: coral;
 }
 
-.border {
-    border-bottom: solid;
-    border-color: coral;
-}
+
 
 .iconSearch {
     color: coral;

@@ -81,7 +81,7 @@ export default function EditingPlaylist() {
   return (
     <div className='screen-container'>
       <div className='buttun' ><ButtunEditing setAddTrack={setAddTrack} setDeleteTrack={setDeleteTrack} setDeletePlaylist={setDeletePlaylist}/></div>
-      <div className='list'> <Queue tracks={tracks} deleteTrack={deleteTrack} doApiDeleteTrack={doApiDeleteTrack}/> </div>
+      <Queue tracks={tracks} deleteTrack={deleteTrack} doApiDeleteTrack={doApiDeleteTrack}/>
     {addTrack? <AppSearch/>:<div></div>}
      
     </div>

@@ -5,3 +5,25 @@
     border-radius: 30px;
     display: flex;
 }
+.burger{
+    display: none;
+}
+@media (max-width:728px) {
+    /* width: 100% */
+    .nav{
+        display: none;
+    }
+    .burger{
+        display: block;
+        position: relative;
+    }
+    .position{
+        position: absolute;
+        z-index: 99;
+        
+       
+
+    }
+    
+
+}

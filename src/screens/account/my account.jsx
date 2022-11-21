@@ -21,7 +21,7 @@ export default function Account() {
   doApiPremium()
 
   // getplylistData();
-},[])
+},[loading])
 
   const doApi = async() => {
     try{

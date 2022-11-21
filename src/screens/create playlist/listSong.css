@@ -74,3 +74,11 @@
 .queue-list p {
     margin-left: 90px;
 } */
+
+@media (max-width:728px) {
+    /* .queue-container {
+        
+        max-height: 40%;
+        
+    } */
+}

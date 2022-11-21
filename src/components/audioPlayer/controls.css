@@ -38,3 +38,10 @@
 .play-pause-btn:hover {
     transform: scale(1.1);
 }
+@media (max-width:728px) {
+    .controls-wrapper {
+        width: 100%;
+        margin-left: 50px;
+        
+    }
+}

@@ -1,3 +1,4 @@
+
 .flexUp {
     margin-top: 10px;
     display: flex;
@@ -38,5 +39,14 @@
     margin-bottom: auto;
    
 
+
+}
+@media (max-width:728px) {
+  
+    .horizontal-line{
+      display: flex;
+      flex-direction: column;
+        
+    }
 
 }

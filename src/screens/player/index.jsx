@@ -17,22 +17,27 @@ export default function Player() {
   const [tracks, setTracks] = useState([]);
   const [currentTrack, setCurrentTrack] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+  const [currentImages, setCurrentImages] = useState("");
+  const [isAlbum, setIsAlbum] = useState(false);
 
   console.log("location", location);
 
   useEffect(()=>{
+    
     if(location.state?.type) {
-      doApi()
+      doApitrackMyPlylist()
     }
-    else if(location.state){
+    else if(location.state?.images){
 
-      doApiSpotify()
+      doApiAlbum()
 
+    }
+    else{
+      doApitracksSpotufy()
     }
 
   },[location.state])
-  const doApi = async() => {
+  const doApitrackMyPlylist = async() => {
     try{
       let url = API_URL+"/trackMyPlylist/"+ location.state?.id
       let resp = await doApiGet(url);
@@ -47,7 +52,26 @@ export default function Player() {
       console.log(err.response)
     }
   }
-  const doApiSpotify = async() => {
+  const doApiAlbum = async() => {
+    try{
+      console.log("dfsd");
+      let url = API_URL+"/tracks/" + location.state?.id
+      let resp = await doApiGet(url);
+      console.log(resp.data);
+        setTracks(resp.data);
+        setCurrentTrack(resp.data[0])
+        setCurrentImages(location.state?.images)
+        
+        setIsAlbum(true);
+      
+    }
+    catch(err){
+      
+      console.log(err.response)
+      
+    }
+  }
+  const doApitracksSpotufy = async() => {
     try{
       let url = API_URL+"/tracksSpotufyPl/" + location.state?.id
       let resp = await doApiGet(url);
@@ -55,6 +79,7 @@ export default function Player() {
       setTracks(resp.data);
       setCurrentTrack(resp.data[0])
       console.log(resp.data);
+     
       
       
     }
@@ -81,7 +106,7 @@ export default function Player() {
       </div> 
       
       <div className="right-player-body">
-        <SongCard album={currentTrack} />
+        <div className='img-right'><SongCard album={currentTrack} img= {currentImages}/></div>
         <Queue tracks={tracks} setCurrentIndex={setCurrentIndex} />
       </div>
     </div>

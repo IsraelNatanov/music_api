@@ -42,35 +42,14 @@ const doApiAdd = async(_dataBody) => {
   
   
 }
-// const doApi = async(_dataBody)=>{
-//     let url = "https://my2023.onrender.com/users/login"
 
-//     let resp = await fetch(url, {
-//       method:"POST",
-//       body:JSON.stringify(_dataBody),
-//       headers: { 'content-type': "application/json"
-//      }
-    
-//     })
-//     let data = await resp.json();
-//     console.log(data);
-//     if(data.token){
-//       window.localStorage.setItem("token", data.token);
-//       nav("/")
-
-//       // window.location.reload(false);
-//     }
-
-// }
-
-  
   
   const paperStyle={padding :20,height:500,width:300, margin:"0 auto"}
   const avatarStyle={backgroundColor:'#1bbd7e'}
   const btnstyle={margin:'30px 0'}
   return (
     <Grid>
-    <Paper sx={{'& .MuiTextField-root':{m:1 ,width: '32ch'},} } style={paperStyle}>
+    <Paper sx={{'& .MuiTextField-root':{margin:'12px 0'},} } style={paperStyle}>
         <Grid align='center'>
              <Avatar style={avatarStyle}></Avatar>
             <h2>Sign In</h2>

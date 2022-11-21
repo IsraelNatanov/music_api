@@ -50,9 +50,7 @@ export default function SignInput() {
   };
 
   const paperStyle = { width: 340, margin: "20px auto" }
-  function 
-  
-  TabPanel(props) {
+  function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
     return (

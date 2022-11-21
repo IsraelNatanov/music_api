@@ -9,6 +9,7 @@ export default function AudioPLayer({
   currentIndex,
   setCurrentIndex,
   total,
+  currentImages,
 }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
@@ -106,13 +107,15 @@ export default function AudioPLayer({
   currentTrack?.album?.artists.forEach((artist) => {
     artists.push(artist.name);
   });
+  const img = currentImages? currentImages:
+  currentTrack?.album?.images[0]?.url
   return (
     <div className="player-body flex">
       <div className="player-left-body">
         <ProgressCircle
           percentage={currentPercentage}
           isPlaying={true}
-          image={currentTrack?.album?.images[0]?.url}
+          image={img}
           size={300}
           color="#C96850"
         />

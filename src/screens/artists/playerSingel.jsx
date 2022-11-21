@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios';
-
+import "../player/player.css";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
 import AudioAlbum from '../../components/singalPlay/audioAlbum';
 import SongCard from '../../components/songCard';
@@ -70,7 +70,7 @@ export default function PlayerSingel() {
         {/* <Widgets artistID={currentTrack?.album?.artists[0]?.id} /> */}
       </div>
       <div className="right-player-body">
-        <SongCardAritest album={currentTrack} img= {currentImages}/>
+      <div className='img-right'><SongCardAritest album={currentTrack} img= {currentImages}/></div>
         <Queue tracks={tracks} setCurrentIndex={setCurrentIndex} />
       </div>
     </div>
