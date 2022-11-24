@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import SongCardAritest from '../../components/songCard/songCardAritest'
 import ListSong from './listSong'
-import apiClient from '../../spotify';
 import "./create.css";
-import ComboBox from '../search/comboBox'
-import axios from 'axios'
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import SongCard from '../../components/songCard'
 
 
 export default function Create() {
@@ -20,16 +17,11 @@ export default function Create() {
 
   console.log("location", location);
   
-    const idPlylist = location.state?.idPlylist
-  
-
+   
    useEffect(()=>{
-
     if(location.state){
       doApi()
     }
-      
-
    },[location.state])
 
   useEffect(() => {
@@ -54,9 +46,9 @@ export default function Create() {
     <div className="screen-container ">
       
       <div className="horizontal-line">
-        <SongCardAritest album={currentTrack} img= {currentImages} />
+        <SongCard album={currentTrack} img= {currentImages} />
         {/* <div className='songCard-body'>{<ComboBox/>}</div> */}
-        <ListSong tracks={tracks} setCurrentIndex={setCurrentIndex} currentIndex ={currentIndex} idPlylist={idPlylist}/>
+        <ListSong tracks={tracks} setCurrentIndex={setCurrentIndex} currentIndex ={currentIndex} />
       </div>
     </div>
    

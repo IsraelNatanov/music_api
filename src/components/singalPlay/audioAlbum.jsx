@@ -110,11 +110,13 @@ export default function AudioAlbum({
   currentTrack?.album?.artists.forEach((artist) => {
     artists.push(artist.name);
   });
+  const img = currentPercentage? currentPercentage:
+  currentTrack?.album?.images[0]?.url
   return (
     <div className="player-body flex">
       <div className="player-left-body">
         <ProgressCircle
-          percentage={currentPercentage}
+          percentage={img}
           isPlaying={true}
           image={currentImages}
           size={300}

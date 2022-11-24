@@ -1,14 +1,9 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { IconContext } from "react-icons";
-import { AiFillPlayCircle } from "react-icons/ai";
 import "./library.css";
-import APIKit from "../../spotify";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
-import { Alert, AlertTitle, Button, Stack } from '@mui/material';
 import ErrorNoPay from '../../components/alert/errorNoPay';
 import Card from '../../components/card/card';
 import Loading from '../../components/card/loading';

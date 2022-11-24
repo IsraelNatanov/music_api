@@ -1,38 +1,32 @@
 import * as React from 'react';
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import Button from '@mui/material/Button';
-import { Alert, Card, colors, Icon, IconButton, Stack, TextField } from "@mui/material";
+import { IconButton, } from "@mui/material";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
-import { useLocation,useNavigate } from "react-router-dom";
-import { SiApplemusic } from "react-icons/si";
+import {useNavigate } from "react-router-dom";
 import "./appCreate.css";
 import { useState } from 'react';
 import AppSearch from '../search/appSearch';
 import { useEffect } from 'react';
-import ComboBox from '../search/comboBox';
-import { useRef } from 'react';
 import NamePlylist from './namePlylist';
 import { ImSearch } from "react-icons/im";
-import { useContext } from 'react';
-import { TodoContext } from '../../context/todoContext';
 import ErrorNoPay from '../../components/alert/errorNoPay';
+import {useSelector, useDispatch} from 'react-redux';
+import { SiApplemusic } from 'react-icons/si';
 
 
 
 export default function AppCreate(props) {
-  const {namPlylist} = useContext(TodoContext)
-  const navigate = useNavigate();
-  const [img, setImg] = useState("https://i.scdn.co/image/ab67616d0000b273ff77c8143bec4c7801d85219")
+
   const [open, setOpen] = React.useState(true);
   const [openSearch, setOpenSearch] = React.useState(false);
-  const [age, setAge] = React.useState('');
-  const [ value, setValue] = useState("");
-  const [ idNamePlylist, setIdNamePlylist] = useState("");
   const [apiError, setApiError] = useState(false)
-  const nameRef = useRef();
   const [openNamePlylist, setOpenNamePlylist] = useState(false);
-  const location = useLocation();
+
+
+  const name = useSelector(state => 
+    state.name.namePlaylist)
+
 
   useEffect(() => {
     doApi();
@@ -72,74 +66,29 @@ export default function AppCreate(props) {
     <div className="screen-container">
       {apiError?
       <ErrorNoPay/>:
-      <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      paddingTop={10}
-    
+      <div className='column-screen'>
       
-      >
+        <div className='row-screen'>
       
-        <Grid
-        container
-        direction="row-reverse"
-        justifyContent="center"
-        alignItems="center" 
-        
-        >
+       
           <div className='icon-music'>
               {<SiApplemusic />}
-                  
-
           </div>
-          <Button sx={{fontSize:50 ,marginRight:3,}} style={styleColor} >{namPlylist}</Button>
+          <Button sx={{fontSize:50 ,marginRight:3,}} style={styleColor} >{name}</Button>
             
           
           <NamePlylist  namPlylist/>
           
-        </Grid>
-        <Grid
-        container
-        direction="row"
-      
-            
-        width={600}
-        borderBottom={2}
-        borderColor="coral"
-            
-            paddingBottom={13}
-            
-           
-        >
-
-        </Grid>
-        <Grid 
-         
-        paddingTop={25}
-        >
-          <IconButton sx={{color:"coral"}} onClick={()=> 
-         
-            setOpenSearch(true)
-            }>
-          חפש זמר<ImSearch />
-          </IconButton>
-        </Grid>
-        {openSearch? 
-        <div className='search'><AppSearch /></div>: 
-        <div></div> }
-
-
-      </Grid>
-}
-
-
-    </div>
-      
-      
-      
-   
+        
+        </div>
+        
+        <IconButton sx={{color:"coral"}} onClick={()=> setOpenSearch(true) }>
+          חפש זמר <ImSearch /> </IconButton>
+        
+        {openSearch? <div className='search'><AppSearch /></div>:""}
+      </div>
+      }
+    </div>  
   )
 }
 

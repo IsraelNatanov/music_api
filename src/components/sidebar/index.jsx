@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import SidebarButton from "./sidebarButton";
 import { MdFavorite } from "react-icons/md";
-import { FaGripfire, FaPlay } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { IoLibrary } from "react-icons/io5";
 import { MdSpaceDashboard } from "react-icons/md";
-import { FiPlusCircle } from "react-icons/fi";
 import { BsPlusSquareFill } from "react-icons/bs";
 import { ImSearch } from "react-icons/im";
 import { IoMdContact } from "react-icons/io";
 import './Sidebar.css'
-import apiClient from '../../spotify';
+
 
 
 

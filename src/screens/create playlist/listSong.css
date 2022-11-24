@@ -25,6 +25,9 @@
     text-align: right;
     margin: 10px 0px;
 }
+.message-successfully{
+    text-align: center;
+}
 
 .queue-list {
     height: 80%;
@@ -60,7 +63,9 @@
     width: 75%;
     text-overflow: ellipsis;
 }
-
+.search{
+    text-align: center;
+}
 
 /* .aicons {
     margin-left: 15px;
@@ -69,3 +74,11 @@
 .queue-list p {
     margin-left: 90px;
 } */
+
+@media (max-width:728px) {
+    /* .queue-container {
+        
+        max-height: 40%;
+        
+    } */
+}

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ListPlaylist(props) {
     let plays = props.item;
+    console.log(props.item);
     const navigate = useNavigate();
     
     const playMyPlaylist = (id) => {

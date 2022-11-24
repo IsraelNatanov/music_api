@@ -64,3 +64,10 @@
     width: 75%;
     text-overflow: ellipsis;
 }
+@media (max-width:728px) {
+    .queue-container {
+        
+        min-height: 80%;
+        
+    }
+}

@@ -1,9 +1,5 @@
-import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import APIKit from "../../spotify";
-import { IconContext } from "react-icons";
-import { AiFillPlayCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
 import Login from '../auth/login';
@@ -20,7 +16,7 @@ export default function Artists() {
   
   useEffect(() => {
     doApi()
-    // getplylistData();
+    
   },[])
 
   const doApi = async() => {
@@ -35,25 +31,18 @@ export default function Artists() {
       
     }
     catch(err){
-      // localStorage.clear();
-      // window.location.href = '/';
+     
       navigate("/login")
       setApiError(true)
       console.log(err.response)
-      // setApiError(true)
       
-      // alert("Please login to be here or token expired");
-      // navigate("/account")
       
     }
   }
 
     
   
-  
-  // const ifToken = () =>{
-  //   if()
-  // }
+
   const playPlaylist = (id) => {
      navigate("/album", { state: { id: id}} );
   };

@@ -8,3 +8,9 @@
     justify-content: center;
     align-items: center;
 }
+@media (max-width:728px) {
+    /* width: 100% */
+    .songCard-body {
+        display: none;
+    }
+}

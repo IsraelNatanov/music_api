@@ -4,11 +4,12 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import LoginA from './loginA';
+import SignIn from './signIn';
 import Signup from './signup';
 import { Dialog, Paper } from '@mui/material';
 import { useState } from 'react';
 import SuccessApi from '../../components/alert/successApi';
+import { Margin } from '@mui/icons-material';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,14 +46,13 @@ function a11yProps(index) {
 export default function SignInput() {
   const [success, setSuccess] = useState(false);
   const [value, setValue] = useState(0)
+  const [open, setOpen] = React.useState(true);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const paperStyle = { width: 340, margin: "20px auto" }
-  function 
   
-  TabPanel(props) {
+  function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
     return (
@@ -78,10 +78,23 @@ export default function SignInput() {
     }, 1000);
   }
 
+  
+ 
+  const handleClose = (event, reason) => {
+    if (reason !== 'backdropClick') {
+      setOpen(false);
+      if(location.pathname == "/editingPlaylist"){
+       navigate.goBack(null)
+      }
+      else navigate(-1)
+    }
+  };
+
   return success ? (
     <SuccessApi />) : (
+      <Dialog disableEscapeKeyDown open={open} onClose={handleClose}  >
 
-    <Paper elevation={20} style={paperStyle}>
+    <Paper elevation={20} >
       <Tabs
         value={value}
         indicatorColor="primary"
@@ -96,7 +109,7 @@ export default function SignInput() {
         <Tab label="Sign Up" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <LoginA
+        <SignIn
           handleChange={handleChange}
         />
       </TabPanel>
@@ -104,6 +117,7 @@ export default function SignInput() {
         <Signup handleChange={handleChange} handleButtonClick={handleButtonClick} />
       </TabPanel>
     </Paper>
+    </Dialog>
 
   );
 }

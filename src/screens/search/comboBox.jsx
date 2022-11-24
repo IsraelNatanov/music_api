@@ -1,31 +1,19 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-
 import { Box } from '@mui/system';
 import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
-
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
-import { useRef } from 'react';
-import axios from 'axios';
 import { useEffect } from 'react';
-import { useContext } from 'react';
-import { TodoContext } from '../../context/todoContext';
 import { useState } from 'react';
 
-export default function ComboBox({setValue ,value}) {
+export default function ComboBox() {
 
   let [artistss, setArtistss] = React.useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const {data} = useContext(TodoContext)
-  const [againIdPlaylist, setAgainIdPlaylist] = useState("")
-  
-  
 
-
-  let i = 0;
 
   useEffect(() => {
     doApi()
@@ -55,18 +43,18 @@ export default function ComboBox({setValue ,value}) {
     }
   }
 
- 
   const playArtists = (value) => {
    
-    setAgainIdPlaylist(data["id"])
+    
  
     console.log("locationvvvv",location)
+    
     if(location?.pathname == "/createPlaylist" || location?.pathname == "/create" ){
 
-     navigate("/album", { state: { id: value  ,p: "/createPlaylist", idPlylist: data["id"]? data["id"] : location.state.idPlylist}})  
+     navigate("/album", { state: { id: value  ,p: "/createPlaylist",}})  
     }
     else if(location?.pathname =="/editingPlaylist") {
-      navigate("/album", {state: { id: value  ,p: "/createPlaylist", idPlylist: location.state?.id}})
+      navigate("/album", {state: { id: value  ,e: "/editingPlaylist"}})
     }
     else navigate("/album", { state: { id: value}})  };
     

@@ -64,32 +64,11 @@ const doApiAdd = async(_dataBody) => {
   
   
 }
-// const doApi = async(_dataBody)=>{
-//     console.log(_dataBody);
 
-//     let url = "http://localhost:9000/users"
-
-//     let resp = await axios.post(url, _dataBody);
-//     console.log(resp.data);
-//     if(resp.data._id){
-//       alert("users added to the system");
-//       handleChange("event",0)
-//     // משגר אותו לכתובת שנכניס
-   
-      
-//     }
-//     console.log(data);
-    
-
-// }
-// const trl={trl:Directions}
-//!token ? (
-  //<Login />
- // ) : (
   const btnstyle={margin:'12px 0'}
   return (
     <Grid>
-    <Paper sx={{'& .MuiTextField-root':{m:1 ,width: '32ch'},} } style={paperStyle}>
+    <Paper sx={{'& .MuiTextField-root':{margin:'12px 0'},} } style={paperStyle}>
         <Grid align='center'>
             <Avatar style={avatarStyle}>
                 {/* <AddCircleOutlineOutlinedIco /> */}

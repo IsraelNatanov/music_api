@@ -32,14 +32,15 @@ export default function ButtunEditing(props) {
     setAddTrack(true)
     setDeleteTrack(false)
     setIsAlertVisible(false);
+    
   }
-  const clickDeletePlaylist=()=>{
-    setDeletePlaylist(true)
-    setDeleteTrack(false)
-    setIsAlertVisible(false);
+  // const clickDeletePlaylist=()=>{
+  //   setDeletePlaylist(true)
+  //   setDeleteTrack(false)
+  //   setIsAlertVisible(false);
     
 
-  }
+  // }
   console.log(location.state);
 
   const doApiDeletePlaylist = async() => {
