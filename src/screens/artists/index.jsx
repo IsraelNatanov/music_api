@@ -16,7 +16,7 @@ export default function Artists() {
   
   useEffect(() => {
     doApi()
-    // getplylistData();
+    
   },[])
 
   const doApi = async() => {
@@ -31,25 +31,18 @@ export default function Artists() {
       
     }
     catch(err){
-      // localStorage.clear();
-      // window.location.href = '/';
+     
       navigate("/login")
       setApiError(true)
       console.log(err.response)
-      // setApiError(true)
       
-      // alert("Please login to be here or token expired");
-      // navigate("/account")
       
     }
   }
 
     
   
-  
-  // const ifToken = () =>{
-  //   if()
-  // }
+
   const playPlaylist = (id) => {
      navigate("/album", { state: { id: id}} );
   };

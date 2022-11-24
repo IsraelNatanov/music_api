@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const API_URL =  "http://localhost:9000";
 //"https://my2023.onrender.com";
-// export const API_URL = "https://monkeys.co.il";
+
 export const TOKEN_NAME = "token";
 
 //for get method
@@ -22,7 +22,7 @@ export const doApiGet = async(_url) => {
 }
 
 // For Post,delete, put, patch
-export const doApiMethod = async(_url, _method, _body = {}) => {
+export const doApiMethod = async(_url, _method, _body = {} ) => {
     try {
         let resp = await axios({
             url: _url,
@@ -37,7 +37,12 @@ export const doApiMethod = async(_url, _method, _body = {}) => {
     } catch (err) {
         throw err;
     }
+    
+   
 }
+// export const loginApi = async()=>{
+//     let {res} = await axios.post(API_URL+'login',data{},{withc})
+// }
 export const doApiDelete = async(_url, _method = {}) => {
     try {
         let resp = await axios({
@@ -53,4 +58,6 @@ export const doApiDelete = async(_url, _method = {}) => {
     } catch (err) {
         throw err;
     }
+    // {withCredentials: true}
+    
 }

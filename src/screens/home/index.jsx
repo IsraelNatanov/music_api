@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from '../../components/sidebar';
@@ -9,7 +8,6 @@ import Library from '../labrary';
 import MyPlaylists from '../My playlists';
 import Player from '../player';
 import './Home.css'
-import PlayerSingel from '../artists/playerSingel';
 import Album from '../artists/album';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -33,22 +31,6 @@ export default function Home() {
   const [switchPhon, setSwitchPhon] = useState(false);
   
 
-  useEffect(() => {
-    const _token = window.localStorage.getItem("token");
-    setToken(_token)
-    
-      
-      
-      // window.localStorage.setItem("token", _token);
-      // setToken(_token);
-      // console.log(_token)
-      // setClientToken(_token);
-    // } else {
-    //   setToken(token);
-      
-    //   setClientToken(token);
-    // }
-  }, []);
 
   return  (
   
@@ -78,7 +60,6 @@ export default function Home() {
                 <Route path='/createPlaylist' element={<CreatePlaylist/>}/>
                 <Route path='/player' element={<Player/>}/>
                 <Route path='/myPlaylists' element={<MyPlaylists/>}/>
-                <Route path='/playerSingel' element={<PlayerSingel/>}/>
                 <Route path='/album' element={<Album/>}/>
                 <Route path='/search' element={<AppSearch/>}/>
                 <Route path='/create' element={<Create/>}/>
