@@ -44,7 +44,6 @@ export default function AudioPLayer({
   useEffect(() => {
     if (audioRef.current.src) {
       if (isPlaying) {
-        
         audioRef.current.play();
         startTimer();
       } else {
