@@ -4,8 +4,8 @@ import { FiPlusCircle } from "react-icons/fi";
 import {useSelector, useDispatch} from 'react-redux';
 import "./listSong.css";
 import { ImSearch } from "react-icons/im";
-import { doApiMethod } from '../../components/services/apiService.jsX';
-import { API_URL } from '../../components/services/apiService.jsX';
+import { doApiMethod } from '../../components/services/apiService.jsx';
+import { API_URL } from '../../components/services/apiService.jsx';
 import {  IconButton } from "@mui/material";
 import AppSearch from "../search/appSearch";
 import { useLocation } from 'react-router-dom'

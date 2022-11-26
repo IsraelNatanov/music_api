@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Sidebar from '../../components/sidebar';
 import MenuIcon from "@mui/icons-material/Menu";
 import Artists from '../artists';
@@ -23,12 +23,16 @@ import CreatePlaylist from '../create playlist';
 import EditingPlaylist from '../editingPlaylist/EditingPlaylist';
 import { IconButton } from '@mui/material';
 import RouterPhon from './RouterPhon';
+import axios from 'axios';
+import { API_URL } from '../../components/services/apiService.jsx';
 
 
 
 export default function Home() {
-  const [token, setToken] = useState("");
+
   const [switchPhon, setSwitchPhon] = useState(false);
+  
+
   
 
 

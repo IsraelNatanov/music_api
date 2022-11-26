@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import Queue from '../../components/queue';
-import { doApiDelete } from '../../components/services/apiService.jsX';
-import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { doApiDelete } from '../../components/services/apiService.jsx';
+import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import AppSearch from '../search/appSearch';
 import ButtunEditing from './buttunEditing';
 import {useSelector, useDispatch} from 'react-redux';

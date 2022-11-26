@@ -4,9 +4,9 @@ import "./account.css";
 
 import Pay from './pay';
 import { useEffect } from 'react';
-import { doApiGet } from '../../components/services/apiService.jsX';
+import { doApiGet } from '../../components/services/apiService.jsx';
 import { useState } from 'react';
-import { API_URL } from '../../components/services/apiService.jsX';
+import { API_URL } from '../../components/services/apiService.jsx';
 import Loading from '../../components/card/loading';
 
 

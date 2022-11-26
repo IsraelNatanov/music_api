@@ -8,8 +8,8 @@ import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { ThemeProvider } from 'styled-components';
 import { Directions } from '@mui/icons-material';
-import { doApiMethod } from '../../components/services/apiService.jsX';
-import { API_URL } from '../../components/services/apiService.jsX';
+import { doApiMethod } from '../../components/services/apiService.jsx';
+import { API_URL } from '../../components/services/apiService.jsx';
 import { useState } from 'react';
 import SuccessApi from '../../components/alert/successApi';
 

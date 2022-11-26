@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import "./library.css";
 import { useNavigate } from "react-router-dom";
-import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import ErrorNoPay from '../../components/alert/errorNoPay';
 import Card from '../../components/card/card';
 import Loading from '../../components/card/loading';

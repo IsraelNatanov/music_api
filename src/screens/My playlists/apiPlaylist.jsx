@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ErrorNoPay from '../../components/alert/errorNoPay';
 import PlaylistOnly from '../../components/alert/playlistOnly';
-import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import ListPlaylist from './listPlaylist';
 
 export default function ApiPlaylis() {

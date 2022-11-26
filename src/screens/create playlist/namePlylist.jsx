@@ -4,8 +4,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useSelector, useDispatch} from 'react-redux';
 import {addNmae, addId} from '../../features/createPlaylistUser';
 import CloseIcon from '@mui/icons-material/Close';
-import { doApiMethod } from '../../components/services/apiService.jsX';
-import { API_URL } from '../../components/services/apiService.jsX';
+import { doApiMethod } from '../../components/services/apiService.jsx';
+import { API_URL } from '../../components/services/apiService.jsx';
 import "./namePlylist.css"
 import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from 'stylis';

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import ListSong from './listSong'
 import "./create.css";
-import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import SongCard from '../../components/songCard'
 
 
@@ -47,7 +47,7 @@ export default function Create() {
       
       <div className="horizontal-line">
         <SongCard album={currentTrack} img= {currentImages} />
-        {/* <div className='songCard-body'>{<ComboBox/>}</div> */}
+      
         <ListSong tracks={tracks} setCurrentIndex={setCurrentIndex} currentIndex ={currentIndex} />
       </div>
     </div>

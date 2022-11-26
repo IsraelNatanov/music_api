@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { IconContext } from "react-icons";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import Loading from '../../components/card/loading';
 
 

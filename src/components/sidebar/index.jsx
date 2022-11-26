@@ -7,19 +7,30 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { BsPlusSquareFill } from "react-icons/bs";
 import { ImSearch } from "react-icons/im";
 import { IoMdContact } from "react-icons/io";
+import axios from 'axios';
+import { API_URL } from '../../components/services/apiService';
+import {Navigate} from "react-router-dom";
+
 import './Sidebar.css'
 
 
 
 
 export default function Sidebar() {
+  const [navigate, setNavigate] = useState(false);
 
 
-  const signout = ()=>{
+  const logout = async () => {
     localStorage.clear();
-    window.location.href = '/';
+    let url = API_URL+"/users/logout";
+    await axios.post(url, {}, {withCredentials: true});
 
-  }
+    setNavigate(true);
+}
+
+if (navigate) {
+    return <Navigate to="/login"/>;
+}
   
   return (
     <div className='sidebar-container'>
@@ -39,7 +50,7 @@ export default function Sidebar() {
         />
         <SidebarButton title="Library" to="/library" icon={<IoLibrary />} />
       </div>
-      <SidebarButton title="sign out" to="/#" icon={<FaSignOutAlt onClick={signout}/>} />
+      <SidebarButton title="sign out" to="/signout" icon={<FaSignOutAlt />} />
       
       
     </div>

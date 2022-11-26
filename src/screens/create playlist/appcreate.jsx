@@ -2,7 +2,7 @@ import * as React from 'react';
 import Grid from "@mui/material/Grid";
 import Button from '@mui/material/Button';
 import { IconButton, } from "@mui/material";
-import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import {useNavigate } from "react-router-dom";
 import "./appCreate.css";
 import { useState } from 'react';
@@ -18,11 +18,9 @@ import { SiApplemusic } from 'react-icons/si';
 
 export default function AppCreate(props) {
 
-  const [open, setOpen] = React.useState(true);
+
   const [openSearch, setOpenSearch] = React.useState(false);
   const [apiError, setApiError] = useState(false)
-  const [openNamePlylist, setOpenNamePlylist] = useState(false);
-
 
   const name = useSelector(state => 
     state.name.namePlaylist)
@@ -48,18 +46,6 @@ export default function AppCreate(props) {
     }
   }
 
- 
-  const handleClose = (event, reason) => {
-    if (reason !== 'backdropClick') {
-      setOpen(false);
-      setOpenNamePlylist(false)
-      
-    }
-  };
-  const nameopenplylist = ()=>{
-    setOpenNamePlylist(true)
-  }
- 
   const styleColor ={color:"coral"}
   return (
 
