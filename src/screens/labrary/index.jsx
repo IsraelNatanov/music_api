@@ -33,10 +33,10 @@ export default function Library() {
     }
     catch(err){
       console.log(err.response)
-      if (err.response.status === 401) {
-        localStorage.clear();
-        window.location.href = '/';
-      }
+      // if (err.response.status === 401) {
+        
+      //   window.location.href = '/';
+      // }
       setApiError(true)
     
     }

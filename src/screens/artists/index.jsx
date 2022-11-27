@@ -1,21 +1,37 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import Login from '../auth/login';
 import Card from '../../components/card/card';
 import Loading from '../../components/card/loading';
+import { useSelector } from 'react-redux';
 
-export default function Artists() {
+
+export default function Artists(props) {
+  
 
   const [apiError, setApiError] = useState(false)
   const [loading, setLoading]= useState(false);
   const [playlists, setPlaylists] = useState([]);
-  const [res, setRes] = useState(false)
   const navigate = useNavigate();
+  const token = useSelector(state => 
+    state.token.tokenResponse)
 
-  
+
+
+
+
+  // useEffect(() =>{
+  //   if(token == false){
+  //     return navigate('/login');
+  //   }
+
+  // },[])
   useEffect(() => {
+    if(!token){
+           return navigate('/login');
+    }
     doApi()
     
   },[])
@@ -32,23 +48,11 @@ export default function Artists() {
       
     }
     catch(err){
-      setLoading(false)
-
-      if(!res) {
-        setRes(true)
-        return doApi()
-      }
-      else{
-        
-        setLoading(false)
-       
-        navigate("/login")
-        setApiError(true)
-        console.log(err.response)
-      
-
-      }
      
+      // navigate("/login")
+      setApiError(true)
+      console.log(err.response)
+      
       
     }
   }

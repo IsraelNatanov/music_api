@@ -13,7 +13,7 @@ export const doApiGet = async(_url) => {
     try {
         let resp = await axios.get(_url, {
             headers: {
-                // "x-api-key": localStorage[TOKEN_NAME],
+                "x-api-key": localStorage[TOKEN_NAME],
                 'content-type': "application/json"
             }
         })
@@ -26,16 +26,17 @@ export const doApiGet = async(_url) => {
             const response = await axios.post(URL_REFRCH, {}, {withCredentials: true});
     
             if (response.status === 200) {
+                window.localStorage.setItem("token", response.data.token);
                 
         
-                axios.defaults.headers.common['Authorization'] = `Bearer ${response.data['token']}`;
+                
                 
     
                 return axios(error.config);
             }
         }
         refresh = false;
-        return error;
+        return status(404)
     }
 }
 
@@ -48,7 +49,7 @@ export const doApiMethod = async(_url, _method, _body = {} ) => {
             method: _method,
             data: JSON.stringify(_body),
             headers: {
-                // "x-api-key": localStorage[TOKEN_NAME],
+                "x-api-key": localStorage[TOKEN_NAME],
                 'content-type': "application/json"
             }
         })
@@ -61,16 +62,17 @@ export const doApiMethod = async(_url, _method, _body = {} ) => {
             const response = await axios.post(URL_REFRCH, {}, {withCredentials: true});
     
             if (response.status === 200) {
+                window.localStorage.setItem("token", response.data.token);
                 
         
-                axios.defaults.headers.common['Authorization'] = `Bearer ${response.data['token']}`;
+               
                 
     
                 return axios(error.config);
             }
         }
         refresh = false;
-        return error;
+        return status(404)
     }
     
    
@@ -85,7 +87,7 @@ export const doApiDelete = async(_url, _method = {}) => {
             method: _method,
             // data: JSON.stringify(_body),
             headers: {
-                // "x-api-key": localStorage[TOKEN_NAME],
+                "x-api-key": localStorage[TOKEN_NAME],
                 'content-type': "application/json"
             }
         })

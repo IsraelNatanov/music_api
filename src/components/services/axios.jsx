@@ -15,6 +15,7 @@
             
     
 //             axios.defaults.headers.common['Authorization'] = `Bearer ${response.data['token']}`;
+//             console.log(error.config);
             
 
 //             return axios(error.config);

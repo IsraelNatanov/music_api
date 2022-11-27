@@ -25,21 +25,36 @@ import { IconButton } from '@mui/material';
 import RouterPhon from './RouterPhon';
 import axios from 'axios';
 import { API_URL } from '../../components/services/apiService.jsx';
+import { Token } from '@mui/icons-material';
+import {useSelector, useDispatch} from 'react-redux';
+import {isToken} from '../../features/tokenData';
 
 
 
 export default function Home() {
 
   const [switchPhon, setSwitchPhon] = useState(false);
+  // const [isToken, setIsToken] = useState(true);
+  const dispatch = useDispatch()
+  useState(()=>{
+    let token = localStorage.getItem('token')
+    if(token){
+      
+      dispatch(isToken())
+      
+    }
+
+  },[])
   
 
   
 
 
-  return  (
+  return (
   
     <Router>
       <div className='burger'><Box sx={{ flexGrow: 1 }}>
+        
       <AppBar  sx={{ backgroundColor: "coral"}} position="static">
         <Toolbar variant="dense">
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={()=>setSwitchPhon(!switchPhon)}>
@@ -60,7 +75,7 @@ export default function Home() {
             <Routes>
 
                 <Route path='/library' element={<Library/>}/>
-                <Route path='/' element={<Artists/>}/>
+                <Route path='/' element={<Artists isToken={isToken}/>}/>
                 <Route path='/createPlaylist' element={<CreatePlaylist/>}/>
                 <Route path='/player' element={<Player/>}/>
                 <Route path='/myPlaylists' element={<MyPlaylists/>}/>
@@ -68,7 +83,6 @@ export default function Home() {
                 <Route path='/search' element={<AppSearch/>}/>
                 <Route path='/create' element={<Create/>}/>
                 <Route path='/comboBox' element={<ComboBox/>}/>
-                <Route path='/account' element={<Account/>}/>
                 <Route path='/account' element={<Account/>}/>
                 <Route path='/signout' element={<Signout/>}/>
                 <Route path='/namePlylist' element={<NamePlylist/>}/>

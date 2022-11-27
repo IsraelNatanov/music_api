@@ -33,7 +33,7 @@ const doApiAdd = async(_dataBody) => {
     //   nav("/")
     const {data} = await axios.post(url, _dataBody, {withCredentials: true});
     if(data.token){
-      axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
+      window.localStorage.setItem("token", data.token);
       nav("/")
 
       // window.location.reload(false);
