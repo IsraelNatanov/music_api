@@ -8,7 +8,7 @@ import { BsPlusSquareFill } from "react-icons/bs";
 import { ImSearch } from "react-icons/im";
 import { IoMdContact } from "react-icons/io";
 import axios from 'axios';
-import { API_URL } from '../../components/services/apiService';
+import { API_URL } from '../services/apiService';
 import {Navigate} from "react-router-dom";
 
 import './Sidebar.css'
