@@ -5,6 +5,7 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
 import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import Loading from '../../components/card/loading';
+import { isTokenProvider } from '../../components/services/isToken.jsx';
 
 
 export default function Album() {
@@ -14,10 +15,13 @@ export default function Album() {
 
   const [album, setAlbum] = useState([]);
   const [imageAlbum, setImageAlbum] = useState();
- 
+  const Istoken = isTokenProvider()
   
   useEffect(() => {
-    
+    if(!Istoken){
+      return navigate('/login');
+    }
+   
    
     
     doApi()

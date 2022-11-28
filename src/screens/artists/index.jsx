@@ -5,7 +5,8 @@ import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import Login from '../auth/login';
 import Card from '../../components/card/card';
 import Loading from '../../components/card/loading';
-import { useSelector } from 'react-redux';
+
+import { isTokenProvider } from '../../components/services/isToken.jsx';
 
 
 export default function Artists(props) {
@@ -15,21 +16,15 @@ export default function Artists(props) {
   const [loading, setLoading]= useState(false);
   const [playlists, setPlaylists] = useState([]);
   const navigate = useNavigate();
-  const token = useSelector(state => 
-    state.token.tokenResponse)
+  
+  const Istoken = isTokenProvider()
 
 
 
 
-
-  // useEffect(() =>{
-  //   if(token == false){
-  //     return navigate('/login');
-  //   }
-
-  // },[])
   useEffect(() => {
-    if(!token){
+    
+    if(!Istoken){
            return navigate('/login');
     }
     doApi()
@@ -49,9 +44,8 @@ export default function Artists(props) {
     }
     catch(err){
      
-      // navigate("/login")
-      setApiError(true)
-      console.log(err.response)
+      // await doApi();
+      
       
       
     }

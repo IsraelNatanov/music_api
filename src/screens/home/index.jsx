@@ -34,11 +34,20 @@ import {isToken} from '../../features/tokenData';
 export default function Home() {
 
   const [switchPhon, setSwitchPhon] = useState(false);
-  // const [isToken, setIsToken] = useState(true);
+  const [tokenStorage, setTokenStorage] = useState("1")
+  
   const dispatch = useDispatch()
-  useState(()=>{
-    let token = localStorage.getItem('token')
-    if(token){
+  
+  const _token = window.localStorage.getItem('token')
+
+  
+  
+ 
+  useEffect(()=>{
+    setTokenStorage(_token)
+    
+    if(tokenStorage) {
+      console.log(tokenStorage);
       
       dispatch(isToken())
       

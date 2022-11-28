@@ -13,6 +13,7 @@ import { ImSearch } from "react-icons/im";
 import ErrorNoPay from '../../components/alert/errorNoPay';
 import {useSelector, useDispatch} from 'react-redux';
 import { SiApplemusic } from 'react-icons/si';
+import { isTokenProvider } from '../../components/services/isToken.jsx';
 
 
 
@@ -21,12 +22,16 @@ export default function AppCreate(props) {
 
   const [openSearch, setOpenSearch] = React.useState(false);
   const [apiError, setApiError] = useState(false)
-
+  const navigate = useNavigate()
+  const Istoken = isTokenProvider()
   const name = useSelector(state => 
     state.name.namePlaylist)
 
 
   useEffect(() => {
+    if(!Istoken){
+      return navigate('/login');
+    }
     doApi();
   },[])
 
