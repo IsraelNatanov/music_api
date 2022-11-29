@@ -7,16 +7,28 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import ComboBox from './comboBox';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { isTokenProvider } from '../../components/services/isToken';
 
 
 export default function FilterSearch(props) {
   
   const navigate = useNavigate();
+  const Istoken = isTokenProvider()
 
 
   const [open, setOpen] = React.useState(true);
   
- 
+  useEffect(() => {
+    if(!Istoken){
+      return navigate('/login');
+    }
+   
+   
+    
+    
+
+  }, []);
 
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {

@@ -7,6 +7,7 @@ import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import ErrorNoPay from '../../components/alert/errorNoPay';
 import Card from '../../components/card/card';
 import Loading from '../../components/card/loading';
+import { isTokenProvider } from '../../components/services/isToken';
 
 
 export default function Library() {
@@ -14,8 +15,12 @@ export default function Library() {
   const [playlists, setPlaylists] = useState(null);
   const [apiError, setApiError] = useState(false)
   const [loading, setLoading]= useState(false);
+  const Istoken = isTokenProvider()
 
   useEffect(() => {
+    if(!Istoken){
+      return navigate('/login');
+    }
     doApi()
    
   },[])
