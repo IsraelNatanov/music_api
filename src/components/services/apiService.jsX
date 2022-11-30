@@ -92,8 +92,25 @@ export const doApiDelete = async(_url, _method = {}) => {
             }
         })
         return resp;
-    } catch (err) {
-        throw err;
+    } catch (error) {
+        if (error.response.status === 401 && !refresh) {
+            refresh = true;
+            console.log(refresh);
+    
+            const response = await axios.post(URL_REFRCH, {}, {withCredentials: true});
+    
+            if (response.status === 200) {
+                window.localStorage.setItem("token", response.data.token);
+                
+        
+               
+                
+    
+                return axios(error.config);
+            }
+        }
+        refresh = false;
+        return status(404)
     }
     // {withCredentials: true}
     

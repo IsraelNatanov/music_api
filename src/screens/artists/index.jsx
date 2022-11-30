@@ -44,7 +44,7 @@ export default function Artists(props) {
     }
     catch(err){
      
-      // await doApi();
+      return await doApi();
       
       
       
