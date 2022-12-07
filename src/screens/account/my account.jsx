@@ -4,10 +4,12 @@ import "./account.css";
 
 import Pay from './pay';
 import { useEffect } from 'react';
-import { doApiGet } from '../../components/services/apiService.jsX';
+import { doApiGet } from '../../components/services/apiService.jsx';
 import { useState } from 'react';
-import { API_URL } from '../../components/services/apiService.jsX';
+import { API_URL } from '../../components/services/apiService.jsx';
 import Loading from '../../components/card/loading';
+import { isTokenProvider } from '../../components/services/isToken';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Account() {
@@ -15,8 +17,13 @@ export default function Account() {
  const [premium, setPremium] = useState({});
  const [premiumScreen, setPremiumScreen] = useState(true);
  let [loading, setLoading]= useState(false);
+ const navigate =useNavigate();
+ const Istoken = isTokenProvider()
 
  useEffect(() => {
+  if(!Istoken){
+    return navigate('/login');
+  }
   doApi()
   doApiPremium()
 

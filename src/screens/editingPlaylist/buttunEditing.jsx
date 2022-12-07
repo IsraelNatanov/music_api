@@ -5,11 +5,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { color, fontStyle } from '@mui/system';
 import "./buttunEditing.css"
-import { doApiMethod } from '../../components/services/apiService.jsX';
-import { API_URL } from '../../components/services/apiService.jsX';
+import { doApiMethod } from '../../components/services/apiService.jsx';
+import { API_URL } from '../../components/services/apiService.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { doApiDelete } from '../../components/services/apiService.jsX';
+import { doApiDelete } from '../../components/services/apiService.jsx';
 
 
 export default function ButtunEditing(props) {

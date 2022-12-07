@@ -1,20 +1,32 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { Navigate, useNavigate } from "react-router-dom";
+import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import Login from '../auth/login';
 import Card from '../../components/card/card';
 import Loading from '../../components/card/loading';
 
-export default function Artists() {
+import { isTokenProvider } from '../../components/services/isToken.jsx';
+
+
+export default function Artists(props) {
+  
 
   const [apiError, setApiError] = useState(false)
   const [loading, setLoading]= useState(false);
   const [playlists, setPlaylists] = useState([]);
   const navigate = useNavigate();
-
   
+  const Istoken = isTokenProvider()
+
+
+
+
   useEffect(() => {
+    
+    if(!Istoken){
+           return navigate('/login');
+    }
     doApi()
     
   },[])
@@ -31,12 +43,7 @@ export default function Artists() {
       
     }
     catch(err){
-     
-      navigate("/login")
       setApiError(true)
-      console.log(err.response)
-      
-      
     }
   }
 
@@ -49,7 +56,7 @@ export default function Artists() {
 
   return (
     <div className="screen-container">
-      {loading && <Loading/>}
+      {loading == true && <Loading/>}
       {apiError? <Login />: <Card playlists={playlists} playPlaylist={playPlaylist}/>
       }
     </div>

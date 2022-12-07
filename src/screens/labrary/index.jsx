@@ -3,10 +3,11 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import "./library.css";
 import { useNavigate } from "react-router-dom";
-import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 import ErrorNoPay from '../../components/alert/errorNoPay';
 import Card from '../../components/card/card';
 import Loading from '../../components/card/loading';
+import { isTokenProvider } from '../../components/services/isToken';
 
 
 export default function Library() {
@@ -14,8 +15,12 @@ export default function Library() {
   const [playlists, setPlaylists] = useState(null);
   const [apiError, setApiError] = useState(false)
   const [loading, setLoading]= useState(false);
+  const Istoken = isTokenProvider()
 
   useEffect(() => {
+    if(!Istoken){
+      return navigate('/login');
+    }
     doApi()
    
   },[])
@@ -33,10 +38,10 @@ export default function Library() {
     }
     catch(err){
       console.log(err.response)
-      if (err.response.status === 401) {
-        localStorage.clear();
-        window.location.href = '/';
-      }
+      // if (err.response.status === 401) {
+        
+      //   window.location.href = '/';
+      // }
       setApiError(true)
     
     }

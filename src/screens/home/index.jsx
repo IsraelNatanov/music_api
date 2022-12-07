@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Sidebar from '../../components/sidebar';
 import MenuIcon from "@mui/icons-material/Menu";
 import Artists from '../artists';
@@ -23,19 +23,38 @@ import CreatePlaylist from '../create playlist';
 import EditingPlaylist from '../editingPlaylist/EditingPlaylist';
 import { IconButton } from '@mui/material';
 import RouterPhon from './RouterPhon';
+import { API_URL, doApiMethod, refrchToken } from '../../components/services/apiService.jsx';
+import { useDispatch} from 'react-redux';
+import {isToken} from '../../features/tokenData';
 
 
 
 export default function Home() {
-  const [token, setToken] = useState("");
+
   const [switchPhon, setSwitchPhon] = useState(false);
+  const ACCESS_TOKEN_EXPIRES_TIME = 1000 * 20; 
+  
+  
+  
+ 
+  useEffect(()=>{
+    const intervalId = setInterval(() => {
+      refrchToken();
+    }, ACCESS_TOKEN_EXPIRES_TIME);
+    return () => clearInterval(intervalId);
+    
+
+  },[])
+  
+
   
 
 
-  return  (
+  return (
   
     <Router>
       <div className='burger'><Box sx={{ flexGrow: 1 }}>
+        
       <AppBar  sx={{ backgroundColor: "coral"}} position="static">
         <Toolbar variant="dense">
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={()=>setSwitchPhon(!switchPhon)}>
@@ -56,7 +75,7 @@ export default function Home() {
             <Routes>
 
                 <Route path='/library' element={<Library/>}/>
-                <Route path='/' element={<Artists/>}/>
+                <Route path='/' element={<Artists isToken={isToken}/>}/>
                 <Route path='/createPlaylist' element={<CreatePlaylist/>}/>
                 <Route path='/player' element={<Player/>}/>
                 <Route path='/myPlaylists' element={<MyPlaylists/>}/>
@@ -64,7 +83,6 @@ export default function Home() {
                 <Route path='/search' element={<AppSearch/>}/>
                 <Route path='/create' element={<Create/>}/>
                 <Route path='/comboBox' element={<ComboBox/>}/>
-                <Route path='/account' element={<Account/>}/>
                 <Route path='/account' element={<Account/>}/>
                 <Route path='/signout' element={<Signout/>}/>
                 <Route path='/namePlylist' element={<NamePlylist/>}/>

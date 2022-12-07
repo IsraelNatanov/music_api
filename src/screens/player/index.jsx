@@ -7,7 +7,7 @@ import Queue from '../../components/queue';
 import SongCard from '../../components/songCard';
 import AudioPLayer from '../../components/audioPlayer/audioPlayer';
 
-import { doApiGet, API_URL } from '../../components/services/apiService.jsX';
+import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
 
 import axios from 'axios';
 

@@ -18,14 +18,10 @@ import { ImSearch } from "react-icons/im";
 import { IoMdContact } from "react-icons/io";
 
 export default function RouterPhon(props) {
-  const signout = ()=>{
-    localStorage.clear();
-    window.location.href = '/';
-
-  }
+ 
   const nav = useNavigate();
 
-  const arrUrl =['/', '/search', '/createPlaylist', '/myPlaylists', '/library', '/account'];
+  const arrUrl =['/', '/search', '/createPlaylist', '/myPlaylists', '/library', '/account', '/signout'];
   const navUrl = (id)=>{
     nav(arrUrl[id]);
     props.setSwitchPhon(false);
@@ -87,7 +83,7 @@ export default function RouterPhon(props) {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={signout}>
+            <ListItemButton onClick={()=>navUrl(6)}>
               <ListItemIcon>
                 <FaSignOutAlt />
               </ListItemIcon>
