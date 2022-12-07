@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import ErrorNoPay from '../../components/alert/errorNoPay';
 import PlaylistOnly from '../../components/alert/playlistOnly';
 import { doApiGet, API_URL } from '../../components/services/apiService.jsx';
+import { isTokenProvider } from '../../components/services/isToken';
 import ListPlaylist from './listPlaylist';
 
 export default function ApiPlaylis() {
     const [apiError, setApiError] = useState(false)
   const [play, setPlay] = useState([]);
   const [legth, setLength] = useState(false);
+  const navigate = useNavigate();
   
   
 
-  
+  const Istoken = isTokenProvider()
   useEffect(() => {
+    if(!Istoken){
+      return navigate('/login');
+    }
+    
     doApi()
-    // getplylistData();
+    
   },[])
 
   const doApi = async() => {

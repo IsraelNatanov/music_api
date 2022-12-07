@@ -5,12 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { doApiMethod } from '../../components/services/apiService.jsx';
 import { API_URL } from '../../components/services/apiService.jsx';
 import axios from 'axios';
-
+import { useDispatch} from 'react-redux';
+import {isToken} from '../../features/tokenData';
 
 
 
 export default function SignIn({handleChange}) {
+
   const nav = useNavigate()
+  const dispatch = useDispatch()
   
  
   let {register , handleSubmit , formState: { errors } } = useForm()
@@ -25,15 +28,11 @@ export default function SignIn({handleChange}) {
 const doApiAdd = async(_dataBody) => {
   let url = API_URL+"/users/login";
   try{
-    // let resp = await doApiMethod(url,"POST",_dataBody,{withCredentials: true});
-
-    // console.log(resp);
-    // if(resp.data.token){
-    //   window.localStorage.setItem("token", resp.data.token);
-    //   nav("/")
+    
     const {data} = await axios.post(url, _dataBody, {withCredentials: true});
     if(data.token){
       window.localStorage.setItem("token", data.token);
+      dispatch(isToken())
       nav("/")
 
       // window.location.reload(false);

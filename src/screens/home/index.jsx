@@ -23,10 +23,8 @@ import CreatePlaylist from '../create playlist';
 import EditingPlaylist from '../editingPlaylist/EditingPlaylist';
 import { IconButton } from '@mui/material';
 import RouterPhon from './RouterPhon';
-import axios from 'axios';
-import { API_URL } from '../../components/services/apiService.jsx';
-import { Token } from '@mui/icons-material';
-import {useSelector, useDispatch} from 'react-redux';
+import { API_URL, doApiMethod, refrchToken } from '../../components/services/apiService.jsx';
+import { useDispatch} from 'react-redux';
 import {isToken} from '../../features/tokenData';
 
 
@@ -34,24 +32,17 @@ import {isToken} from '../../features/tokenData';
 export default function Home() {
 
   const [switchPhon, setSwitchPhon] = useState(false);
-  const [tokenStorage, setTokenStorage] = useState("1")
+  const ACCESS_TOKEN_EXPIRES_TIME = 1000 * 20; 
   
-  const dispatch = useDispatch()
-  
-  const _token = window.localStorage.getItem('token')
-
   
   
  
   useEffect(()=>{
-    setTokenStorage(_token)
+    const intervalId = setInterval(() => {
+      refrchToken();
+    }, ACCESS_TOKEN_EXPIRES_TIME);
+    return () => clearInterval(intervalId);
     
-    if(tokenStorage) {
-      console.log(tokenStorage);
-      
-      dispatch(isToken())
-      
-    }
 
   },[])
   

@@ -115,4 +115,12 @@ export const doApiDelete = async(_url, _method = {}) => {
     // {withCredentials: true}
     
 }
+export const refrchToken = async () =>{
+    const response = await axios.post(URL_REFRCH, {}, {withCredentials: true});
+    
+    if (response.status === 200) {
+        window.localStorage.setItem("token", response.data.token);
+  
+    }
+}
 
