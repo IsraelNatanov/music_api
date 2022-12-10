@@ -26,6 +26,7 @@ import RouterPhon from './RouterPhon';
 import { API_URL, doApiMethod, refrchToken } from '../../components/services/apiService.jsx';
 import { useDispatch} from 'react-redux';
 import {isToken} from '../../features/tokenData';
+import Page404 from './page404';
 
 
 
@@ -33,13 +34,20 @@ export default function Home() {
 
   const [switchPhon, setSwitchPhon] = useState(false);
   const ACCESS_TOKEN_EXPIRES_TIME = 1000 * 20; 
+  const dispatch = useDispatch();
   
   
   
  
   useEffect(()=>{
+    if(localStorage.getItem('token') != null){
+      dispatch(isToken())
+    }
+
+    
     const intervalId = setInterval(() => {
       refrchToken();
+      
     }, ACCESS_TOKEN_EXPIRES_TIME);
     return () => clearInterval(intervalId);
     
@@ -75,7 +83,7 @@ export default function Home() {
             <Routes>
 
                 <Route path='/library' element={<Library/>}/>
-                <Route path='/' element={<Artists isToken={isToken}/>}/>
+                <Route path='/' element={<Artists />}/>
                 <Route path='/createPlaylist' element={<CreatePlaylist/>}/>
                 <Route path='/player' element={<Player/>}/>
                 <Route path='/myPlaylists' element={<MyPlaylists/>}/>
@@ -88,6 +96,7 @@ export default function Home() {
                 <Route path='/namePlylist' element={<NamePlylist/>}/>
                 <Route path='/editingPlaylist' element={<EditingPlaylist/>}/>
                 <Route path='/login' element={<Login/>}/>
+                <Route path='*' element={<Page404/>}/>
                 
                 
                 

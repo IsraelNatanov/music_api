@@ -9,7 +9,7 @@ import Loading from '../../components/card/loading';
 import { isTokenProvider } from '../../components/services/isToken.jsx';
 
 
-export default function Artists(props) {
+export default function Artists() {
   
 
   const [apiError, setApiError] = useState(false)
@@ -25,8 +25,9 @@ export default function Artists(props) {
   useEffect(() => {
     
     if(!Istoken){
-           return navigate('/login');
+      return navigate('/login');
     }
+   
     doApi()
     
   },[])

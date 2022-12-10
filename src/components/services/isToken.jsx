@@ -3,10 +3,7 @@ import { useSelector } from 'react-redux';
 
 export const isTokenProvider = ()=>{
 
-    const token = useSelector(state => 
-        state.token.tokenResponse)
-
-    if(token){   
+    if(localStorage.getItem('token') != null){
         return true;
     }
     return false;

@@ -19,24 +19,7 @@ export const doApiGet = async(_url) => {
         })
         return resp;
     } catch (error) {
-        if (error.response.status === 401 && !refresh) {
-            refresh = true;
-            console.log(refresh);
-    
-            const response = await axios.post(URL_REFRCH, {}, {withCredentials: true});
-    
-            if (response.status === 200) {
-                window.localStorage.setItem("token", response.data.token);
-                
-        
-                
-                
-    
-                return axios(error.config);
-            }
-        }
-        refresh = false;
-        return status(404)
+        return error
     }
 }
 
@@ -55,24 +38,8 @@ export const doApiMethod = async(_url, _method, _body = {} ) => {
         })
         return resp;
     } catch (error) {
-        if (error.response.status === 401 && !refresh) {
-            refresh = true;
-            console.log(refresh);
-    
-            const response = await axios.post(URL_REFRCH, {}, {withCredentials: true});
-    
-            if (response.status === 200) {
-                window.localStorage.setItem("token", response.data.token);
-                
+        return error
         
-               
-                
-    
-                return axios(error.config);
-            }
-        }
-        refresh = false;
-        return status(404)
     }
     
    
@@ -93,24 +60,7 @@ export const doApiDelete = async(_url, _method = {}) => {
         })
         return resp;
     } catch (error) {
-        if (error.response.status === 401 && !refresh) {
-            refresh = true;
-            console.log(refresh);
-    
-            const response = await axios.post(URL_REFRCH, {}, {withCredentials: true});
-    
-            if (response.status === 200) {
-                window.localStorage.setItem("token", response.data.token);
-                
-        
-               
-                
-    
-                return axios(error.config);
-            }
-        }
-        refresh = false;
-        return status(404)
+        return error
     }
     // {withCredentials: true}
     
