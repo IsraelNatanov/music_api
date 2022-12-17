@@ -27,6 +27,7 @@ import { API_URL, doApiMethod, refrchToken } from '../../components/services/api
 import { useDispatch} from 'react-redux';
 import {isToken} from '../../features/tokenData';
 import Page404 from './page404';
+import { isTokenProvider } from '../../components/services/isToken';
 
 
 
@@ -35,6 +36,7 @@ export default function Home() {
   const [switchPhon, setSwitchPhon] = useState(false);
   const ACCESS_TOKEN_EXPIRES_TIME = 1000 * 20; 
   const dispatch = useDispatch();
+  const Istoken = isTokenProvider()
   
   
   
@@ -49,7 +51,9 @@ export default function Home() {
       refrchToken();
       
     }, ACCESS_TOKEN_EXPIRES_TIME);
-    return () => clearInterval(intervalId);
+    if(localStorage.getItem('token') != null){
+      return () => clearInterval(intervalId);
+    }
     
 
   },[])

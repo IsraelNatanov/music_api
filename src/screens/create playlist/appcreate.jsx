@@ -21,7 +21,7 @@ export default function AppCreate(props) {
 
 
   const [openSearch, setOpenSearch] = React.useState(false);
-  const [apiError, setApiError] = useState(false)
+  const [apiError, setApiError] = useState(true)
   const navigate = useNavigate()
   const Istoken = isTokenProvider()
   const name = useSelector(state => 
@@ -39,7 +39,10 @@ export default function AppCreate(props) {
     try{
       let url = API_URL+"/payment"
       let resp = await doApiGet(url);
-      setApiError(false)
+      if(resp.data._id){
+        setApiError(false)
+      }
+      
       
       
     }

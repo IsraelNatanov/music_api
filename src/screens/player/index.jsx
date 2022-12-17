@@ -55,7 +55,7 @@ export default function Player() {
   const doApiAlbum = async() => {
     try{
       console.log("dfsd");
-      let url = API_URL+"/tracks/" + location.state?.id
+      let url = `${API_URL}/tracks/sung/${location.state?.id}`
       let resp = await doApiGet(url);
       console.log(resp.data);
         setTracks(resp.data);

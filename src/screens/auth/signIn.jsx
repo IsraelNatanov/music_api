@@ -7,6 +7,8 @@ import { API_URL } from '../../components/services/apiService.jsx';
 import axios from 'axios';
 import { useDispatch} from 'react-redux';
 import {isToken} from '../../features/tokenData';
+import { useState } from 'react';
+import "./error.css";
 
 
 
@@ -14,6 +16,7 @@ export default function SignIn({handleChange}) {
 
   const nav = useNavigate()
   const dispatch = useDispatch()
+  const [errorLogin ,setErrorLogin] = useState(false);
   
  
   let {register , handleSubmit , formState: { errors } } = useForm()
@@ -32,13 +35,14 @@ const doApiAdd = async(_dataBody) => {
     const {data} = await axios.post(url, _dataBody, {withCredentials: true});
     if(data.token){
       window.localStorage.setItem("token", data.token);
-      dispatch(isToken())
+      // dispatch(isToken())
       nav("/")
 
       // window.location.reload(false);
     }
   }
   catch(err){
+    setErrorLogin(true)
     console.log(err.response);
     
   }
@@ -58,10 +62,13 @@ const doApiAdd = async(_dataBody) => {
             <h2>Sign In</h2>
         </Grid>
         <form onSubmit={handleSubmit(onSub)}>
-        <TextField required id="standard-required" label='Username' placeholder='Enter username' fullWidth variant="standard" {...register("email",{required:true,pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i})} />
+        <TextField required id="standard-required" label='Username' placeholder='Enter username' fullWidth variant="standard" 
+        {...register("email",{required:true,pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i})}/>
+        {errors.email && <div className='text-error'>Enter valid email, min 3 chars</div>}
         <TextField required id="standard-required"  label='Password' placeholder='Enter password' type='password' fullWidth variant="standard" {...register("password",{ required:true, minLength:3})} />
-    
+        {errors.password && <div className='text-error'>Enter valid passowrd, min 3 chars</div>}
         <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
+        {errorLogin && <div className='text-error'>Username or password is incorrect, please try again</div>}
         </form>
    
         <Typography > Do you have an account ?

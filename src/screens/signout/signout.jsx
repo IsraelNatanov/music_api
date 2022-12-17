@@ -25,7 +25,7 @@ export default function Signout() {
     setNavigate(true);
     if (navigate) {
     return <Navigate to="/login"/>;
-}
+    }
   
     
     

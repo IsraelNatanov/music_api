@@ -19,7 +19,7 @@ export const doApiGet = async(_url) => {
         })
         return resp;
     } catch (error) {
-        return error
+        throw err;
     }
 }
 
@@ -38,7 +38,7 @@ export const doApiMethod = async(_url, _method, _body = {} ) => {
         })
         return resp;
     } catch (error) {
-        return error
+        throw err;
         
     }
     
@@ -60,7 +60,7 @@ export const doApiDelete = async(_url, _method = {}) => {
         })
         return resp;
     } catch (error) {
-        return error
+        throw err;
     }
     // {withCredentials: true}
     

@@ -31,9 +31,14 @@ export default function Library() {
       let url = API_URL+"/plylistSpotify"
       let resp = await doApiGet(url);
       setPlaylists(resp.data)
-      console.log(resp.data);
+      console.log(resp);
+      setApiError(false)
+      
       setApiError(false)
       setLoading(false)
+      // if(response.status == 500){
+      //   setApiError(true)
+      // }
     
     }
     catch(err){

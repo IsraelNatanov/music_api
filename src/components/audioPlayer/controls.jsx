@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./controls.css";
 import { IconContext } from "react-icons";
 import { FaPause } from "react-icons/fa";
@@ -10,6 +10,7 @@ export default function Controls({
   handleNext,
   handlePrev,
 }) {
+ 
   return (
     <IconContext.Provider value={{ size: "35px", color: "#C4D0E3" }}>
       <div className="controls-wrapper flex">

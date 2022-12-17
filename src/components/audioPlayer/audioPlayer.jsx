@@ -42,9 +42,11 @@ export default function AudioPLayer({
 
   //מגדיר איזה שיר יתנגן מהשנפתח אוטומטי או מה שהמשתמש בחר
   useEffect(() => {
+   
     if (audioRef.current.src) {
       if (isPlaying) {
         audioRef.current.play();
+        setIsPlaying(true);
         startTimer();
       } else {
         clearInterval(intervalRef.current);
@@ -54,6 +56,7 @@ export default function AudioPLayer({
       if (isPlaying) {
         audioRef.current = new Audio(audioSrc);
         audioRef.current.play();
+        
         startTimer();
       } else {
         clearInterval(intervalRef.current);

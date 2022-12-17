@@ -14,6 +14,8 @@ import createCache from "@emotion/cache";
 import { SiApplemusic } from "react-icons/si";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { BsPencil } from "react-icons/bs";
+import { useState } from 'react';
 
 
 const theme = createTheme({
@@ -38,6 +40,9 @@ export default function NamePlylist( props) {
  
  
   const [open, setOpen] = React.useState(true);
+  let [img,setImg] = useState("https://images.pexels.com/photos/1021876/pexels-photo-1021876.jpeg?auto=compress&cs=tinysrgb&w=600")
+  let [img1,setImg1] = useState("")
+
   const navigate = useNavigate();
   React.useEffect(()=>{
     dispatch(addNmae({nameFromUser:"הפלייליסט שלי"}))
@@ -87,6 +92,21 @@ export default function NamePlylist( props) {
     doApiAdd(dataName);
     
   }
+  const addImg = (e)=>{
+    setImg1(e.target.files[0])
+    const fromData = new FormData()
+    fromData.append('myFile', img1)
+    setImg(fromData['myFile'])
+
+  }
+  const inputImgUser=()=>{
+    // <div>
+    //   <input type="file"  name='file' onChange={addImg}/>
+    // </div>
+    document.getElementById('select-file').click()
+
+  }
+  
   
 
   return (
@@ -130,7 +150,18 @@ export default function NamePlylist( props) {
           </Box>
         </DialogContent>
         <div className='size-icon'>
-          {<SiApplemusic/>}
+          {/* {<SiApplemusic/>} */}
+          <img
+              src={img}
+              className="playlist-image"
+              alt="Playlist-Art"
+              
+            />
+            <div className='add-img' onClick={inputImgUser} >
+            <input id='select-file' type="file" style={{display:'none'}} name='file' onChange={addImg}/>
+              <div className='icon-add-img'>{<BsPencil/>}</div>
+              <div className='text-add-img'>הוסף תמונה</div>
+            </div>
 
           </div>
       

@@ -12,7 +12,7 @@ import { doApiMethod } from '../../components/services/apiService.jsx';
 import { API_URL } from '../../components/services/apiService.jsx';
 import { useState } from 'react';
 import SuccessApi from '../../components/alert/successApi';
-
+import "./error.css";
 
 
 export default function Signup({handleChange, handleButtonClick} ) {
@@ -71,37 +71,23 @@ const doApiAdd = async(_dataBody) => {
     <Paper sx={{'& .MuiTextField-root':{margin:'12px 0'},} } style={paperStyle}>
         <Grid align='center'>
             <Avatar style={avatarStyle}>
-                {/* <AddCircleOutlineOutlinedIco /> */}
+               
             </Avatar>
             <h2 style={headerStyle}>Sign Up</h2>
             <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
         </Grid>
        
         <form onSubmit={handleSubmit(onSub)}>
-        {/* <CacheProvider value={cacheRtl}>
-            <ThemeProvider theme={theme}> */}
-            <TextField  required id="standard-required"  fullWidth label='Name' placeholder="Enter your name" variant="standard" {...register("name",{required:"Required", minLength:3 })}/>
-            {/* </ThemeProvider>
-          </CacheProvider> */}
-            {/* {errors.name && <small className='d-block text-danger'>Enter valid email, min 3 chars</small>} */}
-            <TextField required id="standard-required" fullWidth label='Email' placeholder="Enter your email" variant="standard" {...register("email",{required:"Required",pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i})}/>
-            {/* {errors.email && <small className='d-block text-danger'>Enter valid email, min 3 chars</small>} */}
-            {/* <FormControl component="fieldset" style={marginTop}>
-                <FormLabel component="legend">Gender</FormLabel>
-                <RadioGroup aria-label="gender" name="gender" style={{ display: 'initial' }}>
-                    <FormControlLabel value="female" control={<Radio/>} label="Female" />
-                    <FormControlLabel value="male" control={<Radio />} label="Male" />
-                </RadioGroup>
-            </FormControl>
-            <TextField fullWidth label='Phone Number' placeholder="Enter your phone number" /> */}
-            <TextField  required id="standard-required" fullWidth label='Password' placeholder="Enter your password" type='password' variant="standard" {...register("password",{required:"Required", minLength:3})}/>
-            {/* {errors.password && <small className='d-block text-danger'>Enter valid passowrd, min 3 chars</small>} */}
+          <TextField  required id="standard-required"  fullWidth label='Name' placeholder="Enter your name" variant="standard" {...register("name",{required:"Required", minLength:3 })}/>
+            {errors.name && <div className='text-error'>Enter valid name, min 3 chars</div>}
+           <TextField required id="standard-required" fullWidth label='Email' placeholder="Enter your email" variant="standard" {...register("email",{required:"Required",pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i})}/>
+            {errors.email && <div className='text-error'>Enter valid email, min 3 chars</div>}
+               <TextField  required id="standard-required" fullWidth label='Password' placeholder="Enter your password" type='password' variant="standard" {...register("password",{required:"Required", minLength:3})}/>
+            {errors.password && <div className='text-error'>Enter valid passowrd, min 3 chars</div>}
+           
             <TextField required id="standard-required" fullWidth label='Confirm Password' placeholder="Confirm your password" type='password' variant="standard"  {...register("password2",{required:"Required", validate: value => value == getValues("password")})}/>
-            {/* {errors.password2 && <small className='d-block text-danger'>passowrd not eqoul</small>} */}
-            {/* <FormControlLabel
-                control={<Checkbox name="checkedA" />}
-                label="I accept the terms and conditions."
-            /> */}
+            {errors.password2 && <div className='text-error'>Enter valid passowrd, min 3 chars</div>}
+         
             <Button style={btnstyle} type='submit' variant='contained' color='primary'>Sign up</Button>
         </form>
     </Paper>

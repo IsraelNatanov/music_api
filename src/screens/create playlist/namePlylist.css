@@ -1,4 +1,50 @@
 .size-icon {
-    font-size: 100px;
+    max-width: 110px;
     margin-right: 25px;
+    position: relative;
+    
+}
+.add-img{
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.25s;
+    font-family: 'Quicksand', sans-serif;
+    color: #ffffff;
+   
+  
+   
+}
+.add-img > * {
+    transform: translateY(5px);
+    transition: transform 0.25s;
+
+}
+
+.add-img:hover {
+    opacity: 1;
+}
+
+.add-img > * :hover {
+    transform: translateY(0);
+}
+
+.text-add-img{
+    color: white;
+    text-align: center;
+    
+    
+}
+.icon-add-img{
+  font-size: x-large;
+  color: #F8D9C0;
 }

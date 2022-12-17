@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Account() {
  const [user, setUser ]= useState({});
  const [premium, setPremium] = useState({});
- const [premiumScreen, setPremiumScreen] = useState(true);
+ const [premiumScreen, setPremiumScreen] = useState(false);
  let [loading, setLoading]= useState(false);
  const navigate =useNavigate();
  const Istoken = isTokenProvider()
@@ -49,12 +49,17 @@ export default function Account() {
       let url = API_URL+"/payment"
       let resp = await doApiGet(url);
       setPremium(resp.data)
-      console.log(resp)
-      setPremiumScreen(false)
+      if(resp.data._id){
+        setPremiumScreen(true)
+      }
+      console.log(resp.data)
+      // if(resp.data.error === 404)
+      // setPremiumScreen(true)
    
     }
     catch(err){
       console.log(err)
+      setPremiumScreen(false)
      
       
     }
@@ -91,7 +96,7 @@ export default function Account() {
         <Typography variant="h5" gutterBottom >
           {user.email} :אימייל רשום
         </Typography>
-        {premiumScreen?
+        {!premiumScreen?
         <Typography variant="h5" gutterBottom  >
           
           סוג חשבון: רגיל 
@@ -104,7 +109,7 @@ export default function Account() {
         
   
         </Paper>
-        {premiumScreen?   
+        {!premiumScreen?   
       <Paper elevation={20} style={paperStyle} >
       <Typography variant="h5"   gutterBottom marginTop={5} >
       Premium רכישת חשבון 
@@ -116,7 +121,7 @@ export default function Account() {
         
         <Pay setLoading={setLoading} />
       </Paper>:
-      <div></div>
+      ""
 }
 
       
