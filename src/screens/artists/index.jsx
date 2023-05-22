@@ -44,7 +44,8 @@ export default function Artists() {
       
     }
     catch(err){
-      setApiError(true)
+      return navigate('/login');
+      
     }
   }
 
@@ -58,8 +59,8 @@ export default function Artists() {
   return (
     <div className="screen-container">
       {loading == true && <Loading/>}
-      {apiError? <Login />: <Card playlists={playlists} playPlaylist={playPlaylist}/>
-      }
+      <Card playlists={playlists} playPlaylist={playPlaylist}/>
+      
     </div>
   );
 }

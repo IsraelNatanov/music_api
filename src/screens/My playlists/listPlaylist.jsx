@@ -21,7 +21,7 @@ export default function ListPlaylist(props) {
             
           >
             <img
-              src='https://images.pexels.com/photos/1021876/pexels-photo-1021876.jpeg?auto=compress&cs=tinysrgb&w=600'
+              src={plays.image.url}
               className="playlist-image"
               alt="Playlist-Art"
             />
@@ -31,6 +31,7 @@ export default function ListPlaylist(props) {
               <IconContext.Provider value={{ size: "50px", color: "#E99D72" }}>
                 <AiFillPlayCircle />
               </IconContext.Provider>
+              
             </div>
           </div>
     

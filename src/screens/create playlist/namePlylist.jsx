@@ -62,11 +62,8 @@ export default function NamePlylist( props) {
     let url = API_URL+"/myPlylist";
     try{
       let resp = await doApiMethod(url,"POST",_dataBody);
-      if(resp.data._id){
-        console.log("ppp");
-        
-       
-      }
+      console.log(resp.data);
+      
     }
     catch(err){
       console.log(err.response);
@@ -86,6 +83,7 @@ export default function NamePlylist( props) {
     const dataName = {
       id: id_playlist,
       name: name_playlist,
+      image: img
     }
     console.log(dataName);
     setOpen(false);
@@ -93,16 +91,33 @@ export default function NamePlylist( props) {
     
   }
   const addImg = (e)=>{
-    setImg1(e.target.files[0])
-    const fromData = new FormData()
-    fromData.append('myFile', img1)
-    setImg(fromData['myFile'])
+    const file = e.target.files[0];
+    transformFile(file)
+    // const fromData = new FormData()
+    // fromData.append('myFile', img1)
+    // setImg(fromData['myFile'])
 
   }
+  const transformFile = (file)=>{
+    const render = new FileReader();
+    if(file){
+      render.readAsDataURL(file);
+     
+      render.onloadend = () =>{
+        let ifImg = render.result
+       
+        if(ifImg.split(':')[1].split('/')[0] == 'image') setImg(render.result)
+          
+
+        
+      }
+    }
+    else{
+      setImg('https://images.pexels.com/photos/1021876/pexels-photo-1021876.jpeg?auto=compress&cs=tinysrgb&w=600')
+    }
+  }
   const inputImgUser=()=>{
-    // <div>
-    //   <input type="file"  name='file' onChange={addImg}/>
-    // </div>
+
     document.getElementById('select-file').click()
 
   }
@@ -169,7 +184,7 @@ export default function NamePlylist( props) {
         
         <DialogActions>
           <Button sx={{fontSize: "large"}} type='submit'>שמירה</Button>
-          {/* <Button onClick={handleClose}>Ok</Button> */}
+       
         </DialogActions>
         </form>
         </Dialog>

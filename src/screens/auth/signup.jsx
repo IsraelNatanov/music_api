@@ -48,6 +48,7 @@ const doApiAdd = async(_dataBody) => {
     // let data = await resp.json();
     console.log(resp);
     if(resp.data._id){
+      console.log('hee');
       handleButtonClick()
       // alert("users added to the system");
       handleChange("event",0)

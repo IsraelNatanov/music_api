@@ -1,7 +1,19 @@
 .size-icon {
-    max-width: 110px;
+    /* max-width: 110px; */
     margin-right: 25px;
     position: relative;
+    
+    
+    
+}
+.size-icon img {
+    
+    object-fit: contain;
+    width: 100px;
+    height: 100px;
+   
+    
+    
     
 }
 .add-img{
